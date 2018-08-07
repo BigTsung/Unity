@@ -1289,7 +1289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Speed: 6
-  m_turnSpeed: 180
+  m_turnSpeed: 200
+  transitionDuration: 0.1
 --- !u!195 &1511895255
 NavMeshAgent:
   m_ObjectHideFlags: 0

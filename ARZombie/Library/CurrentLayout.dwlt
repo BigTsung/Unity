@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 781, y: 471}
   m_MaxSize: {x: 16006, y: 14042}
   vertical: 0
-  controlID: 78
+  controlID: 54
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_MinSize: {x: 504, y: 471}
   m_MaxSize: {x: 12004, y: 14042}
   vertical: 1
-  controlID: 79
+  controlID: 55
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_MinSize: {x: 504, y: 200}
   m_MaxSize: {x: 12004, y: 4021}
   vertical: 0
-  controlID: 80
+  controlID: 56
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -320,14 +320,14 @@ MonoBehaviour:
     - {fileID: 1107005592240995092, guid: abfbb7a393726cf41a120b69f0d5b663, type: 2}
     - {fileID: 1107200933213905684, guid: 260e0e33749bf504ca3513a22de77643, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.83208144
+    - e00: 1.0270166
       e01: 0
       e02: 0
-      e03: 25.4823
+      e03: 52.608246
       e10: 0
-      e11: 0.83208144
+      e11: 1.0270166
       e12: 0
-      e13: 86.84845
+      e13: -13.013458
       e20: 0
       e21: 0
       e22: 1
@@ -490,20 +490,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs/Enemy
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/Enemy
+  - Assets
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\BTsung\Desktop\ARZombie
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 37}
-    m_SelectedIDs: a0300000
-    m_LastClickedID: 12448
-    m_ExpandedIDs: 00000000022b0000b02b0000ee2b0000502c0000082d00006a2d00007230000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 022b0000
+    m_LastClickedID: 11010
+    m_ExpandedIDs: 00000000022b0000402b0000b02b0000ee2b0000502c0000082d00006a2d0000782e00007230000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -559,7 +559,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: 260500006e260000f4040000aa2000001805000064050000cc21000030310000e221000000000000642200008e29000048370000
+    m_ExpandedInstanceIDs: 260500006e260000f4040000aa2000001805000064050000cc21000030310000e221000000000000642200008e29000048370000a8310000982e00007a2f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -647,9 +647,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 6c320000
-    m_LastClickedID: 12908
-    m_ExpandedIDs: 34b5fbfff0fbffff00000000
+    m_SelectedIDs: 1c340000
+    m_LastClickedID: 0
+    m_ExpandedIDs: f0fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.44517282, y: 0.120272525, z: -0.060429383, w: 0.8853479}
     speed: 2
-    m_Value: {x: 0.44514236, y: 0.12026429, z: -0.060425248, w: 0.88528734}
+    m_Value: {x: -0.44517282, y: -0.120272525, z: 0.060429383, w: -0.8853479}
   m_Size:
     m_Target: 61.129093
     speed: 2
