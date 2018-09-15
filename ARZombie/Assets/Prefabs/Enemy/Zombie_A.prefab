@@ -370,9 +370,10 @@ GameObject:
   - component: {fileID: 95354293940975154}
   - component: {fileID: 136146110573220172}
   - component: {fileID: 54074509376342878}
-  - component: {fileID: 114609193094981482}
   - component: {fileID: 195370488715682050}
-  m_Layer: 0
+  - component: {fileID: 114609193094981482}
+  - component: {fileID: 114043542860198880}
+  m_Layer: 10
   m_Name: Zombie_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,6 +965,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114043542860198880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1642577385858710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3784597cf9bc4959aed5c054816e38f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
 --- !u!114 &114609193094981482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1063,7 +1076,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 150
-  m_StoppingDistance: 1
+  m_StoppingDistance: 6
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
