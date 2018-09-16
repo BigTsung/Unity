@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originPos: {x: 0, y: 0, z: 0}
-  groundResolution: {x: 10, y: 3}
+  groundResolution: {x: 10, y: 10}
   groundPrefab: {fileID: 1198914598674246, guid: 52ebcd818c5b41f4686c8e1c5b1a94cf,
     type: 2}
 --- !u!4 &1147868028
