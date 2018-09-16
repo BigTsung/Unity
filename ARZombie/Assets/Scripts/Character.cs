@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
         get { return hp; }
         set 
         {
-            if (value < hp)
+            if (value < hp && value > 0)
                 OnHurting();
 
             hp = value;
@@ -32,12 +32,15 @@ public class Character : MonoBehaviour
 
     private void OnDead()
     {
-        Debug.Log("Dead!!!");
-        PlayAnimation("Death");
+        //Debug.Log("Dead!!!");
+        PlayAnimation("Death", false);
         if(enemyController.Agent != null)
         {
             enemyController.Agent.isStopped = true;
         }
+        if (enemyController.ColliderCom != null)
+            enemyController.ColliderCom.enabled = false;
+
         Invoke("Disappear", 3f);
     }
 
@@ -48,14 +51,19 @@ public class Character : MonoBehaviour
 
     private void OnHurting()
     {
-        Debug.Log("Hurting!!!");
+        //Debug.Log("Hurting!!!");
+        PlayAnimation("Hurt", true);
     }
 
-    private void PlayAnimation(string aniName)
+    private void PlayAnimation(string aniName, bool supportRepeat = true)
     {
         if (enemyController.Ani != null)
         {
-            enemyController.Ani.CrossFade(aniName, 0.3f);
+            //Debug.Log(aniName);
+            if(supportRepeat)
+                enemyController.Ani.CrossFadeInFixedTime(aniName, 0.1f);
+            else
+                enemyController.Ani.CrossFade(aniName, 0.1f);
         }
     }
 }

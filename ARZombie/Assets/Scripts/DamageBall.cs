@@ -39,6 +39,6 @@ public class DamageBall : MonoBehaviour {
             character.HP -= damageValue;
         }
 
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-
     //public Transform destination;
     private NavMeshAgent agent;
     private GameObject target;
     private Animator animator;
+    private Collider collider;
 
     public NavMeshAgent Agent
     {
@@ -21,12 +21,19 @@ public class EnemyController : MonoBehaviour
         get { return animator; }
     }
 
+    public Collider ColliderCom
+    {
+        get { return collider; }
+    }
+
     void Awake()
     {
         if (agent == null)
             agent = GetComponent<NavMeshAgent>();
         if (animator == null)
             animator = GetComponent<Animator>();
+        if (collider == null)
+            collider = GetComponent<Collider>();
     }
 
     // Use this for initialization
