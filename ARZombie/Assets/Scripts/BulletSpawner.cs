@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletSpawner : MonoBehaviour {
+public class BulletSpawner : Singleton<BulletSpawner> {
 
     [Range(1f, 100f)]
     public float speed = 10f;

@@ -20,59 +20,72 @@ public class PlayerController : MonoBehaviour {
     //public GameObject bulletPrefab;
     public Transform bulletBornPos;
 
+    public float moveSpeed = 8f;
+    public Joystick joystick;
+
     // private
-    private BulletSpawner bulletSpawner;
+   // private BulletSpawner bulletSpawner;
 
     private Animator m_animator;
     private float m_movementInputValue;
     private float m_turnInputValue;
-    private Rigidbody m_rigidbody;
-    private Quaternion targetRotation;
+    //private Rigidbody m_rigidbody;
+    //private Quaternion targetRotation;
 
 
     // Use this for initialization
     void Start ()
     {
-        targetRotation = transform.rotation;
+        //targetRotation = transform.rotation;
+        //bulletSpawner = GetComponent<BulletSpawner>();
 
-        bulletSpawner = GetComponent<BulletSpawner>();
-
-        m_rigidbody = GetComponent<Rigidbody>();
+        //m_rigidbody = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
     }
 	
 	void Update ()
     {
-        m_movementInputValue = Input.GetAxis("Vertical");
-        m_turnInputValue = Input.GetAxis("Horizontal");
-
-        //Debug.Log(m_movementInputValue + " " + m_turnInputValue);
-
-        // Move
-        MovingDetect();
+        MoveingAndRotation();
 
         // Shoot
         ShootingDetect();
-
     }
 
-    private void MovingDetect()
+    /// <summary>
+    /// private function
+    /// </summary>
+    private void MoveingAndRotation()
     {
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationState.SHOOT))
-            return;
+        Vector3 moveVector = (Vector3.right * joystick.Horizontal + Vector3.forward * joystick.Vertical);
 
-        if(m_movementInputValue > 0.15f || Mathf.Abs(m_turnInputValue) > 0.25f)
+        //Debug.Log("Horizontal: " + joystick.Horizontal + " Vertical: " + joystick.Vertical);
+
+        ChangeAnimation(joystick.Vertical, joystick.Horizontal);
+
+        if (moveVector != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(moveVector);
+            transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
+        }
+    }
+
+    private void ChangeAnimation(float movementValue, float turnValue)
+    {
+        float total = Mathf.InverseLerp(0, 1, Mathf.Abs(movementValue) + Mathf.Abs(turnValue));
+
+        if (total == 0)
+            m_animator.speed = 1f;
+        else
+            m_animator.speed = total;
+
+        //Debug.Log("total: " + total + "  speed: " + m_animator.speed);
+        //Debug.Log(Mathf.Abs(movementValue) + "  " + Mathf.Abs(turnValue) + "  " + total);
+
+        if (Mathf.Abs(movementValue) > 0.05f || Mathf.Abs(turnValue) > 0.05f)
         {
             if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationState.RUN) && !m_animator.IsInTransition(0))
             {
                 m_animator.CrossFadeInFixedTime(AnimationState.RUN, transitionDuration);
-            }
-        }
-        else if (m_movementInputValue < -0.15f)
-        {
-            if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationState.BACK) && !m_animator.IsInTransition(0))
-            {
-                m_animator.CrossFadeInFixedTime(AnimationState.BACK, transitionDuration);
             }
         }
         else
@@ -86,30 +99,19 @@ public class PlayerController : MonoBehaviour {
 
     private void ShootingDetect()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
         {
-            m_animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);  
-            bulletSpawner.Spawn(bulletBornPos.position, transform.rotation);
+            Shoot();
         }
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-        Turn();
-    }
+    /// <summary>
+    /// public function
+    /// </summary>
 
-    private void Move()
+    public void Shoot()
     {
-        m_rigidbody.velocity = transform.forward * m_movementInputValue * m_Speed;
-    }
-
-    private void Turn()
-    {
-        if (m_movementInputValue < 0)
-            m_turnInputValue = 0 - m_turnInputValue;
-
-        targetRotation *= Quaternion.AngleAxis(m_turnInputValue * m_turnSpeed * Time.deltaTime, Vector3.up) ;
-        transform.rotation = targetRotation;
+        m_animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);
+        BulletSpawner.Instance.Spawn(bulletBornPos.position, transform.rotation);
     }
 }
