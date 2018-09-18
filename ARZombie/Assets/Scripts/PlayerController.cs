@@ -17,30 +17,25 @@ public class PlayerController : MonoBehaviour {
     public float m_Speed = 12f;
     public float m_turnSpeed = 180f;
     public float transitionDuration = 0.1f;
-    //public GameObject bulletPrefab;
     public Transform bulletBornPos;
-
     public float moveSpeed = 8f;
     public Joystick joystick;
+    [Header("Detection Trigger")]
+    public Collider detectionTrigger;
+    public float triggerSize = 2.5f;
 
     // private
-   // private BulletSpawner bulletSpawner;
-
     private Animator m_animator;
     private float m_movementInputValue;
     private float m_turnInputValue;
-    //private Rigidbody m_rigidbody;
-    //private Quaternion targetRotation;
 
+    private List<GameObject> aroundMeList = new List<GameObject>();
 
     // Use this for initialization
     void Start ()
     {
-        //targetRotation = transform.rotation;
-        //bulletSpawner = GetComponent<BulletSpawner>();
-
-        //m_rigidbody = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
+        InitDetectionTrigger();
     }
 	
 	void Update ()
@@ -51,9 +46,37 @@ public class PlayerController : MonoBehaviour {
         ShootingDetect();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log(other.name);
+        if (!aroundMeList.Contains(other.gameObject) && other.tag != "Obstacle")
+        {
+            //Debug.Log(other.name + " " + other.tag);
+            aroundMeList.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        int index = aroundMeList.FindIndex(x => x == other.gameObject);
+        Debug.Log(aroundMeList.Count + " " + index);
+        if(index >= 0)
+            aroundMeList.RemoveAt(index);
+    }
+
     /// <summary>
     /// private function
     /// </summary>
+    /// 
+
+    private void InitDetectionTrigger()
+    {
+        if (detectionTrigger != null)
+        {
+            (detectionTrigger as SphereCollider).radius = triggerSize;
+        }
+    }
+
     private void MoveingAndRotation()
     {
         Vector3 moveVector = (Vector3.right * joystick.Horizontal + Vector3.forward * joystick.Vertical);

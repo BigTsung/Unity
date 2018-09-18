@@ -7,6 +7,7 @@ TagManager:
   - Partner
   - Bullet
   - Enemy
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - Environment
+  - Obstacle
   - Weapon
-  - 
+  - Player
   - 
   - 
   - 
