@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     public float transitionDuration = 0.1f;
     public Transform bulletBornPos;
     public float moveSpeed = 8f;
+    public float shootSpeed = 0.1f;
     public Joystick joystick;
     [Header("Detection Trigger")]
     public Collider detectionTrigger;
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour {
     private Animator m_animator;
     private float m_movementInputValue;
     private float m_turnInputValue;
+    private GameObject closeTarget = null;
+    private float shootTimeCount = 0f;
 
     private List<GameObject> aroundMeList = new List<GameObject>();
 
@@ -42,8 +45,11 @@ public class PlayerController : MonoBehaviour {
     {
         MoveingAndRotation();
 
+        RotateObjectBaseOnTarget();
+
         // Shoot
-        ShootingDetect();
+        //ShootingDetect();
+        //Shoot();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -59,7 +65,7 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         int index = aroundMeList.FindIndex(x => x == other.gameObject);
-        Debug.Log(aroundMeList.Count + " " + index);
+        //Debug.Log(aroundMeList.Count + " " + index);
         if(index >= 0)
             aroundMeList.RemoveAt(index);
     }
@@ -75,6 +81,38 @@ public class PlayerController : MonoBehaviour {
         {
             (detectionTrigger as SphereCollider).radius = triggerSize;
         }
+    }
+
+    private void RotateObjectBaseOnTarget()
+    {
+        //Debug.Log(aroundMeList.Count);
+        if (aroundMeList.Count > 0)
+        {
+            closeTarget = GetMostClosedTarget();
+            if(closeTarget != null)
+            {
+                transform.LookAt(new Vector3(closeTarget.transform.position.x, transform.position.y, closeTarget.transform.position.z));
+            }
+        }
+    }
+
+    private GameObject GetMostClosedTarget()
+    {
+        GameObject target = null;
+        float minDis = float.MaxValue;
+        float dis = 0f;
+
+        for (int i = 0; i < aroundMeList.Count; i++)
+        {
+            dis = Vector3.Distance(transform.position, aroundMeList[i].transform.position);
+            if (dis < minDis)
+            {
+                minDis = dis;
+                target = aroundMeList[i];
+            }
+        }
+    
+        return target;
     }
 
     private void MoveingAndRotation()
@@ -134,7 +172,16 @@ public class PlayerController : MonoBehaviour {
 
     public void Shoot()
     {
-        m_animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);
-        BulletSpawner.Instance.Spawn(bulletBornPos.position, transform.rotation);
+        Debug.Log("Shoot");
+
+        shootTimeCount += Time.deltaTime;
+
+        if (shootTimeCount >= shootSpeed)
+        {
+            m_animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);
+            BulletSpawner.Instance.Spawn(bulletBornPos.position, transform.rotation);
+
+            shootTimeCount = 0f;
+        }
     }
 }
