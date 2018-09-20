@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour {
     {
         if (rigidbody != null)
         {
-            rigidbody.velocity = transform.forward * speed / 5f;
+            rigidbody.velocity = transform.forward * speed;
 
             if (IsInvoking("Dead"))
                 CancelInvoke("Dead");

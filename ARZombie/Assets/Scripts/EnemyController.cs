@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     //public Transform destination;
+    public bool lookAtTarget = false;
     private NavMeshAgent agent;
     private GameObject target;
     private Animator animator;
@@ -47,5 +48,8 @@ public class EnemyController : MonoBehaviour
     {
         if (agent != null)
             agent.SetDestination(target.transform.position);
+
+        if(lookAtTarget)
+            transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
     }
 }

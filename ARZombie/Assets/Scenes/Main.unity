@@ -398,7 +398,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &98675321
 Prefab:
@@ -518,10 +518,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 5
+  - eventID: 2
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1064055972}
+          m_MethodName: ShootSwitcher
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1064055972}
+          m_MethodName: ShootSwitcher
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -1436,7 +1464,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1037310111
 MonoBehaviour:
@@ -1544,7 +1572,7 @@ RectTransform:
   - {fileID: 540522918}
   - {fileID: 115775510}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1588,7 +1616,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4730871051447214, guid: c62094501f19a7c4188c4968db266ae2, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114359547243732420, guid: c62094501f19a7c4188c4968db266ae2,
         type: 2}
@@ -1729,11 +1757,27 @@ Prefab:
     - target: {fileID: 114359547243732420, guid: c62094501f19a7c4188c4968db266ae2,
         type: 2}
       propertyPath: shootSpeed
-      value: 0.25
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114041644012797054, guid: c62094501f19a7c4188c4968db266ae2,
+        type: 2}
+      propertyPath: life
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114041644012797054, guid: c62094501f19a7c4188c4968db266ae2,
+        type: 2}
+      propertyPath: speed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c62094501f19a7c4188c4968db266ae2, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1064055972 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114359547243732420, guid: c62094501f19a7c4188c4968db266ae2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1064055971}
+  m_Script: {fileID: 11500000, guid: d5a204e19e1f3e143bd6f826d238b1b4, type: 3}
 --- !u!1001 &1089215111
 Prefab:
   m_ObjectHideFlags: 0
@@ -2336,7 +2380,7 @@ Transform:
   - {fileID: 931670211}
   - {fileID: 1934332882}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1796780831
 GameObject:
@@ -2366,7 +2410,7 @@ Transform:
   m_Children:
   - {fileID: 1166890091}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 40, y: 60, z: 0}
 --- !u!114 &1796780833
 MonoBehaviour:
@@ -2612,7 +2656,7 @@ Transform:
   - {fileID: 1521445210}
   - {fileID: 1968548154}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1968548154 stripped
 Transform:

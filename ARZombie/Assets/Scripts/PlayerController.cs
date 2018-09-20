@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour {
     private float m_turnInputValue;
     private GameObject closeTarget = null;
     private float shootTimeCount = 0f;
+    private bool shooting = false;
 
     private List<GameObject> aroundMeList = new List<GameObject>();
 
@@ -48,8 +49,9 @@ public class PlayerController : MonoBehaviour {
         RotateObjectBaseOnTarget();
 
         // Shoot
-        //ShootingDetect();
-        //Shoot();
+        if (shooting)
+            Shoot();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,7 +76,6 @@ public class PlayerController : MonoBehaviour {
     /// private function
     /// </summary>
     /// 
-
     private void InitDetectionTrigger()
     {
         if (detectionTrigger != null)
@@ -118,14 +119,15 @@ public class PlayerController : MonoBehaviour {
     private void MoveingAndRotation()
     {
         Vector3 moveVector = (Vector3.right * joystick.Horizontal + Vector3.forward * joystick.Vertical);
-
+        Vector3 rotateVector = Vector3.zero;
         //Debug.Log("Horizontal: " + joystick.Horizontal + " Vertical: " + joystick.Vertical);
 
         ChangeAnimation(joystick.Vertical, joystick.Horizontal);
 
         if (moveVector != Vector3.zero)
         {
-            transform.rotation = Quaternion.LookRotation(moveVector);
+            rotateVector = Vector3.Lerp(transform.rotation.eulerAngles, moveVector, 0.1f);
+            transform.rotation = Quaternion.LookRotation(rotateVector);
             transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
         }
     }
@@ -158,21 +160,25 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void ShootingDetect()
+    /*private void ShootingDetect()
     {
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
         {
             Shoot();
         }
-    }
+    }*/
 
     /// <summary>
     /// public function
     /// </summary>
+    public void ShootSwitcher(bool status)
+    {
+        shooting = status;
+    }
 
     public void Shoot()
     {
-        Debug.Log("Shoot");
+        //Debug.Log("Shoot");
 
         shootTimeCount += Time.deltaTime;
 
