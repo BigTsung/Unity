@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
     {
         MoveingAndRotation();
 
-        RotateObjectBaseOnTarget();
+        //RotateObjectBaseOnTarget();
 
         // Shoot
         if (shooting)
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour {
 
     private void MoveingAndRotation()
     {
-        Vector3 moveVector = (Vector3.right * joystick.Horizontal + Vector3.forward * joystick.Vertical);
+        Vector3 moveVector = (Vector3.right * joystick.Vertical + Vector3.back * joystick.Horizontal);
         Vector3 rotateVector = Vector3.zero;
         //Debug.Log("Horizontal: " + joystick.Horizontal + " Vertical: " + joystick.Vertical);
 
@@ -126,8 +126,9 @@ public class PlayerController : MonoBehaviour {
 
         if (moveVector != Vector3.zero)
         {
-            rotateVector = Vector3.Lerp(transform.rotation.eulerAngles, moveVector, 0.1f);
-            transform.rotation = Quaternion.LookRotation(rotateVector);
+            //rotateVector = Vector3.Lerp(transform.rotation.eulerAngles, moveVector, 0.1f);
+            //transform.rotation = Quaternion.LookRotation(rotateVector);
+            transform.rotation = Quaternion.LookRotation(moveVector);
             transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
         }
     }
