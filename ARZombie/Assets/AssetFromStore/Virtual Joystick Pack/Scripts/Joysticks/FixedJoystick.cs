@@ -14,7 +14,7 @@ public class FixedJoystick : Joystick
     public override void OnDrag(PointerEventData eventData)
     {
         Vector2 direction = eventData.position - joystickPosition;
-        inputVector = (direction.magnitude > background.sizeDelta.x / 2f) ? direction.normalized : direction / (background.sizeDelta.x / 2f);
+        inputVector = (direction.magnitude > background.sizeDelta.x / 8f) ? direction.normalized : direction / (background.sizeDelta.x / 8f);
         ClampJoystick();
         handle.anchoredPosition = (inputVector * background.sizeDelta.x / 2f) * handleLimit;
     }
