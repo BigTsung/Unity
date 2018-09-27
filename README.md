@@ -1,3 +1,3 @@
 # Unity
 
-May the force be with you
+Move fast and break things. Unless you are breaking stuff, you are not moving fast enough.
