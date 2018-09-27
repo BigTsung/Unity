@@ -19,7 +19,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 607d64d2c4bc76ac9876e6f7b9cc7edf UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 15c577429e0b3342a3bce0b31c54b35c Assembly-CSharp.dll:.DamageBall
 fe758c034deff6bf9d0635241f5891dd Assembly-CSharp.dll:.Joystick
-7c1b9078a32adfc6e2df70ad8b0d0200 Assembly-CSharp.dll:.PlayerController
+9bd498d72e43643e4f2781e6a6bb7548 Assembly-CSharp.dll:.PlayerController
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button

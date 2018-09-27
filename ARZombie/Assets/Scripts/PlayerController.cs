@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour {
     // public
     public float m_Speed = 12f;
     public float m_turnSpeed = 180f;
+    public float rotateSpeed = 10f;
     public float transitionDuration = 0.1f;
     public Transform bulletBornPos;
     public float moveSpeed = 8f;
     public float shootSpeed = 0.1f;
-    public Joystick joystick;
+    public Joystick moveJoystick;
+    public Joystick rotateJoystick;
     [Header("Detection Trigger")]
     public Collider detectionTrigger;
     public float triggerSize = 2.5f;
@@ -34,11 +36,13 @@ public class PlayerController : MonoBehaviour {
     private bool shooting = false;
 
     private List<GameObject> aroundMeList = new List<GameObject>();
+    private LineRenderer lineRenderer;
 
     // Use this for initialization
     void Start ()
     {
         m_animator = GetComponent<Animator>();
+        lineRenderer = GetComponent<LineRenderer>();
         InitDetectionTrigger();
     }
 	
@@ -118,47 +122,90 @@ public class PlayerController : MonoBehaviour {
 
     private void MoveingAndRotation()
     {
-        Vector3 moveVector = (Vector3.right * joystick.Vertical + Vector3.back * joystick.Horizontal);
-        Vector3 rotateVector = Vector3.zero;
-        //Debug.Log("Horizontal: " + joystick.Horizontal + " Vertical: " + joystick.Vertical);
+        Vector3 moveVector = (Vector3.right * moveJoystick.Vertical + Vector3.back * moveJoystick.Horizontal);
+        Vector3 rotateVector = (Vector3.right * rotateJoystick.Vertical + Vector3.back * rotateJoystick.Horizontal);
 
-        ChangeAnimation(joystick.Vertical, joystick.Horizontal);
+        Vector3 moveDirection = new Vector3(moveJoystick.Vertical, 0, moveJoystick.Horizontal);
+        Vector3 rotateDirection = new Vector3(rotateJoystick.Vertical, 0, rotateJoystick.Horizontal);
+
+        float angle = Vector3.Angle(moveDirection, rotateDirection);
 
         if (moveVector != Vector3.zero)
         {
-            //rotateVector = Vector3.Lerp(transform.rotation.eulerAngles, moveVector, 0.1f);
-            //transform.rotation = Quaternion.LookRotation(rotateVector);
-            transform.rotation = Quaternion.LookRotation(moveVector);
-            transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
+            if (rotateVector == Vector3.zero)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveVector), Time.deltaTime * rotateSpeed);
+                transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                if(angle <= 90f)
+                    transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
+                else
+                    transform.Translate(moveVector * moveSpeed / 4f * Time.deltaTime, Space.World);
+            }
         }
-    }
 
-    private void ChangeAnimation(float movementValue, float turnValue)
-    {
-        float total = Mathf.InverseLerp(0, 1, Mathf.Abs(movementValue) + Mathf.Abs(turnValue));
+        if (rotateVector != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
+        }
 
-        if (total == 0)
+        // Speed
+        float total = Mathf.InverseLerp(0, 1, Mathf.Abs(moveJoystick.Vertical) + Mathf.Abs(moveJoystick.Horizontal));
+
+        if ((Mathf.Abs(rotateJoystick.Vertical) > 0 || Mathf.Abs(rotateJoystick.Horizontal) > 0) && angle > 90f)
+            m_animator.speed = 1.2f;
+        else if (total == 0)
             m_animator.speed = 1f;
         else
             m_animator.speed = total;
 
-        //Debug.Log("total: " + total + "  speed: " + m_animator.speed);
-        //Debug.Log(Mathf.Abs(movementValue) + "  " + Mathf.Abs(turnValue) + "  " + total);
+        if (Mathf.Abs(moveJoystick.Vertical) > 0.05f || Mathf.Abs(moveJoystick.Horizontal) > 0.05f)
+            ChangeAnimation(angle, true);
+        else
+            ChangeAnimation(angle, false);
 
-        if (Mathf.Abs(movementValue) > 0.05f || Mathf.Abs(turnValue) > 0.05f)
+        DrawLine();
+    }
+
+    private void DrawLine()
+    {
+        if (lineRenderer != null)
         {
-            if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationState.RUN) && !m_animator.IsInTransition(0))
-            {
-                m_animator.CrossFadeInFixedTime(AnimationState.RUN, transitionDuration);
-            }
+            lineRenderer.SetVertexCount(2);
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, transform.forward * 10 + transform.position);
+        }
+    }
+
+    private void ChangeAnimation(float angle, bool moving)
+    {
+        // Animation
+        if (moving)
+        {
+            //float moveAngle = Mathf.Atan2(moveVertical, moveHorizontal) * Mathf.Rad2Deg;
+            //float rotateAngle = Mathf.Atan2(rotateVertical, rotateHorizontal) * Mathf.Rad2Deg;
+
+            //Debug.Log(moveAngle + "  " + rotateAngle + "  " + angle);
+
+            if (angle <= 90)
+                SetAnimation(AnimationState.RUN);
+            else
+                SetAnimation(AnimationState.BACK);
         }
         else
         {
-            if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationState.IDLE) && !m_animator.IsInTransition(0))
-            {
-                m_animator.CrossFadeInFixedTime(AnimationState.IDLE, transitionDuration);
-            }
+            SetAnimation(AnimationState.IDLE);
         }
+    }
+
+    private void SetAnimation(string aniName)
+    {
+        //Debug.Log("Animaiton name: " + aniName);
+
+        if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName(aniName) && !m_animator.IsInTransition(0))
+            m_animator.SetTrigger(aniName);
     }
 
     /*private void ShootingDetect()
