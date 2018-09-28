@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Detection Trigger")]
     public Collider detectionTrigger;
     public float triggerSize = 2.5f;
+    [Header("Debug")]
+    public bool drawLine = true;
 
     // private
     private Animator m_animator;
@@ -130,32 +132,41 @@ public class PlayerController : MonoBehaviour {
 
         float angle = Vector3.Angle(moveDirection, rotateDirection);
 
-        if (moveVector != Vector3.zero)
+        // Move and Rotate
+
+        if(moveVector != Vector3.zero)
         {
-            if (rotateVector == Vector3.zero)
+            if(rotateVector != Vector3.zero) //  drag move and rotate joystick
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
+
+                if (angle <= 90f)
+                {
+                    transform.Translate(rotateVector * moveSpeed * Time.deltaTime, Space.World);
+                }
+                else
+                {
+                    transform.Translate(moveVector * moveSpeed / 4f * Time.deltaTime, Space.World);
+                }
+            }
+            else // only drag move joystick
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveVector), Time.deltaTime * rotateSpeed);
                 transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
             }
-            else
+        }
+        else
+        {
+            if (rotateVector != Vector3.zero)// only drag rotate joystick
             {
-                if(angle <= 90f)
-                    transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
-                else
-                    transform.Translate(moveVector * moveSpeed / 4f * Time.deltaTime, Space.World);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
             }
         }
-
-        if (rotateVector != Vector3.zero)
-        {
-            transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
-        }
-
         // Speed
         float total = Mathf.InverseLerp(0, 1, Mathf.Abs(moveJoystick.Vertical) + Mathf.Abs(moveJoystick.Horizontal));
 
         if ((Mathf.Abs(rotateJoystick.Vertical) > 0 || Mathf.Abs(rotateJoystick.Horizontal) > 0) && angle > 90f)
-            m_animator.speed = 1.2f;
+            m_animator.speed = 0.8f;
         else if (total == 0)
             m_animator.speed = 1f;
         else
@@ -166,7 +177,8 @@ public class PlayerController : MonoBehaviour {
         else
             ChangeAnimation(angle, false);
 
-        DrawLine();
+        if(drawLine)
+            DrawLine();
     }
 
     private void DrawLine()
@@ -224,7 +236,7 @@ public class PlayerController : MonoBehaviour {
         shooting = status;
     }
 
-    public void Shoot()
+    private void Shoot()
     {
         //Debug.Log("Shoot");
 
