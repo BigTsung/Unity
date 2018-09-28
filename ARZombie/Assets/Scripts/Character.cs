@@ -34,6 +34,7 @@ public class Character : MonoBehaviour
     {
         //Debug.Log("Dead!!!");
         PlayAnimation("Death", false);
+        SoundManager.Instance.PlayZombieDeathOneShot();
         if(enemyController.Agent != null)
         {
             enemyController.Agent.isStopped = true;

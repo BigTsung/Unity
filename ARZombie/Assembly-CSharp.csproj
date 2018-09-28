@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <None Include="Assets\AssetFromStore\NuclearPowerPlant\03-Info\PostProcessingProfil.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/aemass.yutsungchiu/Chiu/UnityProject/Unity/ARZombie/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

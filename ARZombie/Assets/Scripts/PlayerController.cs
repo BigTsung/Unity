@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     {
         public static string IDLE { get { return "Idle"; } }
         public static string RUN { get { return "Run"; } }
+        public static string WALK { get { return "Walk"; } }
         public static string BACK { get { return "Back"; } }
         public static string SHOOT { get { return "Shoot"; } }
         public static string DEPTH { get { return "Depth"; } }
@@ -142,7 +143,7 @@ public class PlayerController : MonoBehaviour {
 
                 if (angle <= 90f)
                 {
-                    transform.Translate(rotateVector * moveSpeed * Time.deltaTime, Space.World);
+                    transform.Translate(rotateVector * moveSpeed / 4f * Time.deltaTime, Space.World);
                 }
                 else
                 {
@@ -172,8 +173,8 @@ public class PlayerController : MonoBehaviour {
         else
             m_animator.speed = total;
 
-        if (Mathf.Abs(moveJoystick.Vertical) > 0.05f || Mathf.Abs(moveJoystick.Horizontal) > 0.05f)
-            ChangeAnimation(angle, true);
+        if (Mathf.Abs(moveJoystick.Vertical) > 0f || Mathf.Abs(moveJoystick.Horizontal) > 0f)
+            ChangeAnimation(angle, true, Mathf.Abs(rotateJoystick.Vertical) > 0f || Mathf.Abs(rotateJoystick.Horizontal) > 0f);
         else
             ChangeAnimation(angle, false);
 
@@ -191,20 +192,25 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void ChangeAnimation(float angle, bool moving)
+    private void ChangeAnimation(float angle, bool moving, bool firing = false)
     {
         // Animation
         if (moving)
         {
-            //float moveAngle = Mathf.Atan2(moveVertical, moveHorizontal) * Mathf.Rad2Deg;
-            //float rotateAngle = Mathf.Atan2(rotateVertical, rotateHorizontal) * Mathf.Rad2Deg;
-
-            //Debug.Log(moveAngle + "  " + rotateAngle + "  " + angle);
-
-            if (angle <= 90)
-                SetAnimation(AnimationState.RUN);
+            if (firing)
+            {
+                if (angle <= 90f)
+                    SetAnimation(AnimationState.WALK);
+                else
+                    SetAnimation(AnimationState.BACK);
+            }
             else
-                SetAnimation(AnimationState.BACK);
+            {
+                if (angle <= 90f)
+                    SetAnimation(AnimationState.RUN);
+                else
+                    SetAnimation(AnimationState.BACK);
+            }
         }
         else
         {
@@ -219,14 +225,6 @@ public class PlayerController : MonoBehaviour {
         if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName(aniName) && !m_animator.IsInTransition(0))
             m_animator.SetTrigger(aniName);
     }
-
-    /*private void ShootingDetect()
-    {
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
-        {
-            Shoot();
-        }
-    }*/
 
     /// <summary>
     /// public function
@@ -244,6 +242,7 @@ public class PlayerController : MonoBehaviour {
 
         if (shootTimeCount >= shootSpeed)
         {
+            SoundManager.Instance.PlayShootOneShot();
             m_animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);
             BulletSpawner.Instance.Spawn(bulletBornPos.position, transform.rotation);
 
