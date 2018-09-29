@@ -24,6 +24,7 @@ public class ObjectPooler : Singleton<ObjectPooler> {
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
+                obj.transform.parent = this.transform;
                 obj.SetActive(false);
                 objPool.Enqueue(obj);
             }

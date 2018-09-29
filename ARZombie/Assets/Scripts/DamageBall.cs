@@ -8,7 +8,7 @@ public class DamageBall : MonoBehaviour {
     public bool isDisableOnCollision = true;
     public bool isDestroyOnCollision = false;
 
-    public float damageValue = 10f;
+    public int damageValue = 10;
 
     private Collider colliderCom;
 
@@ -38,7 +38,5 @@ public class DamageBall : MonoBehaviour {
         {
             character.HP -= damageValue;
         }
-
-        //Debug.Log(other.gameObject.name);
     }
 }
