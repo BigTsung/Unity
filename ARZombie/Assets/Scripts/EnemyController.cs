@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private Collider collider;
     private Character character;
+    private EnemyHurtBehaviour enemyHurtBehaviour;
+
 
     //public NavMeshAgent Agent
     //{
@@ -39,6 +41,9 @@ public class EnemyController : MonoBehaviour
             collider = GetComponent<Collider>();
         if (character == null)
             character = GetComponent<Character>();
+
+        if (enemyHurtBehaviour == null && animator != null)
+            enemyHurtBehaviour = animator.GetBehaviour<EnemyHurtBehaviour>();
     }
 
     // Use this for initialization
@@ -46,28 +51,37 @@ public class EnemyController : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player") ;
 
+        PlayAnimation("Walk");
+    }
+
+    void OnEnable()
+    {
         character.onDead += OnDead;
         character.onHurt += OnHurt;
 
-        PlayAnimation("Walk");
+        enemyHurtBehaviour.OnStateEntered += OnHurtStateEntered;
+        enemyHurtBehaviour.OnStateExited += OnHurtStateExited;
     }
 
     private void OnDestroy()
     {
         character.onDead -= OnDead;
         character.onHurt -= OnHurt;
+
+        enemyHurtBehaviour.OnStateEntered -= OnHurtStateEntered;
+        enemyHurtBehaviour.OnStateExited -= OnHurtStateExited;
     }
 
-    // Update is called once per frame
     void Update ()
     {
         if (agent != null)
             agent.SetDestination(target.transform.position);
 
-
-
-        if(lookAtTarget)
+        if (lookAtTarget)
             transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
+
+        Debug.Log("remainingDistance: " + agent.remainingDistance);
+
     }
 
     private void OnDead()
@@ -90,7 +104,11 @@ public class EnemyController : MonoBehaviour
         //Debug.Log(character.Dead);
 
         if (!character.Dead)
+        {
             PlayAnimation("Hurt");
+           
+            //StartCoroutine(WaitForAnimation("Hurt"));
+        }
     }
 
     private void Disappear()
@@ -102,5 +120,48 @@ public class EnemyController : MonoBehaviour
     {
         //Debug.Log("Animation Name: " + triggerName);
         animator.SetTrigger(triggerName);
+    }
+
+    private bool ArrivedDestination()
+    {
+        bool isArrived = false;
+
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                // arrived
+                isArrived = true;
+            }
+            else
+            {
+                isArrived = false;
+            }
+        }
+        else
+        {
+            isArrived = false;
+        }
+
+        return isArrived;
+    }
+
+    // ////////////////////////////////////
+    // Callback Function
+    // ////////////////////////////////////
+
+    private void OnHurtStateEntered(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        //Debug.Log("animation Enter");
+        agent.isStopped = true;
+    }
+
+    private void OnHurtStateExited(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        //Debug.Log("animation Exit");
+        agent.isStopped = false;
+
+        if (ArrivedDestination() == false)
+            PlayAnimation("Walk");
     }
 }
