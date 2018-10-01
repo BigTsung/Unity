@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour
         if (lookAtTarget)
             transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
 
-        Debug.Log("remainingDistance: " + agent.remainingDistance);
+        //Debug.Log("remainingDistance: " + agent.remainingDistance);
 
     }
 
