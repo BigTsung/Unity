@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour {
     private List<GameObject> aroundMeList = new List<GameObject>();
     private LineRenderer lineRenderer;
 
+    private void Awake()
+    {
+        Playermanager.Instance.AddToPlayerList(this.transform);
+    }
+
     // Use this for initialization
     void Start ()
     {

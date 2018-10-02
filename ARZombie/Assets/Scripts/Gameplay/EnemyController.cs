@@ -164,4 +164,5 @@ public class EnemyController : MonoBehaviour
         if (ArrivedDestination() == false)
             PlayAnimation("Walk");
     }
+
 }

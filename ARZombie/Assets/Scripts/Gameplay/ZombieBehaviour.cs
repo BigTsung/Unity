@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Collider))]
 public class ZombieBehaviour : MonoBehaviour {
 
-    private Animator animator;
-    //private GameObject
-    // Use this for initialization
+    public TargetScanner targetScanner;
 
-    public GameObject Target
+    private NavMeshAgent agent;
+    private Animator animator;
+    private Collider collider;
+    
+    public Transform Target
     {
         get;
         set;
@@ -20,18 +25,46 @@ public class ZombieBehaviour : MonoBehaviour {
 
         SceneLinkedSMB<ZombieBehaviour>.Initialise(animator, this);
 
-        Target = GameObject.FindGameObjectWithTag("Player");
         Debug.Log("ZombieBehaviour Start");
     }
 
-	// Update is called once per frame
-	void Update ()
+    private void SetAnimatorTrigger(string triggerName)
     {
-		
-	}
+        if (animator != null)
+        {
+            animator.SetTrigger(triggerName);
+        }
+    }
 
-    public void FindTarget()
+    public Transform Detect()
     {
+        if (Playermanager.Instance.ExistPlayer)
+        {
+            Debug.Log("Exist the player");
+            List<Transform> playlist = Playermanager.Instance.PlayerList;
+            for (int i = 0; i < playlist.Count; i++)
+            {
+                Debug.Log(Vector3.Distance(playlist[i].position, transform.position) <= targetScanner.detectionRadius);
+                if (Vector3.Distance(playlist[i].position, transform.position) <= targetScanner.detectionRadius)
+                {
+                    Target = playlist[i];
+                }
+            }
+        }
+
+        return Target;
+    }
+
+    public void GotoTarget()
+    {
+        SetAnimatorTrigger("Walk");
 
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        targetScanner.EditorGizmo(transform);
+    }
+#endif
 }
