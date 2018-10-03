@@ -11,6 +11,7 @@ public class ZombieBehaviour : MonoBehaviour {
     private static string Ani_Walk      = "Walk";
     private static string Ani_Run       = "Run";
     private static string Ani_Damage    = "Damage";
+    private static string Ani_Dead      = "Dead";
     private static string Ani_Idle      = "Idle";
     private static string Ani_Attack    = "Attack";
 
@@ -20,6 +21,7 @@ public class ZombieBehaviour : MonoBehaviour {
     private NavMeshAgent agent;
     private Animator animator;
     private Collider collider;
+    private Character character;
     private bool fighting = false;
     private Vector3 spawnPosition;
 
@@ -27,7 +29,7 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         NONE,
         TOOFAR,
-        ARRIVED_TARGET,
+        READY_TO_ATTACK,
         KEEP_GOING
     }
 
@@ -36,11 +38,17 @@ public class ZombieBehaviour : MonoBehaviour {
         get;
         set;
     }
-    void Start ()
+
+    void Awake()
     {
+        character = GetComponent<Character>();
+
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+    }
 
+    void Start ()
+    {
         SceneLinkedSMB<ZombieBehaviour>.Initialise(animator, this);
 
         Debug.Log("ZombieBehaviour Start");
@@ -49,6 +57,9 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void OnEnable()
     {
+        character.onDead += OnDead;
+        character.onHurt += OnHurt;
+
         spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
@@ -80,12 +91,21 @@ public class ZombieBehaviour : MonoBehaviour {
     // ===========================================
     // Function for Behaviour
     // ===========================================
+
+    public void SetSpeed(float speed)
+    {
+        if (!agent.isStopped)
+            agent.speed = speed;
+    }
+
     public Transform Detect()
     {
-        if (Playermanager.Instance.ExistPlayer)
+        Target = null;
+
+        if (PlayerManager.Instance.ExistPlayer)
         {
             //Debug.Log("Exist the player");
-            List<Transform> playlist = Playermanager.Instance.PlayerList;
+            List<Transform> playlist = PlayerManager.Instance.PlayerList;
             for (int i = 0; i < playlist.Count; i++)
             {
                 //Debug.Log(Vector3.Distance(playlist[i].position, transform.position) <= targetScanner.detectionRadius);
@@ -99,13 +119,6 @@ public class ZombieBehaviour : MonoBehaviour {
         return Target;
     }
 
-    public void GotoTarget()
-    {
-        SetAnimatorTrigger(Ani_Run);
-        agent.enabled = true;
-        fighting = true;
-    }
-
     public StatusWithTarget GetStatusWithTarget()
     {
         StatusWithTarget status = StatusWithTarget.NONE;
@@ -114,14 +127,15 @@ public class ZombieBehaviour : MonoBehaviour {
         {
             dis = Vector3.Distance(Target.position, this.transform.position);
 
-            Debug.Log(dis);
+            //Debug.Log(dis);
             if (dis >= targetScanner.followRadius)
             {
                 status = StatusWithTarget.TOOFAR;
             }
             else if(dis <= agent.stoppingDistance + 1.2f)
             {
-                status = StatusWithTarget.ARRIVED_TARGET;
+                status = StatusWithTarget.READY_TO_ATTACK;
+                agent.isStopped = true;
             }
             else
             {
@@ -136,16 +150,91 @@ public class ZombieBehaviour : MonoBehaviour {
         return status;
     }
 
+    public void Stop()
+    {
+        agent.isStopped = true;
+    }
+
+    public void GotoTarget()
+    {
+        SetAnimatorTrigger(Ani_Run);
+        agent.isStopped = false;
+        fighting = true;
+    }
+
     public void BackToSpawnPosiion()
     {
         SetAnimatorTrigger(Ani_Walk);
+        agent.isStopped = false;
         fighting = false;
     }
 
-    public void Fighting()
+    public void Attack()
     {
         SetAnimatorTrigger(Ani_Attack);
     }
+
+    public void Dead()
+    {
+        SetAnimatorTrigger(Ani_Dead);
+        agent.isStopped = true;
+        Invoke("Disappear", 3f);
+    }
+
+    public void KeepGoing()
+    {
+        SetAnimatorTrigger(Ani_Run);
+        agent.isStopped = false;
+        fighting = true;
+    }
+
+    public void DoNothing()
+    {
+        SetAnimatorTrigger(Ani_Idle);
+        fighting = false;
+        agent.isStopped = false;    
+    }
+
+    public bool ArrivedSpawnPosition()
+    {
+        bool result = false;
+        float dis = -1f;
+        dis = Vector3.Distance(spawnPosition, this.transform.position);
+        //Debug.Log(dis);
+        if (dis < 0.1f)
+        {
+            result = true;
+        }
+
+        return result;
+    }
+
+    // ===========================================
+    // private Function
+    // ===========================================
+
+    private void Disappear()
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    // ===========================================
+    // Delegate Function
+    // ===========================================
+
+    private void OnDead()
+    {
+        Debug.Log("OnDead!!!");
+        Dead();
+
+    }
+
+    private void OnHurt(int hurtVal)
+    {
+       
+    }
+
+
 
     // ===========================================
     // Function for Drawing

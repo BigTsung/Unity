@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake()
     {
-        Playermanager.Instance.AddToPlayerList(this.transform);
+        PlayerManager.Instance.AddToPlayerList(this.transform);
     }
 
     // Use this for initialization

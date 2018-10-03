@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3784597cf9bc4959aed5c054816e38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 200
+  hp: 20
 --- !u!114 &114940119103728668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -990,7 +990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetScanner:
     detectionRadius: 3.89
-    followRadius: 20
+    followRadius: 10
 --- !u!136 &136146110573220172
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Playermanager : Singleton<Playermanager> {
+public class PlayerManager : Singleton<PlayerManager> {
 
     private List<Transform> playerList = new List<Transform>();
     

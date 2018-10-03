@@ -17,6 +17,5 @@ public class ZombieStateIdle :  SceneLinkedSMB<ZombieBehaviour> {
         {
             m_MonoBehaviour.GotoTarget();
         }
-
     }
 }

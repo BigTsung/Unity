@@ -26,7 +26,7 @@ public class TargetScanner
     public void EditorGizmo(Transform transform)
     {
         Color c_detect = new Color(0, 0, 0.7f, 0.4f);
-        Color c_Follow = new Color(0.7f, 0, 0f, 0.4f);
+        Color c_Follow = new Color(0f, 0.5f, 0f, 0.2f);
 
         UnityEditor.Handles.color = c_detect;
         Vector3 rotatedForward = Quaternion.Euler(0, -360f * 0.5f, 0) * transform.forward;
