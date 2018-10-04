@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour {
         {
             SoundManager.Instance.PlayShootOneShot();
             m_animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);
-            BulletSpawner.Instance.Spawn(bulletBornPos.position, transform.rotation);
+            BulletSpawner.Instance.Spawn(bulletBornPos.position, bulletBornPos.rotation, this.gameObject);
 
             shootTimeCount = 0f;
         }

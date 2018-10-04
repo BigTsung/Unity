@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Behaviour\EnemyHurtBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviour\SceneLinkedSMB.cs" />
     <Compile Include="Assets\Scripts\Behaviour\ZombieStateAttack.cs" />
+    <Compile Include="Assets\Scripts\Behaviour\ZombieStateDamage.cs" />
     <Compile Include="Assets\Scripts\Behaviour\ZombieStateDead.cs" />
     <Compile Include="Assets\Scripts\Behaviour\ZombieStateIdle.cs" />
     <Compile Include="Assets\Scripts\Behaviour\ZombieStateRun.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\Gameplay\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\RandomAudioPlayer.cs" />
     <Compile Include="Assets\Scripts\Gameplay\TargetScanner.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ZombieBehaviour.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />

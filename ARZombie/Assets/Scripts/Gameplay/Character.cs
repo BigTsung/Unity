@@ -11,8 +11,8 @@ public class Character : MonoBehaviour
     public delegate void OnDead();
     public OnDead onDead;
 
-    public delegate void OnHurt(int hurtVal);
-    public OnHurt onHurt;
+    public delegate void OnDamage(int hurtVal);
+    public OnDamage onDamage;
 
     public bool Dead
     {
@@ -27,8 +27,8 @@ public class Character : MonoBehaviour
         {
             if (value < hp && value > 0)
             {
-                if(onHurt != null)
-                    onHurt(hp - value);
+                if(onDamage != null)
+                    onDamage(hp - value);
             }
             hp = value;
 

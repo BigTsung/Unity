@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
     void OnEnable()
     {
         character.onDead += OnDead;
-        character.onHurt += OnHurt;
+        character.onDamage += OnHurt;
 
         enemyHurtBehaviour.OnStateEntered += OnHurtStateEntered;
         enemyHurtBehaviour.OnStateExited += OnHurtStateExited;
@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
     private void OnDestroy()
     {
         character.onDead -= OnDead;
-        character.onHurt -= OnHurt;
+        character.onDamage -= OnHurt;
 
         enemyHurtBehaviour.OnStateEntered -= OnHurtStateEntered;
         enemyHurtBehaviour.OnStateExited -= OnHurtStateExited;

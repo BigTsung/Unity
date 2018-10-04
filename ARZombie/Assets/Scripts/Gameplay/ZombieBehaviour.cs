@@ -39,6 +39,9 @@ public class ZombieBehaviour : MonoBehaviour {
         set;
     }
 
+    [Header("Audio")]
+    public RandomAudioPlayer audioGrout;
+
     void Awake()
     {
         character = GetComponent<Character>();
@@ -52,13 +55,13 @@ public class ZombieBehaviour : MonoBehaviour {
         SceneLinkedSMB<ZombieBehaviour>.Initialise(animator, this);
 
         Debug.Log("ZombieBehaviour Start");
-
+        agent.isStopped = true;
     }
 
     private void OnEnable()
     {
         character.onDead += OnDead;
-        character.onHurt += OnHurt;
+        character.onDamage += OnDamage;
 
         spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
@@ -68,14 +71,17 @@ public class ZombieBehaviour : MonoBehaviour {
         if (agent.isStopped)
             return;
 
-        //Debug.Log("GOGOGO");
+        Debug.Log("Go");
 
+        Debug.Log("fighting: " + fighting + " Target: " + Target);
         if (fighting && Target != null)
         {
+            Debug.Log("Go target");
             agent.SetDestination(Target.position);
         }
         else
         {
+            Debug.Log("Go spawn position");
             agent.SetDestination(spawnPosition);
         }
     }
@@ -104,16 +110,37 @@ public class ZombieBehaviour : MonoBehaviour {
 
         if (PlayerManager.Instance.ExistPlayer)
         {
-            //Debug.Log("Exist the player");
             List<Transform> playlist = PlayerManager.Instance.PlayerList;
             for (int i = 0; i < playlist.Count; i++)
             {
-                //Debug.Log(Vector3.Distance(playlist[i].position, transform.position) <= targetScanner.detectionRadius);
                 if (Vector3.Distance(playlist[i].position, transform.position) <= targetScanner.detectionRadius)
                 {
                     Target = playlist[i];
                 }
             }
+        }
+
+        return Target;
+    }
+
+    public Transform DetectClosedTarget()
+    {
+        Target = null;
+
+        if (PlayerManager.Instance.ExistPlayer)
+        {
+            List<Transform> playlist = PlayerManager.Instance.PlayerList;
+            float minDis = float.MaxValue;
+            float dis = 0f;
+            for (int i = 0; i < playlist.Count; i++)
+            {
+                dis = Vector3.Distance(playlist[i].position, transform.position);
+                if (dis <= minDis)
+                {
+                    Target = playlist[i];
+                    minDis = dis;
+                }
+            }  
         }
 
         return Target;
@@ -148,6 +175,12 @@ public class ZombieBehaviour : MonoBehaviour {
         }
 
         return status;
+    }
+
+    public void Grout()
+    {
+        if (audioGrout != null)
+            audioGrout.PlayRandomClip();
     }
 
     public void Stop()
@@ -200,7 +233,6 @@ public class ZombieBehaviour : MonoBehaviour {
         bool result = false;
         float dis = -1f;
         dis = Vector3.Distance(spawnPosition, this.transform.position);
-        //Debug.Log(dis);
         if (dis < 0.1f)
         {
             result = true;
@@ -226,15 +258,12 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         Debug.Log("OnDead!!!");
         Dead();
-
     }
 
-    private void OnHurt(int hurtVal)
+    private void OnDamage(int hurtVal)
     {
-       
+        SetAnimatorTrigger(Ani_Damage);
     }
-
-
 
     // ===========================================
     // Function for Drawing
