@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AssetFromStore\BrokenVector\LowPolySurvivalEssentials\Example\Scripts\AnimatedFire.cs" />
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Examples\2D Example\Player2DExample.cs" />
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Examples\3D Example\Player3DExample.cs" />
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Scripts\Base\Joystick.cs" />
@@ -91,6 +92,9 @@
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Tool\Singleton.cs" />
     <None Include="Assets\AssetFromStore\NuclearPowerPlant\03-Info\PostProcessingProfil.txt" />
+    <None Include="Assets\read me.txt" />
+    <None Include="Assets\AssetFromStore\BrokenVector\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
+    <None Include="Assets\AssetFromStore\BrokenVector\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/dev/Unity/ARZombie/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
