@@ -15,8 +15,9 @@ public class ZombieBehaviour : MonoBehaviour {
     private static string Ani_Idle      = "Idle";
     private static string Ani_Attack    = "Attack";
 
-
+    public bool drawGizmos = false;
     public TargetScanner targetScanner;
+    public float stoppingDistance = 1f;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -24,6 +25,7 @@ public class ZombieBehaviour : MonoBehaviour {
     private Character character;
     private bool fighting = false;
     private Vector3 spawnPosition;
+    private bool faceingTarget = false;
 
     public enum StatusWithTarget
     {
@@ -68,22 +70,28 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        //Debug.Log("agent stop: " + agent.isStopped);
+
+        if (Target != null && faceingTarget)
+        {
+            transform.LookAt(new Vector3(Target.position.x, transform.position.y, Target.position.z));
+        }
+
         if (agent.isStopped)
             return;
 
-        Debug.Log("Go");
-
-        Debug.Log("fighting: " + fighting + " Target: " + Target);
         if (fighting && Target != null)
         {
-            Debug.Log("Go target");
+            //Debug.Log("Go target");
             agent.SetDestination(Target.position);
         }
         else
         {
-            Debug.Log("Go spawn position");
+            //Debug.Log("Go spawn position");
             agent.SetDestination(spawnPosition);
         }
+
+        
     }
 
     private void SetAnimatorTrigger(string triggerName)
@@ -150,6 +158,7 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         StatusWithTarget status = StatusWithTarget.NONE;
         float dis = -1f;
+
         if (Target != null)
         {
             dis = Vector3.Distance(Target.position, this.transform.position);
@@ -159,10 +168,9 @@ public class ZombieBehaviour : MonoBehaviour {
             {
                 status = StatusWithTarget.TOOFAR;
             }
-            else if(dis <= agent.stoppingDistance + 1.2f)
+            else if(dis <= agent.stoppingDistance + stoppingDistance)
             {
                 status = StatusWithTarget.READY_TO_ATTACK;
-                agent.isStopped = true;
             }
             else
             {
@@ -190,6 +198,7 @@ public class ZombieBehaviour : MonoBehaviour {
 
     public void GotoTarget()
     {
+        FaceToTarget(true);
         SetAnimatorTrigger(Ani_Run);
         agent.isStopped = false;
         fighting = true;
@@ -197,6 +206,7 @@ public class ZombieBehaviour : MonoBehaviour {
 
     public void BackToSpawnPosiion()
     {
+        FaceToTarget(false);
         SetAnimatorTrigger(Ani_Walk);
         agent.isStopped = false;
         fighting = false;
@@ -210,9 +220,15 @@ public class ZombieBehaviour : MonoBehaviour {
     public void Dead()
     {
         SetAnimatorTrigger(Ani_Dead);
-        agent.isStopped = true;
-        Invoke("Disappear", 3f);
+        //agent.isStopped = true;
+        //Invoke("Disappear", 3f);
     }
+
+    public void Damage()
+    {
+        SetAnimatorTrigger(Ani_Damage);
+    }
+
 
     public void KeepGoing()
     {
@@ -221,7 +237,7 @@ public class ZombieBehaviour : MonoBehaviour {
         fighting = true;
     }
 
-    public void DoNothing()
+    public void Idle()
     {
         SetAnimatorTrigger(Ani_Idle);
         fighting = false;
@@ -241,14 +257,21 @@ public class ZombieBehaviour : MonoBehaviour {
         return result;
     }
 
+    public void FaceToTarget(bool status)
+    {
+        faceingTarget = status;
+    }
+
+    public void Disappear()
+    {
+        this.transform.parent.gameObject.SetActive(false);
+    }
+
     // ===========================================
     // private Function
     // ===========================================
 
-    private void Disappear()
-    {
-        this.gameObject.SetActive(false);
-    }
+
 
     // ===========================================
     // Delegate Function
@@ -262,7 +285,7 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void OnDamage(int hurtVal)
     {
-        SetAnimatorTrigger(Ani_Damage);
+        Damage();      
     }
 
     // ===========================================
@@ -271,7 +294,8 @@ public class ZombieBehaviour : MonoBehaviour {
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        targetScanner.EditorGizmo(transform);
+        if(drawGizmos)
+            targetScanner.EditorGizmo(transform);
     }
 #endif
 }

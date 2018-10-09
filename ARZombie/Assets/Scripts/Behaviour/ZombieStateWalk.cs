@@ -16,7 +16,7 @@ public class ZombieStateWalk : SceneLinkedSMB<ZombieBehaviour> {
     {
         if (m_MonoBehaviour.ArrivedSpawnPosition())
         {
-            m_MonoBehaviour.DoNothing();
+            m_MonoBehaviour.Idle();
         }
     }
 }

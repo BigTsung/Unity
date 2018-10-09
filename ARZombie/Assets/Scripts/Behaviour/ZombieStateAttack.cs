@@ -15,6 +15,8 @@ public class ZombieStateAttack : SceneLinkedSMB<ZombieBehaviour> {
         //Debug.Log(stateInfo.normalizedTime);
         ZombieBehaviour.StatusWithTarget status = m_MonoBehaviour.GetStatusWithTarget();
 
+        //Debug.Log(stateInfo.normalizedTime);
+
         if (stateInfo.normalizedTime > 1f && !animator.IsInTransition(0))
         {
             //Debug.Log("Attck state done!!!");

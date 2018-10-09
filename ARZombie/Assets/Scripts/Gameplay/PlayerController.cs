@@ -225,10 +225,11 @@ public class PlayerController : MonoBehaviour {
 
     private void SetAnimation(string aniName)
     {
-        //Debug.Log("Animaiton name: " + aniName);
-
         if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName(aniName) && !m_animator.IsInTransition(0))
+        {
+           Debug.LogWarning("Animaiton name: " + aniName);
             m_animator.SetTrigger(aniName);
+        }
     }
 
     /// <summary>

@@ -62,6 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AssetFromStore\BrokenVector\LowPolySurvivalEssentials\Example\Scripts\AnimatedFire.cs" />
+    <Compile Include="Assets\AssetFromStore\DynamicShadowProjector\Samples\Scripts\Rotate.cs" />
+    <Compile Include="Assets\AssetFromStore\DynamicShadowProjector\Samples\Scripts\Swing.cs" />
+    <Compile Include="Assets\AssetFromStore\DynamicShadowProjector\Scripts\DrawSceneObject.cs" />
+    <Compile Include="Assets\AssetFromStore\DynamicShadowProjector\Scripts\DrawTargetObject.cs" />
+    <Compile Include="Assets\AssetFromStore\DynamicShadowProjector\Scripts\FollowTargetObject.cs" />
+    <Compile Include="Assets\AssetFromStore\DynamicShadowProjector\Scripts\MipmappedShadowFallback.cs" />
+    <Compile Include="Assets\AssetFromStore\DynamicShadowProjector\Scripts\ShadowTextureRenderer.cs" />
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Examples\2D Example\Player2DExample.cs" />
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Examples\3D Example\Player3DExample.cs" />
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Scripts\Base\Joystick.cs" />
@@ -83,6 +90,7 @@
     <Compile Include="Assets\Scripts\Gameplay\DamageBall.cs" />
     <Compile Include="Assets\Scripts\Gameplay\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\FollowTarget.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerManager.cs" />
@@ -91,10 +99,36 @@
     <Compile Include="Assets\Scripts\Gameplay\ZombieBehaviour.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Tool\Singleton.cs" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\ShadowWithLinearFalloff.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Blit\Downsample.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\Dynamic\MipmappedShadow.shader" />
     <None Include="Assets\AssetFromStore\NuclearPowerPlant\03-Info\PostProcessingProfil.txt" />
-    <None Include="Assets\read me.txt" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Readme.txt" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Blit\DownsampleFallback.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\Dynamic\ShadowWithoutFalloff.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Blit\Blit.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\Dynamic\LightxShadowWithLinearFalloff.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Shadow\ShadowTransparent.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Shadow\ShadowOpaque.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\MipmappedShadow.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Caps\tex2DlodExtensionCheck.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\LightxShadowWithoutFalloff.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\LightxShadowWithLinearFalloff.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\LightWithLinearFalloff.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\ShadowWithoutFalloff.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\Dynamic\LightxShadowWithoutFalloff.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Shadow\ShadowForReplacement.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Caps\glslCheck.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\DSPProjector.cginc" />
     <None Include="Assets\AssetFromStore\BrokenVector\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\LightWithoutFalloff.shader" />
     <None Include="Assets\AssetFromStore\BrokenVector\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\Dynamic\ShadowWithLinearFalloff.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Blit\Blur.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Blit\CopyMipmap.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Blit\EraseShadow.shader" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Blit\Downsample.cginc" />
+    <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Shadow\DSPShadow.cginc" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/dev/Unity/ARZombie/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

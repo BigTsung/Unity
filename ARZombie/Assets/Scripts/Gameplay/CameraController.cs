@@ -25,17 +25,17 @@ public class CameraController : MonoBehaviour {
     {
         m_targets = FindAllPlayers();
     }
-	
-	void Update ()
-    {
-       
-	}
 
-    private void FixedUpdate()
+    private void Update()
     {
         Move();
         Zoom();
     }
+
+    //private void FixedUpdate()
+    //{
+       
+    //}
 
     private List<Transform> FindAllPlayers()
     {

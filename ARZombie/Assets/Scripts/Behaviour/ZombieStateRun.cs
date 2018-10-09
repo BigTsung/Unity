@@ -10,6 +10,12 @@ public class ZombieStateRun : SceneLinkedSMB<ZombieBehaviour> {
     {
         base.OnSLStatePostEnter(animator, stateInfo, layerIndex);
         m_MonoBehaviour.SetSpeed(speed);
+
+        if (m_MonoBehaviour.Target == null)
+        {
+            m_MonoBehaviour.Detect();
+            m_MonoBehaviour.GotoTarget();
+        }
     }
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -17,6 +23,8 @@ public class ZombieStateRun : SceneLinkedSMB<ZombieBehaviour> {
         base.OnSLStateNoTransitionUpdate(animator, stateInfo, layerIndex);
 
         ZombieBehaviour.StatusWithTarget status = m_MonoBehaviour.GetStatusWithTarget();
+
+        //Debug.Log("status: " + status);
 
         if (status == ZombieBehaviour.StatusWithTarget.TOOFAR)
         {
@@ -28,7 +36,8 @@ public class ZombieStateRun : SceneLinkedSMB<ZombieBehaviour> {
         }
         else if(status == ZombieBehaviour.StatusWithTarget.KEEP_GOING)
         {
-            Debug.Log("Follow the target!!!");
+            //Debug.Log("Follow the target!!!");
+            m_MonoBehaviour.KeepGoing();
         }
         else
         {
