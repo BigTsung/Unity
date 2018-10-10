@@ -27,14 +27,14 @@ public class Character : MonoBehaviour
         {
             if (value < hp && value > 0)
             {
-                if(onDamage != null && isDead == false)
+                if(onDamage != null)
                     onDamage(hp - value);
             }
             hp = value;
 
             if (hp <= 0)
             {
-                if (onDead != null && isDead == false)
+                if (onDead != null)
                 {
                     isDead = true;
                     onDead();

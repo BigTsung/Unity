@@ -18,6 +18,7 @@ public class ZombieBehaviour : MonoBehaviour {
     public bool drawGizmos = false;
     public TargetScanner targetScanner;
     public float stoppingDistance = 1f;
+    public SphereCollider damageBallCollider;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -47,7 +48,7 @@ public class ZombieBehaviour : MonoBehaviour {
     void Awake()
     {
         character = GetComponent<Character>();
-
+        collider = GetComponent<Collider>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -56,14 +57,16 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         SceneLinkedSMB<ZombieBehaviour>.Initialise(animator, this);
 
-        Debug.Log("ZombieBehaviour Start");
-        agent.isStopped = true;
+        //Debug.Log("ZombieBehaviour Start");
     }
 
     private void OnEnable()
     {
         character.onDead += OnDead;
         character.onDamage += OnDamage;
+
+        SetActiveCollider(true);
+        SetActiveDamageBall(false);
 
         spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
@@ -220,7 +223,9 @@ public class ZombieBehaviour : MonoBehaviour {
     public void Dead()
     {
         SetAnimatorTrigger(Ani_Dead);
-        //agent.isStopped = true;
+        SetActiveCollider(false);
+        agent.isStopped = true;
+        fighting = false;
         //Invoke("Disappear", 3f);
     }
 
@@ -271,7 +276,23 @@ public class ZombieBehaviour : MonoBehaviour {
     // private Function
     // ===========================================
 
+    private void SetActiveCollider(bool status)
+    {
+        if (collider != null)
+            collider.enabled = status;
+    }
 
+    // ===========================================
+    // public Function
+    // ===========================================
+
+    public void SetActiveDamageBall(bool status)
+    {
+        if (damageBallCollider != null)
+        {
+            damageBallCollider.enabled = status;
+        }
+    }
 
     // ===========================================
     // Delegate Function

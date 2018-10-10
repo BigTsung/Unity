@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PalettePBR
   m_Shader: {fileID: 4800000, guid: a97e290cd0cec1a4cb176e474e69c1dc, type: 3}
@@ -60,7 +60,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionScaleUI: 0
-    - _Glossiness: 0.09
+    - _Glossiness: 0.276
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
