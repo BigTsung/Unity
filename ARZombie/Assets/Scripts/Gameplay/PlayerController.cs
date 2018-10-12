@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour {
     {
         MoveingAndRotation();
 
-        RotateToTarget();
+        //RotateToTarget();
 
         // Shoot
         if (shooting)
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour {
     private void MoveingAndRotation()
     {
         Vector3 moveVector = (Vector3.right * moveJoystick.Vertical + Vector3.back * moveJoystick.Horizontal);
-        //Vector3 rotateVector = (Vector3.right * rotateJoystick.Vertical + Vector3.back * rotateJoystick.Horizontal);
+        Vector3 rotateVector = (Vector3.right * rotateJoystick.Vertical + Vector3.back * rotateJoystick.Horizontal);
 
         Vector3 moveDirection = new Vector3(moveJoystick.Vertical, 0, moveJoystick.Horizontal);
         Vector3 rotateDirection = new Vector3(rotateJoystick.Vertical, 0, rotateJoystick.Horizontal);
@@ -150,15 +150,34 @@ public class PlayerController : MonoBehaviour {
 
         // Move and Rotate
 
-        if(moveVector != Vector3.zero)
+        if (moveVector != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveVector), Time.deltaTime * rotateSpeed);
-            transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
+            if (rotateVector != Vector3.zero) //  drag move and rotate joystick
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
+
+                if (angle <= 90f)
+                {
+                    transform.Translate(rotateVector * moveSpeed / 4f * Time.deltaTime, Space.World);
+                }
+                else
+                {
+                    transform.Translate(moveVector * moveSpeed / 4f * Time.deltaTime, Space.World);
+                }
+            }
+            else // only drag move joystick
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveVector), Time.deltaTime * rotateSpeed);
+                transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
+            }
         }
         else
         {
+            if (rotateVector != Vector3.zero)// only drag rotate joystick
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
+            }
         }
-
         // Speed
         float total = Mathf.InverseLerp(0, 1, Mathf.Abs(moveJoystick.Vertical) + Mathf.Abs(moveJoystick.Horizontal));
 

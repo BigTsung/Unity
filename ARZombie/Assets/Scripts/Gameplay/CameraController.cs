@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour {
     public float m_dampTime = 0.2f;
     public float m_screenEdgeBuffer = 4f;
     public float m_minSize = 6.5f;
+    public Vector3 cameraOffset;
 
     private List<Transform> m_targets = new List<Transform>();
 
@@ -32,11 +33,6 @@ public class CameraController : MonoBehaviour {
         Zoom();
     }
 
-    //private void FixedUpdate()
-    //{
-       
-    //}
-
     private List<Transform> FindAllPlayers()
     {
         List<Transform> players = new List<Transform>();
@@ -51,7 +47,7 @@ public class CameraController : MonoBehaviour {
         {
             players.Add(partners[i].transform);
         }
-
+        Debug.Log(players.Count);
         return players;
     }
 
