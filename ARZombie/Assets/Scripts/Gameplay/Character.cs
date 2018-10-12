@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 {
     [SerializeField]
     private int hp = 0;
-    private bool isDead = false;
+    public bool isDead = false;
 
     public delegate void OnDead();
     public OnDead onDead;

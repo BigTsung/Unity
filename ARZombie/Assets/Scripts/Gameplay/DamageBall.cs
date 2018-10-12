@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(Collider))]
 public class DamageBall : MonoBehaviour {
 
     public bool isDisableOnCollision = true;
@@ -10,14 +10,14 @@ public class DamageBall : MonoBehaviour {
 
     public int damageValue = 10;
 
-    private SphereCollider colliderCom;
+    private Collider colliderCom;
 
     public delegate void OnCollision(Collider collision);
     public OnCollision onCollisionEnter;
 
     // Use this for initialization
     void Start () {
-        colliderCom = GetComponent<SphereCollider>();
+        colliderCom = GetComponent<Collider>();
 
         if (colliderCom != null)
             colliderCom.isTrigger = true;
@@ -30,12 +30,11 @@ public class DamageBall : MonoBehaviour {
 
         if (isDisableOnCollision)
             gameObject.SetActive(false);
+
         if (isDestroyOnCollision)
             Destroy(gameObject);
 
         Character character = other.GetComponent<Character>();
-
-        //Debug.Log(other.name);
 
         if(character != null)
         {

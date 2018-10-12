@@ -65,6 +65,8 @@ public class ZombieBehaviour : MonoBehaviour {
         character.onDead += OnDead;
         character.onDamage += OnDamage;
 
+        //Debug.Log(this.transform.parent.name);
+
         SetActiveCollider(true);
         SetActiveDamageBall(false);
 
@@ -234,7 +236,6 @@ public class ZombieBehaviour : MonoBehaviour {
         SetAnimatorTrigger(Ani_Damage);
     }
 
-
     public void KeepGoing()
     {
         SetAnimatorTrigger(Ani_Run);
@@ -300,7 +301,7 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void OnDead()
     {
-        Debug.Log("OnDead!!!");
+        //Debug.Log("OnDead!!!");
         Dead();
     }
 

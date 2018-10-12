@@ -14,6 +14,12 @@ public class PlayerController : MonoBehaviour {
         public static string DEPTH { get { return "Depth"; } }
     }
 
+    private struct ObjectInfo
+    {
+        public GameObject target;
+        public int id;
+    }
+
     // public
     public float m_Speed = 12f;
     public float m_turnSpeed = 180f;
@@ -28,7 +34,7 @@ public class PlayerController : MonoBehaviour {
     public Collider detectionTrigger;
     public float triggerSize = 2.5f;
     [Header("Debug")]
-    public bool drawLine = true;
+    public bool drawLine = false;
 
     // private
     private Animator m_animator;
@@ -38,7 +44,7 @@ public class PlayerController : MonoBehaviour {
     private float shootTimeCount = 0f;
     private bool shooting = false;
 
-    private List<GameObject> aroundMeList = new List<GameObject>();
+    private List<ObjectInfo> aroundMeList = new List<ObjectInfo>();
     private LineRenderer lineRenderer;
 
     private void Awake()
@@ -58,28 +64,31 @@ public class PlayerController : MonoBehaviour {
     {
         MoveingAndRotation();
 
-        //RotateObjectBaseOnTarget();
+        RotateToTarget();
 
         // Shoot
         if (shooting)
             Shoot();
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.name);
-        if (!aroundMeList.Contains(other.gameObject) && other.tag != "Obstacle")
+        if (other.gameObject.tag != "Enemy")
+            return;
+
+        if (!aroundMeList.Exists(x => x.id == other.gameObject.GetInstanceID()))
         {
-            //Debug.Log(other.name + " " + other.tag);
-            aroundMeList.Add(other.gameObject);
+            ObjectInfo objectInfo = new ObjectInfo();
+            objectInfo.target = other.gameObject;
+            objectInfo.id = other.gameObject.GetInstanceID();
+            aroundMeList.Add(objectInfo);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        int index = aroundMeList.FindIndex(x => x == other.gameObject);
-        //Debug.Log(aroundMeList.Count + " " + index);
+        int index = aroundMeList.FindIndex(x => x.id == other.gameObject.GetInstanceID());
+
         if(index >= 0)
             aroundMeList.RemoveAt(index);
     }
@@ -96,7 +105,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void RotateObjectBaseOnTarget()
+    private void RotateToTarget()
     {
         //Debug.Log(aroundMeList.Count);
         if (aroundMeList.Count > 0)
@@ -117,21 +126,22 @@ public class PlayerController : MonoBehaviour {
 
         for (int i = 0; i < aroundMeList.Count; i++)
         {
-            dis = Vector3.Distance(transform.position, aroundMeList[i].transform.position);
-            if (dis < minDis)
+            dis = Vector3.Distance(transform.position, aroundMeList[i].target.transform.position);
+            if (dis < minDis && aroundMeList[i].target.activeInHierarchy)
             {
                 minDis = dis;
-                target = aroundMeList[i];
+                target = aroundMeList[i].target;
             }
         }
-    
+
+        //Debug.Log(target.name);
         return target;
     }
 
     private void MoveingAndRotation()
     {
         Vector3 moveVector = (Vector3.right * moveJoystick.Vertical + Vector3.back * moveJoystick.Horizontal);
-        Vector3 rotateVector = (Vector3.right * rotateJoystick.Vertical + Vector3.back * rotateJoystick.Horizontal);
+        //Vector3 rotateVector = (Vector3.right * rotateJoystick.Vertical + Vector3.back * rotateJoystick.Horizontal);
 
         Vector3 moveDirection = new Vector3(moveJoystick.Vertical, 0, moveJoystick.Horizontal);
         Vector3 rotateDirection = new Vector3(rotateJoystick.Vertical, 0, rotateJoystick.Horizontal);
@@ -142,32 +152,13 @@ public class PlayerController : MonoBehaviour {
 
         if(moveVector != Vector3.zero)
         {
-            if(rotateVector != Vector3.zero) //  drag move and rotate joystick
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
-
-                if (angle <= 90f)
-                {
-                    transform.Translate(rotateVector * moveSpeed / 4f * Time.deltaTime, Space.World);
-                }
-                else
-                {
-                    transform.Translate(moveVector * moveSpeed / 4f * Time.deltaTime, Space.World);
-                }
-            }
-            else // only drag move joystick
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveVector), Time.deltaTime * rotateSpeed);
-                transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
-            }
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveVector), Time.deltaTime * rotateSpeed);
+            transform.Translate(moveVector * moveSpeed * Time.deltaTime, Space.World);
         }
         else
         {
-            if (rotateVector != Vector3.zero)// only drag rotate joystick
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
-            }
         }
+
         // Speed
         float total = Mathf.InverseLerp(0, 1, Mathf.Abs(moveJoystick.Vertical) + Mathf.Abs(moveJoystick.Horizontal));
 
@@ -237,6 +228,7 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     public void ShootSwitcher(bool status)
     {
+        //Debug.Log("Click status: " + status);
         shooting = status;
     }
 

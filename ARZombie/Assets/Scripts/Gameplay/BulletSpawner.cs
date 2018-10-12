@@ -19,6 +19,8 @@ public class BulletSpawner : Singleton<BulletSpawner> {
     {
         GameObject bulletObj = ObjectPooler.Instance.SpawnFormPool("Bullet", position, rotation);
 
+        //Debug.Log(bulletObj.name + " " + bulletObj.activeSelf);
+
         Bullet bullet = bulletObj.GetComponent<Bullet>();
 
         BulletInfo bulletInfo = new BulletInfo();
