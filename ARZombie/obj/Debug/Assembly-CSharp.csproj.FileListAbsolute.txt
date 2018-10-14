@@ -211,7 +211,6 @@ D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.ParticleSystemModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.PerformanceReportingModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.Physics2DModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.PhysicsModule.dll
-D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.Purchasing.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.ScreenCaptureModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SharedInternalsModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SpatialTracking.dll
@@ -229,7 +228,6 @@ D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.Timeline.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.TimelineModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.TLSModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.UI.dll
-D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.UIAutomation.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.UIElementsModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.UIModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.UmbraModule.dll
@@ -244,7 +242,6 @@ D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.UnityWebRequestWWWModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.VehiclesModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.VideoModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.VRModule.dll
-D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.WebModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.WindModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.XRModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityScript.dll
@@ -259,13 +256,10 @@ D:\dev\Unity\ARZombie\Temp\bin\Debug\ExCSS.Unity.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\Unity.Legacy.NRefactory.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\Boo.Lang.Parser.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\Boo.Lang.Compiler.dll
-D:\dev\Unity\ARZombie\Temp\bin\Debug\Unity.UNetWeaver.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\Unity.IvyParser.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\Boo.Lang.PatternMatching.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\Boo.Lang.Useful.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\Unity.CecilTools.dll
-D:\dev\Unity\ARZombie\Temp\bin\Debug\Unity.Cecil.Pdb.dll
-D:\dev\Unity\ARZombie\Temp\bin\Debug\Unity.Cecil.Mdb.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEditor.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.AIModule.xml
@@ -320,14 +314,12 @@ D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.UnityWebRequestWWWModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.VRModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.VehiclesModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.VideoModule.xml
-D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.WebModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.WindModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.XRModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\Vuforia.UnityExtensions.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.UI.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.Networking.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.Timeline.xml
-D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.UIAutomation.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.GoogleAudioSpatializer.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.HoloLens.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
@@ -338,3 +330,13 @@ D:\dev\Unity\ARZombie\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 D:\dev\Unity\ARZombie\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\dev\Unity\ARZombie\obj\Debug\Assembly-CSharp.dll
 D:\dev\Unity\ARZombie\obj\Debug\Assembly-CSharp.pdb
+D:\dev\Unity\ARZombie\Temp\bin\Debug\Unity.TextMeshPro.dll
+D:\dev\Unity\ARZombie\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
+D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.FileSystemHttpModule.dll
+D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.LocalizationModule.dll
+D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.ProfilerModule.dll
+D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.StreamingModule.dll
+D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.FileSystemHttpModule.xml
+D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.LocalizationModule.xml
+D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.ProfilerModule.xml
+D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.StreamingModule.xml

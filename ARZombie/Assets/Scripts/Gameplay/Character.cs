@@ -6,7 +6,8 @@ public class Character : MonoBehaviour
 {
     [SerializeField]
     private int hp = 0;
-    public bool isDead = false;
+    [SerializeField]
+    private bool isDead = false;
 
     public delegate void OnDead();
     public OnDead onDead;
@@ -25,15 +26,15 @@ public class Character : MonoBehaviour
         get { return hp; }
         set 
         {
-            if (value < hp && value > 0)
-            {
-                if(onDamage != null)
-                    onDamage(hp - value);
-            }
-            hp = value;
+            if(onDamage != null)
+                onDamage(hp);
 
+            hp = value;
+            
             if (hp <= 0)
             {
+                hp = 0;
+
                 if (onDead != null)
                 {
                     isDead = true;

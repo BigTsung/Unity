@@ -8,7 +8,7 @@ public class FollowTarget : MonoBehaviour {
     public Vector3 rotation;
     public Transform target;
     
-    private void FixedUpdate()
+    private void Update()
     {
         if (target != null)
         {

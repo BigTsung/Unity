@@ -47,7 +47,7 @@ public class CameraController : MonoBehaviour {
         {
             players.Add(partners[i].transform);
         }
-        Debug.Log(players.Count);
+        //Debug.Log(players.Count);
         return players;
     }
 

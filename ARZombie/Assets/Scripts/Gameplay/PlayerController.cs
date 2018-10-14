@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
     private Animator m_animator;
     private float m_movementInputValue;
     private float m_turnInputValue;
+    private Character character;
     private GameObject closeTarget = null;
     private float shootTimeCount = 0f;
     private bool shooting = false;
@@ -50,17 +51,33 @@ public class PlayerController : MonoBehaviour {
     private void Awake()
     {
         PlayerManager.Instance.AddToPlayerList(this.transform);
+
+        character = GetComponent<Character>();
+        m_animator = GetComponent<Animator>();
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     // Use this for initialization
     void Start ()
     {
-        m_animator = GetComponent<Animator>();
-        lineRenderer = GetComponent<LineRenderer>();
         InitDetectionTrigger();
+
+        UIManager.Instance.InitHealthBar(character.HP);
     }
-	
-	void Update ()
+
+    private void OnEnable()
+    {
+        if (character != null)
+            character.onDamage += onDamage;
+    }
+
+    private void OnDestroy()
+    {
+        if (character != null)
+            character.onDamage -= onDamage;
+    }
+
+    void Update ()
     {
         MoveingAndRotation();
 
@@ -158,11 +175,11 @@ public class PlayerController : MonoBehaviour {
 
                 if (angle <= 90f)
                 {
-                    transform.Translate(rotateVector * moveSpeed / 4f * Time.deltaTime, Space.World);
+                    transform.Translate(rotateVector * moveSpeed / 2f * Time.deltaTime, Space.World);
                 }
                 else
                 {
-                    transform.Translate(moveVector * moveSpeed / 4f * Time.deltaTime, Space.World);
+                    transform.Translate(moveVector * moveSpeed / 2f * Time.deltaTime, Space.World);
                 }
             }
             else // only drag move joystick
@@ -182,7 +199,7 @@ public class PlayerController : MonoBehaviour {
         float total = Mathf.InverseLerp(0, 1, Mathf.Abs(moveJoystick.Vertical) + Mathf.Abs(moveJoystick.Horizontal));
 
         if ((Mathf.Abs(rotateJoystick.Vertical) > 0 || Mathf.Abs(rotateJoystick.Horizontal) > 0) && angle > 90f)
-            m_animator.speed = 0.8f;
+            m_animator.speed = 1.2f;
         else if (total == 0)
             m_animator.speed = 1f;
         else
@@ -265,5 +282,10 @@ public class PlayerController : MonoBehaviour {
 
             shootTimeCount = 0f;
         }
+    }
+
+    private void onDamage(int hp)
+    {
+        UIManager.Instance.RefreshHealthBar(hp);
     }
 }
