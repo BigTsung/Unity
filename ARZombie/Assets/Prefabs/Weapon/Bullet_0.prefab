@@ -124,16 +124,16 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.03
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.6
+    widthMultiplier: 0.2
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.012664795
+        value: 0.26202393
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -141,17 +141,17 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.40867043
-        value: 0.39248204
-        inSlope: -1.2132906
-        outSlope: -1.2132906
+        time: 0.49758446
+        value: 0.5214244
+        inSlope: -0.008010119
+        outSlope: -0.008010119
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.34064648
-        outWeight: 0.16252334
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 0.25668335
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -195,7 +195,7 @@ TrailRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 0.01
   m_Autodestruct: 0
   m_Emitting: 1
 --- !u!114 &114438646658938058
@@ -223,6 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47303f818614443692c4687a4a2a354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionEffectPrefab: {fileID: 1531761876660862, guid: 1613f2121d0453945ada72580e2fde66,
+    type: 2}
+  damageball: {fileID: 114438646658938058}
 --- !u!136 &136956668563785476
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 4052707034179912}
   - component: {fileID: 135318123207304344}
   - component: {fileID: 114693423135942658}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DamageBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1085,13 +1085,13 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 8fd192304df88db499eedb3456dc6d67, type: 2}
+  - {fileID: 2100000, guid: 178ce8f1cb35ec04e8b62219dfb4d43e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1348,7 +1348,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.32
   m_Height: 1.78
   m_Direction: 1
   m_Center: {x: 0, y: 0.78, z: 0}
@@ -1361,13 +1361,13 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 8fd192304df88db499eedb3456dc6d67, type: 2}
+  - {fileID: 2100000, guid: 178ce8f1cb35ec04e8b62219dfb4d43e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
