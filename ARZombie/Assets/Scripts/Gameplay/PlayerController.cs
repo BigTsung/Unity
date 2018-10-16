@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour {
         public int id;
     }
 
-    // public
     public float m_Speed = 12f;
     public float m_turnSpeed = 180f;
     public float rotateSpeed = 10f;
@@ -34,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     public Collider detectionTrigger;
     public float triggerSize = 2.5f;
     [Header("Debug")]
+    public LineRenderer lineRenderer;
     public bool drawLine = false;
 
     // private
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
     private bool shooting = false;
 
     private List<ObjectInfo> aroundMeList = new List<ObjectInfo>();
-    private LineRenderer lineRenderer;
+   
 
     private void Awake()
     {
@@ -54,10 +54,9 @@ public class PlayerController : MonoBehaviour {
 
         character = GetComponent<Character>();
         m_animator = GetComponent<Animator>();
-        lineRenderer = GetComponent<LineRenderer>();
+        //lineRenderer = GetComponent<LineRenderer>();
     }
 
-    // Use this for initialization
     void Start ()
     {
         InitDetectionTrigger();
@@ -124,7 +123,6 @@ public class PlayerController : MonoBehaviour {
 
     private void RotateToTarget()
     {
-        //Debug.Log(aroundMeList.Count);
         if (aroundMeList.Count > 0)
         {
             closeTarget = GetMostClosedTarget();
@@ -151,7 +149,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        //Debug.Log(target.name);
         return target;
     }
 
@@ -166,7 +163,6 @@ public class PlayerController : MonoBehaviour {
         float angle = Vector3.Angle(moveDirection, rotateDirection);
 
         // Move and Rotate
-
         if (moveVector != Vector3.zero)
         {
             if (rotateVector != Vector3.zero) //  drag move and rotate joystick
@@ -218,9 +214,12 @@ public class PlayerController : MonoBehaviour {
     {
         if (lineRenderer != null)
         {
+            //lineRenderer.startColor = Color.red;
+            //lineRenderer.endColor = Color.green;
+            lineRenderer.SetWidth(0.1f, 0.01f);
             lineRenderer.SetVertexCount(2);
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, transform.forward * 10 + transform.position);
+            lineRenderer.SetPosition(0, bulletBornPos.position);
+            lineRenderer.SetPosition(1, bulletBornPos.forward * 10f);
         }
     }
 

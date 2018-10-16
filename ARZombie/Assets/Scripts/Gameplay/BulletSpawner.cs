@@ -17,7 +17,7 @@ public class BulletSpawner : Singleton<BulletSpawner> {
 
     public BulletInfo Spawn(Vector3 position, Quaternion rotation, GameObject owner)
     {
-        GameObject bulletObj = ObjectPooler.Instance.SpawnFormPool("Bullet", position, rotation);
+        GameObject bulletObj = ObjectPooler.Instance.SpawnFormPool(ObjectPooler.BULLET, position, rotation);
 
         Bullet bullet = bulletObj.GetComponent<Bullet>();
         bullet.SetSpawnPosition(position);

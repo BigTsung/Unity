@@ -103,6 +103,7 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         if (animator != null)
         {
+            //Debug.Log(this.name + ": " + triggerName);
             animator.SetTrigger(triggerName);
         }
     }
@@ -225,15 +226,18 @@ public class ZombieBehaviour : MonoBehaviour {
     public void Dead()
     {
         SetAnimatorTrigger(Ani_Dead);
+       
         SetActiveCollider(false);
         agent.isStopped = true;
         fighting = false;
+        Debug.Log("OnDead");
         //Invoke("Disappear", 3f);
     }
 
     public void Damage()
     {
         SetAnimatorTrigger(Ani_Damage);
+        Debug.Log("OnDamage");
     }
 
     public void KeepGoing()

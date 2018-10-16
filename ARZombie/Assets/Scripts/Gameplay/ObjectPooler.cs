@@ -12,6 +12,9 @@ public class ObjectPooler : Singleton<ObjectPooler> {
         public int size;
     }
 
+    public static string ENEMY = "Enemy";
+    public static string BULLET = "Bullet";
+
     public List<Pool> pools = new List<Pool>();
     public Dictionary<string, Queue<GameObject>> poolDictionary = new Dictionary<string, Queue<GameObject>>();
 

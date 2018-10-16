@@ -103,7 +103,6 @@
     <Compile Include="Assets\Scripts\Gameplay\CameraController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Character.cs" />
     <Compile Include="Assets\Scripts\Gameplay\DamageBall.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Gameplay\FollowTarget.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ObjectPooler.cs" />

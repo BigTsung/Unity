@@ -26,7 +26,7 @@ public class UserInfoUIManager : MonoBehaviour {
     {
         if (healthBar != null && healthBarVal != null)
         {
-            Debug.Log(value + " " + maxHP);
+            //Debug.Log(value + " " + maxHP);
         
             healthBar.value = value;
             healthBarVal.text = value + "/" + maxHP;

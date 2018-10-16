@@ -21,6 +21,6 @@ public class ZombieStateDead : SceneLinkedSMB<ZombieBehaviour> {
     {
         base.OnSLStateExit(animator, stateInfo, layerIndex);
 
-        m_MonoBehaviour.Disappear();
+        //m_MonoBehaviour.Disappear();
     }
 }

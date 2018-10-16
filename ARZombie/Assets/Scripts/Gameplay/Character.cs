@@ -26,9 +26,6 @@ public class Character : MonoBehaviour
         get { return hp; }
         set 
         {
-            if(onDamage != null)
-                onDamage(hp);
-
             hp = value;
             
             if (hp <= 0)
@@ -41,6 +38,9 @@ public class Character : MonoBehaviour
                     onDead();
                 }
             }
+
+            if (onDamage != null && !isDead)
+                onDamage(hp);
         }
     }
 }

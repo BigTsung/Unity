@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-    //public GameObject[] enemyList;
     public int maxEnemy = 30;
     public float spawnTime = 2f;
 
@@ -46,26 +45,14 @@ public class EnemySpawner : MonoBehaviour {
 
     private GameObject Spawn()
     {
-        //Instantiate(GetEnemyPrefab(), GetSpawnPosition(), Quaternion.identity, this.transform);
-        GameObject enemy = ObjectPooler.Instance.SpawnFormPool("Enemy", GetSpawnPosition(), Quaternion.identity);
-
-        //Bullet bullet = enemy.GetComponent<Bullet>();
-
-        //bullet.Fire(speed, life);
+        GameObject enemy = ObjectPooler.Instance.SpawnFormPool(ObjectPooler.ENEMY, GetSpawnPosition(), Quaternion.identity);
 
         return enemy;
     }
 
-    /*private GameObject GetEnemyPrefab()
-    {
-        int random = Random.Range(0, enemyList.Length);
-        return enemyList[random];
-    }*/
-
     private Vector3 GetSpawnPosition()
     {
         int random = Random.Range(0, spawnPosList.Count);
-        //Debug.Log(random);
         return spawnPosList[random].position;
     }
 }
