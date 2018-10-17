@@ -7,16 +7,22 @@ public class ObjectPooler : Singleton<ObjectPooler> {
     [System.Serializable]
     public class Pool
     {
-        public string tag;
+        public ObjectTag tag;
         public GameObject prefab;
         public int size;
+    }
+
+    public enum ObjectTag
+    {
+        Enemy,
+        Bullet
     }
 
     public static string ENEMY = "Enemy";
     public static string BULLET = "Bullet";
 
     public List<Pool> pools = new List<Pool>();
-    public Dictionary<string, Queue<GameObject>> poolDictionary = new Dictionary<string, Queue<GameObject>>();
+    public Dictionary<ObjectTag, Queue<GameObject>> poolDictionary = new Dictionary<ObjectTag, Queue<GameObject>>();
 
     // Use this for initialization
     void Start()
@@ -37,7 +43,7 @@ public class ObjectPooler : Singleton<ObjectPooler> {
         }
     }
 
-    public GameObject SpawnFormPool(string tag, Vector3 position, Quaternion rotation)
+    public GameObject SpawnFormPool(ObjectTag tag, Vector3 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))
         {

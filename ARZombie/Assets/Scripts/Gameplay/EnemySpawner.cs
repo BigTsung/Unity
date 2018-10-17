@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-    public int maxEnemy = 30;
-    public float spawnTime = 2f;
+    public List<ObjectPooler.ObjectTag> enemyTag = new List<ObjectPooler.ObjectTag>();
+    public float delayWhenStart = 0f;
+    public int enemyNumber = 30;
+    public int spawnTimes = 5;
+    public float spawnSpacingTime = 2f;
 
     private List<Transform> spawnPosList = new List<Transform>();
     private float timeCount = 0f;
@@ -15,24 +18,29 @@ public class EnemySpawner : MonoBehaviour {
     void Start ()
     {
         InitSpawnPosition();
+        Invoke("StartSpawning", delayWhenStart);
     }
-	
-	void Update ()
+
+    private void StartSpawning()
     {
-        if(!enemyIsFull)
+        //Debug.Log("StartSpawning");
+        StartCoroutine(SpawnEnemy(enemyTag[0], spawnSpacingTime));
+        //InvokeRepeating("Spawn", enemyNumber, spawnSpacingTime);
+    }
+
+    IEnumerator SpawnEnemy(ObjectPooler.ObjectTag objectTag, float repeatRate)
+    {
+        int generatedNum = 0;
+        while (generatedNum < enemyNumber)
         {
-            timeCount += Time.deltaTime;
-            if (timeCount > spawnTime)
-            {
-                Spawn();
-                enemyCount++;
-                timeCount = 0f;
-                if (enemyCount >= maxEnemy)
-                {
-                    enemyIsFull = true;
-                }
-            }
+            Spawn(objectTag);
+            generatedNum++;
+            yield return new WaitForSeconds(repeatRate);
         }
+    }
+
+    void Update ()
+    {
 	}
 
     private void InitSpawnPosition()
@@ -43,9 +51,10 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
-    private GameObject Spawn()
+    private GameObject Spawn(ObjectPooler.ObjectTag objectTag)
     {
-        GameObject enemy = ObjectPooler.Instance.SpawnFormPool(ObjectPooler.ENEMY, GetSpawnPosition(), Quaternion.identity);
+        //Debug.Log("StartSpawning");
+        GameObject enemy = ObjectPooler.Instance.SpawnFormPool(objectTag, GetSpawnPosition(), Quaternion.identity);
 
         return enemy;
     }

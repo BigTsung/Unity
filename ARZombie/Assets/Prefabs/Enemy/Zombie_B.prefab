@@ -1324,6 +1324,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a5a511ed85f42ab918b33a5501bdbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 2048
   isDisableOnCollision: 0
   isDestroyOnCollision: 0
   damageValue: 10

@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class DamageBall : MonoBehaviour {
 
+    public LayerMask ignoreLayers;
+
     public bool isDisableOnCollision = true;
     public bool isDestroyOnCollision = false;
 
@@ -25,6 +27,11 @@ public class DamageBall : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        bool inLayerMask = ignoreLayers == (ignoreLayers | (1 << other.gameObject.layer));
+
+        if (inLayerMask == false)
+            return;
+
         if (onCollisionEnter != null)
             onCollisionEnter(other);
 

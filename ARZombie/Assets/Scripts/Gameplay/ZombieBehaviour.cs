@@ -230,14 +230,14 @@ public class ZombieBehaviour : MonoBehaviour {
         SetActiveCollider(false);
         agent.isStopped = true;
         fighting = false;
-        Debug.Log("OnDead");
+        //Debug.Log("OnDead");
         //Invoke("Disappear", 3f);
     }
 
     public void Damage()
     {
         SetAnimatorTrigger(Ani_Damage);
-        Debug.Log("OnDamage");
+        //Debug.Log("OnDamage");
     }
 
     public void KeepGoing()
