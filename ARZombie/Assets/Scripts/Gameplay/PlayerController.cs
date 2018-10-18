@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
     public float m_Speed = 12f;
     public float m_turnSpeed = 180f;
     public float rotateSpeed = 10f;
+    public float rotateAngleFix = -35f;
     public float transitionDuration = 0.1f;
     public Transform bulletBornPos;
     public float moveSpeed = 8f;
@@ -188,7 +189,10 @@ public class PlayerController : MonoBehaviour {
         {
             if (rotateVector != Vector3.zero)// only drag rotate joystick
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
+                transform.rotation = Quaternion.LookRotation(rotateVector);
+                Vector3 resultRotate = transform.rotation.eulerAngles;
+                resultRotate.y += rotateAngleFix;
+                transform.rotation = Quaternion.Euler(resultRotate);
             }
         }
         // Speed

@@ -1297,6 +1297,7 @@ MonoBehaviour:
   m_Speed: 6
   m_turnSpeed: 250
   rotateSpeed: 15
+  rotateAngleFix: -35
   transitionDuration: 0.1
   bulletBornPos: {fileID: 4978954766185408}
   moveSpeed: 6
