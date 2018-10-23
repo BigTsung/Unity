@@ -12,6 +12,11 @@ public class ZombieStateDamage : SceneLinkedSMB<ZombieBehaviour> {
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Character character = m_MonoBehaviour.GetComponent<Character>();
+
+        if (character.Dead)
+            m_MonoBehaviour.Dead();
+
         if (stateInfo.normalizedTime > 1f && !animator.IsInTransition(0))
         {
             if (m_MonoBehaviour.Target == null)

@@ -32,6 +32,7 @@ public class ZombieStateRun : SceneLinkedSMB<ZombieBehaviour> {
         }
         else if(status == ZombieBehaviour.StatusWithTarget.READY_TO_ATTACK)
         {
+            //Debug.Log("Attack Run" + m_MonoBehaviour.gameObject.transform.parent.name);
             m_MonoBehaviour.Attack();
         }
         else if(status == ZombieBehaviour.StatusWithTarget.KEEP_GOING)

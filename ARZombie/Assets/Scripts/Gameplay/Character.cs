@@ -32,9 +32,10 @@ public class Character : MonoBehaviour
             {
                 hp = 0;
 
-                if (onDead != null)
+                if (onDead != null && !isDead)
                 {
                     isDead = true;
+                    //Debug.Log("isDead: " + isDead + " " + transform.parent.name);
                     onDead();
                 }
             }

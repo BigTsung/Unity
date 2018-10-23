@@ -73,6 +73,12 @@ public class ZombieBehaviour : MonoBehaviour {
         spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
+    private void OnDisable()
+    {
+        character.onDead -= OnDead;
+        character.onDamage -= OnDamage;
+    }
+
     private void FixedUpdate()
     {
         //Debug.Log("agent stop: " + agent.isStopped);
@@ -226,18 +232,15 @@ public class ZombieBehaviour : MonoBehaviour {
     public void Dead()
     {
         SetAnimatorTrigger(Ani_Dead);
-       
+        FaceToTarget(false);
         SetActiveCollider(false);
         agent.isStopped = true;
         fighting = false;
-        //Debug.Log("OnDead");
-        //Invoke("Disappear", 3f);
     }
 
     public void Damage()
     {
         SetAnimatorTrigger(Ani_Damage);
-        //Debug.Log("OnDamage");
     }
 
     public void KeepGoing()
@@ -305,12 +308,13 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void OnDead()
     {
-        //Debug.Log("OnDead!!!");
+        //Debug.Log("Dead: " + this.transform.parent.name);
         Dead();
     }
 
     private void OnDamage(int hurtVal)
     {
+        //Debug.Log("Damage: " + this.transform.parent.name);
         Damage();      
     }
 

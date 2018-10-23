@@ -9,11 +9,13 @@ public class EnemySpawner : MonoBehaviour {
     public int enemyNumber = 30;
     public int spawnTimes = 5;
     public float spawnSpacingTime = 2f;
+    public float nextSpawnWaitingTime = 10f;
 
     private List<Transform> spawnPosList = new List<Transform>();
     private float timeCount = 0f;
     private int enemyCount = 0;
     private bool enemyIsFull = false;
+    private int spawnedNum = 0;
 
     void Start ()
     {
@@ -23,9 +25,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private void StartSpawning()
     {
-        //Debug.Log("StartSpawning");
         StartCoroutine(SpawnEnemy(enemyTag[0], spawnSpacingTime));
-        //InvokeRepeating("Spawn", enemyNumber, spawnSpacingTime);
     }
 
     IEnumerator SpawnEnemy(ObjectPooler.ObjectTag objectTag, float repeatRate)
@@ -37,11 +37,17 @@ public class EnemySpawner : MonoBehaviour {
             generatedNum++;
             yield return new WaitForSeconds(repeatRate);
         }
+
+        spawnedNum++;
+
+        Invoke("NextSpawn", nextSpawnWaitingTime);
     }
 
-    void Update ()
+    private void NextSpawn()
     {
-	}
+        if(spawnedNum < spawnTimes)
+            StartCoroutine(SpawnEnemy(enemyTag[0], spawnSpacingTime));
+    }
 
     private void InitSpawnPosition()
     {
@@ -53,7 +59,6 @@ public class EnemySpawner : MonoBehaviour {
 
     private GameObject Spawn(ObjectPooler.ObjectTag objectTag)
     {
-        //Debug.Log("StartSpawning");
         GameObject enemy = ObjectPooler.Instance.SpawnFormPool(objectTag, GetSpawnPosition(), Quaternion.identity);
 
         return enemy;

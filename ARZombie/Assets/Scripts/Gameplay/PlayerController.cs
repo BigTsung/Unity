@@ -168,7 +168,8 @@ public class PlayerController : MonoBehaviour {
         {
             if (rotateVector != Vector3.zero) //  drag move and rotate joystick
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rotateVector), Time.deltaTime * rotateSpeed);
+               
+                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(resultRotate), Time.deltaTime * rotateSpeed);
 
                 if (angle <= 90f)
                 {
@@ -178,6 +179,11 @@ public class PlayerController : MonoBehaviour {
                 {
                     transform.Translate(moveVector * moveSpeed / 2f * Time.deltaTime, Space.World);
                 }
+
+                transform.rotation = Quaternion.LookRotation(rotateVector);
+                Vector3 resultRotate = transform.rotation.eulerAngles;
+                resultRotate.y += rotateAngleFix;
+                transform.rotation = Quaternion.Euler(resultRotate);
             }
             else // only drag move joystick
             {
@@ -193,6 +199,8 @@ public class PlayerController : MonoBehaviour {
                 Vector3 resultRotate = transform.rotation.eulerAngles;
                 resultRotate.y += rotateAngleFix;
                 transform.rotation = Quaternion.Euler(resultRotate);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(resultRotate), Time.deltaTime * rotateSpeed);
+
             }
         }
         // Speed

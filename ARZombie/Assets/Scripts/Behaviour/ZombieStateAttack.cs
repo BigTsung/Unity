@@ -19,9 +19,13 @@ public class ZombieStateAttack : SceneLinkedSMB<ZombieBehaviour> {
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        float normalizeTime = stateInfo.normalizedTime;
+        Character character = m_MonoBehaviour.GetComponent<Character>();
 
-        //Debug.Log(normalizeTime);
+        if (character.Dead)
+            m_MonoBehaviour.Dead();
+
+
+        float normalizeTime = stateInfo.normalizedTime;
 
         if (normalizeTime >= damageLaunchNormalTime && normalizeTime <= damageDislaunchNormalTime)
         {
@@ -32,10 +36,7 @@ public class ZombieStateAttack : SceneLinkedSMB<ZombieBehaviour> {
             m_MonoBehaviour.SetActiveDamageBall(false);
         }
 
-        //Debug.Log(stateInfo.normalizedTime);
         ZombieBehaviour.StatusWithTarget status = m_MonoBehaviour.GetStatusWithTarget();
-
-        //Debug.Log(stateInfo.normalizedTime);
 
         if (normalizeTime > 1f && !animator.IsInTransition(0))
         {
@@ -47,8 +48,8 @@ public class ZombieStateAttack : SceneLinkedSMB<ZombieBehaviour> {
             }
             else if (status == ZombieBehaviour.StatusWithTarget.READY_TO_ATTACK)
             {
+                //Debug.Log("Attack Attack" + m_MonoBehaviour.gameObject.transform.parent.name);
                 m_MonoBehaviour.Attack();
-                //Debug.Log("Attack!!!");
             }
             else if (status == ZombieBehaviour.StatusWithTarget.KEEP_GOING)
             {

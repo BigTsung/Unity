@@ -43,7 +43,7 @@ public class DamageBall : MonoBehaviour {
 
         Character character = other.GetComponent<Character>();
 
-        if(character != null)
+        if(character != null && !character.Dead)
         {
             character.HP -= damageValue;
         }

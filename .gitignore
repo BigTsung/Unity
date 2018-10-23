@@ -3,6 +3,7 @@
 /ARZombie/Assets/AssetFromStore
 /ARZombie/Assets/Audios
 /ARZombie/Library
+/ARZombie/Temp
 
 # 忽略所有附檔名是 .tmp 的檔案
 *.tmp
