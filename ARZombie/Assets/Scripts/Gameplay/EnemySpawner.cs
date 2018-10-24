@@ -4,49 +4,59 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-    public List<ObjectPooler.ObjectTag> enemyTag = new List<ObjectPooler.ObjectTag>();
-    public float delayWhenStart = 0f;
-    public int enemyNumber = 30;
-    public int spawnTimes = 5;
-    public float spawnSpacingTime = 2f;
-    public float nextSpawnWaitingTime = 10f;
+    [System.Serializable]
+    public class EnemyInfo
+    {
+        public ObjectPooler.ObjectTag enemyTag;
+        public int num = 5;
+    }
+
+    [System.Serializable]
+    public class LevelInfo
+    {
+        public List<EnemyInfo> enemyList;
+        public float delayWhenStart = 0f;
+        public float spawnSpacingTime = 1f;
+    }
+
+    public List<LevelInfo> spawnLevel = new List<LevelInfo>();
 
     private List<Transform> spawnPosList = new List<Transform>();
-    private float timeCount = 0f;
-    private int enemyCount = 0;
-    private bool enemyIsFull = false;
-    private int spawnedNum = 0;
+
+    private int currentLevel = 0;
 
     void Start ()
     {
         InitSpawnPosition();
-        Invoke("StartSpawning", delayWhenStart);
+        StartCoroutine(StartThisLevel());
     }
 
-    private void StartSpawning()
+    IEnumerator StartThisLevel()
     {
-        StartCoroutine(SpawnEnemy(enemyTag[0], spawnSpacingTime));
-    }
+        yield return new WaitForSeconds(spawnLevel[currentLevel].delayWhenStart);
 
-    IEnumerator SpawnEnemy(ObjectPooler.ObjectTag objectTag, float repeatRate)
-    {
-        int generatedNum = 0;
-        while (generatedNum < enemyNumber)
+        List<ObjectPooler.ObjectTag> objectTagList = new List<ObjectPooler.ObjectTag>();
+
+        for (int i = 0; i < spawnLevel[currentLevel].enemyList.Count; i++)
         {
-            Spawn(objectTag);
-            generatedNum++;
-            yield return new WaitForSeconds(repeatRate);
+            for (int j = 0; j < spawnLevel[currentLevel].enemyList[i].num; j++)
+            {
+                objectTagList.Add(spawnLevel[currentLevel].enemyList[i].enemyTag);
+            }
         }
+        while (objectTagList.Count > 0)
+        {
+            int randomEnemyTag = Random.Range(0, objectTagList.Count);
+            ObjectPooler.ObjectTag objectTag = objectTagList[randomEnemyTag];
+            objectTagList.RemoveAt(randomEnemyTag);
 
-        spawnedNum++;
+            Spawn(objectTag);
+            yield return new WaitForSeconds(spawnLevel[currentLevel].spawnSpacingTime);
+        }
+        currentLevel++;
 
-        Invoke("NextSpawn", nextSpawnWaitingTime);
-    }
-
-    private void NextSpawn()
-    {
-        if(spawnedNum < spawnTimes)
-            StartCoroutine(SpawnEnemy(enemyTag[0], spawnSpacingTime));
+        if (currentLevel < spawnLevel.Count)
+            StartCoroutine(StartThisLevel());
     }
 
     private void InitSpawnPosition()

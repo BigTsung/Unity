@@ -14,12 +14,10 @@ public class ObjectPooler : Singleton<ObjectPooler> {
 
     public enum ObjectTag
     {
-        Enemy,
+        ZombieB,
+        ZombieC,
         Bullet
     }
-
-    public static string ENEMY = "Enemy";
-    public static string BULLET = "Bullet";
 
     public List<Pool> pools = new List<Pool>();
     public Dictionary<ObjectTag, Queue<GameObject>> poolDictionary = new Dictionary<ObjectTag, Queue<GameObject>>();
