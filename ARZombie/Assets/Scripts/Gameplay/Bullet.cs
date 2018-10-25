@@ -54,9 +54,12 @@ public class Bullet : MonoBehaviour {
 
     private void OnCollision(Collider other)
     {
-        collisionPos.x = other.transform.position.x;
-        collisionPos.y = this.transform.position.y;
-        collisionPos.z = other.transform.position.z;
+        //collisionPos.x = other.transform.position.x;
+        //collisionPos.y = this.transform.position.y;
+        //collisionPos.z = other.transform.position.z;
+
+        collisionPos = other.ClosestPoint(spawnPos);
+
         GameObject collisionEffect = GameObject.Instantiate(collisionEffectPrefab, collisionPos, this.transform.rotation);
         ParticleSystem particleSystem = collisionEffect.GetComponent<ParticleSystem>();
         InvokeRepeating("Disappear", particleSystem.duration, 0f);

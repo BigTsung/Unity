@@ -24,6 +24,8 @@ public class EnemySpawner : MonoBehaviour {
     private List<Transform> spawnPosList = new List<Transform>();
 
     private int currentLevel = 0;
+    private int currentLevelEnemyNum = 0;
+    private int currentLevelEnemyDeadNum = 0;
 
     void Start ()
     {
@@ -44,20 +46,41 @@ public class EnemySpawner : MonoBehaviour {
                 objectTagList.Add(spawnLevel[currentLevel].enemyList[i].enemyTag);
             }
         }
+        currentLevelEnemyDeadNum = 0;
+        currentLevelEnemyNum = objectTagList.Count;
+
         while (objectTagList.Count > 0)
         {
             int randomEnemyTag = Random.Range(0, objectTagList.Count);
             ObjectPooler.ObjectTag objectTag = objectTagList[randomEnemyTag];
             objectTagList.RemoveAt(randomEnemyTag);
 
-            Spawn(objectTag);
+            GameObject enemy = Spawn(objectTag);
+            Character character = enemy.GetComponentInChildren<Character>();
+
+            if (character != null)
+            {
+                character.onDead += CheckLevelIsDone;
+            }
+
             yield return new WaitForSeconds(spawnLevel[currentLevel].spawnSpacingTime);
         }
-        currentLevel++;
-
-        if (currentLevel < spawnLevel.Count)
-            StartCoroutine(StartThisLevel());
     }
+
+    private void CheckLevelIsDone()
+    {
+        currentLevelEnemyDeadNum++;
+
+        if (currentLevelEnemyNum <= currentLevelEnemyDeadNum)
+        {
+            Debug.Log("Level " + currentLevel + " is finish!");
+            currentLevel++;
+
+            if (currentLevel < spawnLevel.Count)
+                StartCoroutine(StartThisLevel());
+        }
+    }
+    
 
     private void InitSpawnPosition()
     {
