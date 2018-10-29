@@ -15,6 +15,21 @@ public class Character : MonoBehaviour
     public delegate void OnDamage(int hurtVal);
     public OnDamage onDamage;
 
+    private int oriHp = 0;
+    private bool oriDead;
+
+    private void Awake()
+    {
+        oriHp = hp;
+        oriDead = isDead;
+    }
+
+    private void OnEnable()
+    {
+        hp = oriHp;
+        isDead = oriDead;
+    }
+
     public bool Dead
     {
         get { return isDead; }

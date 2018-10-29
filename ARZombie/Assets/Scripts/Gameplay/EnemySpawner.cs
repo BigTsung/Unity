@@ -60,6 +60,7 @@ public class EnemySpawner : MonoBehaviour {
 
             if (character != null)
             {
+                character.onDead -= CheckLevelIsDone;
                 character.onDead += CheckLevelIsDone;
             }
 
@@ -70,6 +71,8 @@ public class EnemySpawner : MonoBehaviour {
     private void CheckLevelIsDone()
     {
         currentLevelEnemyDeadNum++;
+
+        //Debug.Log(currentLevelEnemyNum + "  " + currentLevelEnemyDeadNum);
 
         if (currentLevelEnemyNum <= currentLevelEnemyDeadNum)
         {

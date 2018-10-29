@@ -55,16 +55,21 @@ public class ZombieBehaviour : MonoBehaviour {
 
     void Start ()
     {
-        SceneLinkedSMB<ZombieBehaviour>.Initialise(animator, this);
+       
 
         //Debug.Log("ZombieBehaviour Start");
     }
 
     private void OnEnable()
     {
+        this.transform.localPosition = Vector3.zero;
+
+        //Debug.LogError("position: " + this.transform.position);
+
         character.onDead += OnDead;
         character.onDamage += OnDamage;
 
+        SceneLinkedSMB<ZombieBehaviour>.Initialise(animator, this);
         //Debug.Log(this.transform.parent.name);
 
         SetActiveCollider(true);
@@ -75,6 +80,8 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void OnDisable()
     {
+        //Debug.Log("OnDisable: " + this.transform.position);
+
         character.onDead -= OnDead;
         character.onDamage -= OnDamage;
     }
@@ -82,6 +89,9 @@ public class ZombieBehaviour : MonoBehaviour {
     private void FixedUpdate()
     {
         //Debug.Log("agent stop: " + agent.isStopped);
+
+        //if (this.transform.position != Vector3.zero)
+        //    Debug.LogError(this.transform.position);
 
         if (Target != null && faceingTarget)
         {
