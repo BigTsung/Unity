@@ -113,6 +113,7 @@
     <Compile Include="Assets\Scripts\Gameplay\ZombieBehaviour.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Tool\Singleton.cs" />
+    <Compile Include="Assets\Scripts\UI\SettingUIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UserInfoUIManager.cs" />
     <None Include="Assets\AssetFromStore\JMO Assets\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />

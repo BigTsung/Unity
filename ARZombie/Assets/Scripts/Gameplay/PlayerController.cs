@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour {
         public static string WALK { get { return "Walk"; } }
         public static string BACK { get { return "Back"; } }
         public static string SHOOT { get { return "Shoot"; } }
-        public static string DEPTH { get { return "Depth"; } }
+        public static string DEAD { get { return "Dead"; } }
+        public static string DAMAGE { get { return "Damage"; } }
     }
 
     private struct ObjectInfo
@@ -55,7 +56,6 @@ public class PlayerController : MonoBehaviour {
 
         character = GetComponent<Character>();
         m_animator = GetComponent<Animator>();
-        //lineRenderer = GetComponent<LineRenderer>();
     }
 
     void Start ()
@@ -69,16 +69,29 @@ public class PlayerController : MonoBehaviour {
     {
         if (character != null)
             character.onDamage += onDamage;
+
+        if (character != null)
+            character.onDead += OnDead;
     }
 
     private void OnDestroy()
     {
         if (character != null)
             character.onDamage -= onDamage;
+
+        if (character != null)
+            character.onDead += OnDead;
     }
 
     void Update ()
     {
+        if (IsDead())
+        {
+            SetAnimation(AnimationState.DEAD);
+            return;
+        }
+           
+
         MoveingAndRotation();
 
         //RotateToTarget();
@@ -168,7 +181,6 @@ public class PlayerController : MonoBehaviour {
         {
             if (rotateVector != Vector3.zero) //  drag move and rotate joystick
             {
-               
                 //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(resultRotate), Time.deltaTime * rotateSpeed);
 
                 if (angle <= 90f)
@@ -222,8 +234,6 @@ public class PlayerController : MonoBehaviour {
     {
         if (lineRenderer != null)
         {
-            //lineRenderer.startColor = Color.red;
-            //lineRenderer.endColor = Color.green;
             lineRenderer.SetWidth(0.1f, 0.01f);
             lineRenderer.SetVertexCount(2);
             lineRenderer.SetPosition(0, bulletBornPos.position);
@@ -277,8 +287,6 @@ public class PlayerController : MonoBehaviour {
 
     private void Shoot()
     {
-        //Debug.Log("Shoot");
-
         shootTimeCount += Time.deltaTime;
 
         if (shootTimeCount >= shootSpeed)
@@ -291,8 +299,29 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private bool IsDead()
+    {
+        if (character != null)
+            return character.Dead;
+
+        return false;
+    }
+
     private void onDamage(int hp)
     {
+        if (IsDead())
+            return;
+
+        //Debug.Log("onDamage");
+
+        SetAnimation(AnimationState.DAMAGE);
         UIManager.Instance.RefreshHealthBar(hp);
+    }
+
+    private void OnDead()
+    {
+        //Debug.Log("OnDead");
+        UIManager.Instance.RefreshHealthBar(0);
+        SetAnimation(AnimationState.DEAD);
     }
 }
