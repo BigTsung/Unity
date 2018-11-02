@@ -28,9 +28,11 @@ public class PlayerController : MonoBehaviour {
     public float transitionDuration = 0.1f;
     public Transform bulletBornPos;
     public float moveSpeed = 8f;
+    //[Range()]
     public float shootSpeed = 0.1f;
     public Joystick moveJoystick;
     public Joystick rotateJoystick;
+    public GameObject shootingLine;
     [Header("Detection Trigger")]
     public Collider detectionTrigger;
     public float triggerSize = 2.5f;
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour {
     private GameObject closeTarget = null;
     private float shootTimeCount = 0f;
     private bool shooting = false;
+    private bool autoAttack = false;
 
     private List<ObjectInfo> aroundMeList = new List<ObjectInfo>();
    
@@ -91,14 +94,26 @@ public class PlayerController : MonoBehaviour {
             return;
         }
            
-
         MoveingAndRotation();
 
-        //RotateToTarget();
+        if(autoAttack)
+            RotateToTarget();
 
         // Shoot
         if (shooting)
+        {
             Shoot();
+            shootingLine.SetActive(true);
+        }
+        else
+        {
+            shootingLine.SetActive(false);
+        }
+    }
+
+    public void SetAutoAttackState()
+    {
+        autoAttack = !autoAttack;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -226,20 +241,20 @@ public class PlayerController : MonoBehaviour {
         else
             ChangeAnimation(angle, false);
 
-        if(drawLine)
-            DrawLine();
+        //if(drawLine)
+        //    DrawLine();
     }
 
-    private void DrawLine()
-    {
-        if (lineRenderer != null)
-        {
-            lineRenderer.SetWidth(0.1f, 0.01f);
-            lineRenderer.SetVertexCount(2);
-            lineRenderer.SetPosition(0, bulletBornPos.position);
-            lineRenderer.SetPosition(1, bulletBornPos.forward * 10f);
-        }
-    }
+    //private void DrawLine()
+    //{
+    //    if (lineRenderer != null)
+    //    {
+    //        lineRenderer.SetWidth(0.1f, 0.01f);
+    //        lineRenderer.SetVertexCount(2);
+    //        lineRenderer.SetPosition(0, bulletBornPos.position);
+    //        lineRenderer.SetPosition(1, bulletBornPos.forward * 10f);
+    //    }
+    //}
 
     private void ChangeAnimation(float angle, bool moving, bool firing = false)
     {

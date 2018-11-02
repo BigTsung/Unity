@@ -424,14 +424,13 @@ GameObject:
   - component: {fileID: 4280355917251124}
   - component: {fileID: 33033677834262422}
   - component: {fileID: 23243025154849554}
-  - component: {fileID: 64849327319308736}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1665390978225746
 GameObject:
   m_ObjectHideFlags: 1
@@ -524,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1851585280887478
 GameObject:
   m_ObjectHideFlags: 1
@@ -808,7 +807,7 @@ Transform:
   m_GameObject: {fileID: 1656005360608044}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 2.43}
-  m_LocalScale: {x: 0.01, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.005, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4978954766185408}
   m_RootOrder: 0
@@ -1244,7 +1243,7 @@ MeshRenderer:
   m_GameObject: {fileID: 1255748718860034}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 0
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -1391,20 +1390,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!64 &64849327319308736
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1656005360608044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!81 &81482986978272486
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1451,6 +1436,7 @@ MonoBehaviour:
   shootSpeed: 0.15
   moveJoystick: {fileID: 0}
   rotateJoystick: {fileID: 0}
+  shootingLine: {fileID: 1656005360608044}
   detectionTrigger: {fileID: 135005395733550250}
   triggerSize: 4
   lineRenderer: {fileID: 0}
@@ -1480,7 +1466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  life: 1
+  life: 0.2
 --- !u!135 &135005395733550250
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1526,7 +1512,7 @@ SkinnedMeshRenderer:
   m_GameObject: {fileID: 1353219025100262}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 0
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
