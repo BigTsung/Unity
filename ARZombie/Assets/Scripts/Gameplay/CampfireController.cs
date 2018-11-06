@@ -10,6 +10,9 @@ public class CampfireController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag != "Player")
+            return;
+
         Debug.Log("OnCollisionEnter: " + other.transform.name);
         PlayFire();
         this.GetComponent<Collider>().enabled = false;

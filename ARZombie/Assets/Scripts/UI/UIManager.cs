@@ -27,4 +27,12 @@ public class UIManager : Singleton<UIManager> {
             userInfoUIManager.RefreshHealthBar(val);
         }
     }
+
+    public void RefreshOverheadBar(float val)
+    {
+        if (userInfoUIManager != null)
+        {
+            userInfoUIManager.RefreshOverheadBar(val);
+        }
+    }
 }

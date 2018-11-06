@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour {
     public float moveSpeed = 8f;
     //[Range()]
     public float shootSpeed = 0.1f;
+    //public float cdTime = 3f;
+    public float cdSpeed = 0.2f;
     public Joystick moveJoystick;
     public Joystick rotateJoystick;
     public GameObject shootingLine;
@@ -49,10 +51,10 @@ public class PlayerController : MonoBehaviour {
     private float shootTimeCount = 0f;
     private bool shooting = false;
     private bool autoAttack = false;
+    private float overheatValue = 0f;
 
     private List<ObjectInfo> aroundMeList = new List<ObjectInfo>();
-   
-
+    
     private void Awake()
     {
         PlayerManager.Instance.AddToPlayerList(this.transform);
@@ -104,11 +106,22 @@ public class PlayerController : MonoBehaviour {
         {
             Shoot();
             shootingLine.SetActive(true);
+
+            overheatValue += Time.deltaTime * cdSpeed;
+            if (overheatValue >= 1)
+                overheatValue = 1;
         }
         else
         {
             shootingLine.SetActive(false);
+
+            overheatValue -= Time.deltaTime * cdSpeed;
+            if (overheatValue <= 0)
+                overheatValue = 0;
         }
+
+       UIManager.Instance.RefreshOverheadBar(overheatValue);
+       Debug.Log("overheatValue: " + overheatValue);
     }
 
     public void SetAutoAttackState()
