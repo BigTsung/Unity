@@ -17,8 +17,10 @@ public class EnemySpawner : MonoBehaviour {
         public List<EnemyInfo> enemyList;
         public float delayWhenStart = 0f;
         public float spawnSpacingTime = 1f;
+        public int maxEnemy;
     }
 
+    public LevelInfo randomSpawnSetting;
     public List<LevelInfo> spawnLevel = new List<LevelInfo>();
 
     private List<Transform> spawnPosList = new List<Transform>();
@@ -27,10 +29,41 @@ public class EnemySpawner : MonoBehaviour {
     private int currentLevelEnemyNum = 0;
     private int currentLevelEnemyDeadNum = 0;
 
+    private int currentEnemyNum = 0;
+
     void Start ()
     {
         InitSpawnPosition();
-        StartCoroutine(StartThisLevel());
+        //StartCoroutine(StartThisLevel());
+        Invoke("StartRandomSpawnZombie", randomSpawnSetting.delayWhenStart);
+    }
+
+    private void StartRandomSpawnZombie()
+    {
+        InvokeRepeating("SpawnZombie", 0, randomSpawnSetting.spawnSpacingTime);
+    }
+
+    private void SpawnZombie()
+    {
+        if (currentEnemyNum >= randomSpawnSetting.maxEnemy - 20)
+            return;
+
+        int randomEnemyTag = Random.Range(0, randomSpawnSetting.enemyList.Count);
+        ObjectPooler.ObjectTag objectTag = randomSpawnSetting.enemyList[randomEnemyTag].enemyTag;
+      
+        GameObject enemy = Spawn(objectTag);
+        Character character = enemy.GetComponentInChildren<Character>();
+
+        currentEnemyNum++;
+
+        character.onDead -= CheckEnemyNum;
+        character.onDead += CheckEnemyNum;
+    }
+
+    private void CheckEnemyNum()
+    {
+        currentEnemyNum--;
+        Debug.Log("Current enemy");
     }
 
     IEnumerator StartThisLevel()

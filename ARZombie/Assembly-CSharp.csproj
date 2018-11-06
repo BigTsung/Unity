@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\Gameplay\Bullet.cs" />
     <Compile Include="Assets\Scripts\Gameplay\BulletSpawner.cs" />
     <Compile Include="Assets\Scripts\Gameplay\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\CampfireController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Character.cs" />
     <Compile Include="Assets\Scripts\Gameplay\DamageBall.cs" />
     <Compile Include="Assets\Scripts\Gameplay\EnemySpawner.cs" />
