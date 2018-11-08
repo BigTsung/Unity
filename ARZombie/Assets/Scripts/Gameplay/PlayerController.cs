@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour {
     private bool shooting = false;
     private bool autoAttack = false;
     private float overheatValue = 0f;
+    private bool isOverHeat = false;
 
     private List<ObjectInfo> aroundMeList = new List<ObjectInfo>();
     
@@ -102,14 +103,17 @@ public class PlayerController : MonoBehaviour {
             RotateToTarget();
 
         // Shoot
-        if (shooting)
+        if (shooting && !isOverHeat)
         {
             Shoot();
             shootingLine.SetActive(true);
 
             overheatValue += Time.deltaTime * cdSpeed;
             if (overheatValue >= 1)
+            {
                 overheatValue = 1;
+                isOverHeat = true;
+            }
         }
         else
         {
@@ -117,11 +121,14 @@ public class PlayerController : MonoBehaviour {
 
             overheatValue -= Time.deltaTime * cdSpeed;
             if (overheatValue <= 0)
+            {
                 overheatValue = 0;
+                isOverHeat = false;
+            }
         }
 
        UIManager.Instance.RefreshOverheadBar(overheatValue);
-       Debug.Log("overheatValue: " + overheatValue);
+       //Debug.Log("overheatValue: " + overheatValue);
     }
 
     public void SetAutoAttackState()
@@ -299,7 +306,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName(aniName) && !m_animator.IsInTransition(0))
         {
-           Debug.LogWarning("Animaiton name: " + aniName);
+            //Debug.LogWarning("Animaiton name: " + aniName);
             m_animator.SetTrigger(aniName);
         }
     }
@@ -351,5 +358,6 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log("OnDead");
         UIManager.Instance.RefreshHealthBar(0);
         SetAnimation(AnimationState.DEAD);
+        UIManager.Instance.SetGameStatus(GameStatusUIManager.STATUS.GAMEOVER);
     }
 }

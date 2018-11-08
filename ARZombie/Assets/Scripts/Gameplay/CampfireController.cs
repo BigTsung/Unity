@@ -5,6 +5,7 @@ using UnityEngine;
 public class CampfireController : MonoBehaviour {
 
     public GameObject firePrefab;
+    public TaskObject taskObject;
 
     private bool fireExist = false;
 
@@ -22,8 +23,12 @@ public class CampfireController : MonoBehaviour {
     {
         if (firePrefab != null && !fireExist)
         {
+            if (taskObject != null)
+            {
+                taskObject.Done();
+            }
             GameObject fire = GameObject.Instantiate(firePrefab, this.transform);
-            Debug.Log("firePrefab: " + fire.name);
+            //Debug.Log("firePrefab: " + fire.name);
             fireExist = true;
         }
     }

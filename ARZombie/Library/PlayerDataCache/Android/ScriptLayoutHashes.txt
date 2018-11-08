@@ -131,7 +131,7 @@ fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networki
 7d776ec93d5320489b7aef629e932e2d Assembly-CSharp.dll:.FixedJoystick
 06d86aa8567f7bea92e9960bebeaf9e5 Assembly-CSharp.dll:DynamicShadowProjector.FollowTargetObject
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-84c7de5cd64c32003a23118a07481fca Assembly-CSharp.dll:.CampfireController
+c21c1ed7d143157e57eb9231afbbe0e1 Assembly-CSharp.dll:.CampfireController
 d3baf945a28bf6b4a4706c8193e7459e Assembly-CSharp.dll:.ZombieStateWalk
 59e676574485fc70a691fc9b93d83ac9 Assembly-CSharp.dll:DynamicShadowProjector.Sample.Rotate
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerManager
@@ -211,7 +211,7 @@ aa5e3523afd7fd907d3f99da4b777fdc Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 c8a41ce4eea7677f6dd2aa0e422a2f04 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehaviour
 c31ff9acb65f7a15b5c6fd77c3314d83 Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 486cd95c82d8305219c352c06b776e1f Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
-072f1a74c17f4edc42aa5e14ba450748 Assembly-CSharp.dll:.UIManager
+70de8e30305cbe50631eb5b94df3e708 Assembly-CSharp.dll:.UIManager
 7d776ec93d5320489b7aef629e932e2d Assembly-CSharp.dll:.FloatingJoystick
 8165f566359b756a76b5f11bc098660e Assembly-CSharp.dll:.CFX_Demo_RandomDir
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
@@ -348,3 +348,6 @@ aa5e3523afd7fd907d3f99da4b777fdc Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 c8a41ce4eea7677f6dd2aa0e422a2f04 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehaviour
 c31ff9acb65f7a15b5c6fd77c3314d83 Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 486cd95c82d8305219c352c06b776e1f Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
+cd0c866f75ef6e9d46a21cb52a2451bf Assembly-CSharp.dll:.TaskManager
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.TaskObject
+c55a72e3382e5aa26d36cfc62078c5ed Assembly-CSharp.dll:.GameStatusUIManager

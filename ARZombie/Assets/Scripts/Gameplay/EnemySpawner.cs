@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour {
+public class EnemySpawner : Singleton<EnemySpawner> {
 
     [System.Serializable]
     public class EnemyInfo
@@ -38,6 +38,10 @@ public class EnemySpawner : MonoBehaviour {
         Invoke("StartRandomSpawnZombie", randomSpawnSetting.delayWhenStart);
     }
 
+    // ===========================
+    // Private Function
+    // ===========================
+
     private void StartRandomSpawnZombie()
     {
         InvokeRepeating("SpawnZombie", 0, randomSpawnSetting.spawnSpacingTime);
@@ -60,11 +64,7 @@ public class EnemySpawner : MonoBehaviour {
         character.onDead += CheckEnemyNum;
     }
 
-    private void CheckEnemyNum()
-    {
-        currentEnemyNum--;
-        Debug.Log("Current enemy");
-    }
+   
 
     IEnumerator StartThisLevel()
     {
@@ -137,5 +137,15 @@ public class EnemySpawner : MonoBehaviour {
     {
         int random = Random.Range(0, spawnPosList.Count);
         return spawnPosList[random].position;
+    }
+
+    // ===========================
+    // Public Function
+    // ===========================
+
+    public void CheckEnemyNum()
+    {
+        currentEnemyNum--;
+        Debug.Log("Current enemy");
     }
 }

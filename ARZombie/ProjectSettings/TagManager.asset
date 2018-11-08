@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Enemy
   - Obstacle
+  - TaskObject
   layers:
   - Default
   - TransparentFX

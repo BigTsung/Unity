@@ -24,7 +24,8 @@ GameObject:
   - component: {fileID: 54609343717306762}
   - component: {fileID: 65762458685960494}
   - component: {fileID: 114594039208770020}
-  m_Layer: 14
+  - component: {fileID: 114043710079066770}
+  m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,6 +115,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7, y: 0.3530187, z: 1.7}
   m_Center: {x: -0.004407704, y: 0.16, z: -0.04163146}
+--- !u!114 &114043710079066770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1245686531860608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c8853cfdf6edb478ac40493146dfb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114594039208770020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,3 +138,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 1163434540140146, guid: f930a70df424d2e40955661ab9a784e3, type: 2}
+  taskObject: {fileID: 114043710079066770}
