@@ -51,6 +51,9 @@ public class ObjectPooler : Singleton<ObjectPooler> {
         GameObject obj = poolDictionary[tag].Dequeue();
 
         obj.SetActive(true);
+        obj.transform.GetChild(0).position = Vector3.zero;
+        obj.transform.GetChild(0).rotation = Quaternion.Euler(Vector3.up * 180f);
+
         obj.transform.position = position;
         obj.transform.rotation = rotation;
 

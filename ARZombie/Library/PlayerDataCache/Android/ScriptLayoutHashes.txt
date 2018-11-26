@@ -218,6 +218,7 @@ f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 c38d4f93b10fbc8870723718c1b9983d Assembly-CSharp.dll:.CFX_Demo_RotateCamera
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EnemyHurtBehaviour
 e5d08b3a312e24ee5a18da168fb2b270 Assembly-CSharp.dll:DynamicShadowProjector.DrawTargetObject
+c55a72e3382e5aa26d36cfc62078c5ed Assembly-CSharp.dll:.GameStatusUIManager
 276a536df9576d99b4b78d9325d4d4f5 Assembly-CSharp.dll:.CFX_AutoDestructShuriken
 b6f76cca2299105a8948ba751dc6aeef Assembly-CSharp.dll:.Character
 486cd95c82d8305219c352c06b776e1f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
@@ -247,6 +248,7 @@ fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networki
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ZombieStateDead
 e53cc67d84060d628c7f03fc725766d8 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 392c5b921098bd4c139d9146d0efa6d7 Unity.TextMeshPro.dll:TMPro.TMP_Settings
+cd0c866f75ef6e9d46a21cb52a2451bf Assembly-CSharp.dll:.TaskManager
 486cd95c82d8305219c352c06b776e1f UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 9d863b523b577f5c3d915351a74cd338 UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
@@ -270,13 +272,14 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 cd2e1b9d9332d53275db552db0e5c4be Assembly-CSharp.dll:.UserInfoUIManager
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.TaskObject
 8f853992eb495aa9f3f47a2dafb101c8 Assembly-CSharp.dll:.CameraController
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 65f1131ecba7e444af2fcb4a52a81f5f Assembly-CSharp.dll:.ObjectPooler
 f9321b860fc22820c43b0402a39076f9 Assembly-CSharp.dll:.WFX_Demo_Wall
 e39ce014d06046cc755e4d88993775f4 Assembly-CSharp.dll:.WFX_BulletHoleDecal
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
-99ef2c50e63dab619ed85bb95f71f658 Assembly-CSharp.dll:.EnemySpawner
+5113a23d68359d2b61410161205b25ed Assembly-CSharp.dll:.EnemySpawner
 aa3c99e8fefe35695cb9f17697106657 Assembly-CSharp.dll:.SettingUIManager
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
@@ -348,6 +351,3 @@ aa5e3523afd7fd907d3f99da4b777fdc Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 c8a41ce4eea7677f6dd2aa0e422a2f04 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehaviour
 c31ff9acb65f7a15b5c6fd77c3314d83 Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 486cd95c82d8305219c352c06b776e1f Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
-cd0c866f75ef6e9d46a21cb52a2451bf Assembly-CSharp.dll:.TaskManager
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.TaskObject
-c55a72e3382e5aa26d36cfc62078c5ed Assembly-CSharp.dll:.GameStatusUIManager
