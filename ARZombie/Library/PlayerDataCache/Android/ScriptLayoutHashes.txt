@@ -2,6 +2,7 @@ Android
 PlayerPath?
 D:/dev/Unity/ARZombie/apk/ARZombie.apk
 SceneListBegin?
+Assets/Scenes/MainMenu.unity
 Assets/Scenes/Main.unity
 SceneListEnd?
 d51545d78a37fc689cf47495bac1b874 Assembly-CSharp.dll:.ZombieBehaviour
@@ -96,6 +97,7 @@ e90403eeda069970e0b9de1533de13a6 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 8014067869eed6b3ec40c535e001fff9 Assembly-CSharp.dll:.RandomAudioPlayer
 d3fba7b07984662b05c767ed185023de Assembly-CSharp.dll:.FollowTarget
+98f0dfd2378729c082be8d0dd8ea0d71 Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingBehaviour
 9769ef597cbec8f08d3c35114abac57c Assembly-CSharp.dll:.SoundManager
 092c59be351226b67df80a068aa19273 Assembly-CSharp.dll:.WFX_Demo_New
 486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -219,6 +221,7 @@ c38d4f93b10fbc8870723718c1b9983d Assembly-CSharp.dll:.CFX_Demo_RotateCamera
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EnemyHurtBehaviour
 e5d08b3a312e24ee5a18da168fb2b270 Assembly-CSharp.dll:DynamicShadowProjector.DrawTargetObject
 c55a72e3382e5aa26d36cfc62078c5ed Assembly-CSharp.dll:.GameStatusUIManager
+e2bc6ef764fff21ff1e9db5ef924d331 Assembly-CSharp.dll:.ExampleWheelController
 276a536df9576d99b4b78d9325d4d4f5 Assembly-CSharp.dll:.CFX_AutoDestructShuriken
 b6f76cca2299105a8948ba751dc6aeef Assembly-CSharp.dll:.Character
 486cd95c82d8305219c352c06b776e1f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
@@ -246,6 +249,7 @@ fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networki
 72a8523b432c0a5317826b7a9e0a0e79 Unity.TextMeshPro.dll:TMPro.PackageResourceImporterWindow
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ZombieStateEmerge
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ZombieStateDead
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.SceneSwitcher
 e53cc67d84060d628c7f03fc725766d8 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 392c5b921098bd4c139d9146d0efa6d7 Unity.TextMeshPro.dll:TMPro.TMP_Settings
 cd0c866f75ef6e9d46a21cb52a2451bf Assembly-CSharp.dll:.TaskManager
@@ -272,12 +276,15 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 cd2e1b9d9332d53275db552db0e5c4be Assembly-CSharp.dll:.UserInfoUIManager
+713f094d38dde97adcca89d1fad847c0 Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingProfile
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.TaskObject
 8f853992eb495aa9f3f47a2dafb101c8 Assembly-CSharp.dll:.CameraController
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.DontDestroyOnLoad
 65f1131ecba7e444af2fcb4a52a81f5f Assembly-CSharp.dll:.ObjectPooler
 f9321b860fc22820c43b0402a39076f9 Assembly-CSharp.dll:.WFX_Demo_Wall
 e39ce014d06046cc755e4d88993775f4 Assembly-CSharp.dll:.WFX_BulletHoleDecal
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.MainMenuUIManager
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 5113a23d68359d2b61410161205b25ed Assembly-CSharp.dll:.EnemySpawner
 aa3c99e8fefe35695cb9f17697106657 Assembly-CSharp.dll:.SettingUIManager
