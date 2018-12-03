@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour {
 
         GameObject collisionEffect = GameObject.Instantiate(collisionEffectPrefab, collisionPos, this.transform.rotation);
         ParticleSystem particleSystem = collisionEffect.GetComponent<ParticleSystem>();
-        InvokeRepeating("Disappear", particleSystem.duration, 0f);
+        InvokeRepeating("Disappear", particleSystem.main.duration, 0f);
         isCollision = true;
     }
 

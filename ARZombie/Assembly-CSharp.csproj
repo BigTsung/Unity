@@ -134,7 +134,9 @@
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
-    <Compile Include="Assets\MainMenuUIManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioButton.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioEventTrigger.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\Behaviour\EnemyHurtBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviour\SceneLinkedSMB.cs" />
     <Compile Include="Assets\Scripts\Behaviour\ZombieStateAttack.cs" />
@@ -153,11 +155,12 @@
     <Compile Include="Assets\Scripts\Gameplay\DamageBall.cs" />
     <Compile Include="Assets\Scripts\Gameplay\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Gameplay\FollowTarget.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\MainMenuInteractionDetector.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\RandomAudioPlayer.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\SceneSwitcher.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Gameplay\TargetScanner.cs" />
     <Compile Include="Assets\Scripts\Gameplay\TaskManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\TaskObject.cs" />
@@ -165,6 +168,7 @@
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Tool\Singleton.cs" />
     <Compile Include="Assets\Scripts\UI\GameStatusUIManager.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuUIManager.cs" />
     <Compile Include="Assets\Scripts\UI\SettingUIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UserInfoUIManager.cs" />

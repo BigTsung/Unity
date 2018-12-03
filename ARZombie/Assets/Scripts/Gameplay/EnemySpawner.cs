@@ -28,7 +28,7 @@ public class EnemySpawner : Singleton<EnemySpawner> {
     [Header("Debug")]
     public bool debugMode = true;
 
-    private List<Transform> spawnPosList = new List<Transform>();
+    //private List<Transform> spawnPosList = new List<Transform>();
 
     //private int currentLevel = 0;
     //private int currentLevelEnemyNum = 0;
@@ -78,9 +78,11 @@ public class EnemySpawner : Singleton<EnemySpawner> {
            
         int randomEnemyTag = Random.Range(0, randomSpawnSetting.enemyList.Count);
         ObjectPooler.ObjectTag objectTag = randomSpawnSetting.enemyList[randomEnemyTag].enemyTag;
-      
-        GameObject enemy = Spawn(objectTag);
-        Character character = enemy.GetComponentInChildren<Character>();
+
+        Spawn(objectTag);
+        //GameObject enemy = Spawn(objectTag)
+
+        //Character character = enemy.GetComponentInChildren<Character>();
 
         currentEnemyNum++;
 
