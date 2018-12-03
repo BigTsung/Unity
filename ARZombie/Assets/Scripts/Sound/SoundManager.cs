@@ -24,9 +24,9 @@ public class SoundManager : Singleton<SoundManager> {
             audioSource.PlayOneShot(shoot);
     }
 
-    public void PlayZombieDeathOneShot()
-    {
-        if (audioSource != null)
-            audioSource.PlayOneShot(death);
-    }
+    //public void PlayZombieDeathOneShot()
+    //{
+    //    if (audioSource != null)
+    //        audioSource.PlayOneShot(death);
+    //}
 }

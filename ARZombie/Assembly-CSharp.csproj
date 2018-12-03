@@ -172,6 +172,7 @@
     <Compile Include="Assets\Scripts\UI\SettingUIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UserInfoUIManager.cs" />
+    <Compile Include="Assets\ZombieInteraction.cs" />
     <None Include="Assets\AssetFromStore\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\AssetFromStore\JMO Assets\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />
     <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\ShadowWithLinearFalloff.shader" />

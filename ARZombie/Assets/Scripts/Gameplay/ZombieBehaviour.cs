@@ -20,6 +20,9 @@ public class ZombieBehaviour : MonoBehaviour {
     public float stoppingDistance = 1f;
     public SphereCollider damageBallCollider;
 
+    [Header("Sound")]
+    public AudioClip deadClip;
+
     private NavMeshAgent agent;
     private Animator animator;
     private Collider collider;
@@ -110,9 +113,7 @@ public class ZombieBehaviour : MonoBehaviour {
         {
             //Debug.Log("Go spawn position");
             agent.SetDestination(spawnPosition);
-        }
-
-        
+        }   
     }
 
     private void SetAnimatorTrigger(string triggerName)
@@ -320,6 +321,7 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         //Debug.Log("Dead: " + this.transform.parent.name);
         Dead();
+        AudioPlayer.Instance.PlayOneShot(deadClip);
     }
 
     private void OnDamage(int hurtVal)

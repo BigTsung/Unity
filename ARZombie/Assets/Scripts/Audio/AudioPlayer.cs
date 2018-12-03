@@ -20,11 +20,15 @@ public class AudioPlayer : Singleton<AudioPlayer> {
 
     public void PlayOneShot(AudioClip clip, float delayTime = 0f)
     {
-        if (audioSource != null)
+        if (audioSource != null && clip != null)
         {
             currentClip = clip;
-            Debug.Log("PlayOneShot");
-            StartCoroutine(AudioPlaying(clip, delayTime));  
+            //Debug.Log("PlayOneShot");
+            StartCoroutine(AudioPlaying(clip, delayTime));
+        }
+        else
+        {
+            Debug.LogWarning("Audio resource or audio clip is null??");
         }
     }
 
@@ -39,8 +43,7 @@ public class AudioPlayer : Singleton<AudioPlayer> {
     IEnumerator AudioPlaying(AudioClip clip, float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        Debug.Log("AudioPlaying");
+        //Debug.Log("AudioPlaying");
         audioSource.PlayOneShot(clip);
-
     }
 }

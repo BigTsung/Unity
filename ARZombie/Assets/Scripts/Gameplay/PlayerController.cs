@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Detection Trigger")]
     public Collider detectionTrigger;
     public float triggerSize = 2.5f;
+    [Header("Sound")]
+    public AudioClip shootClip;
     [Header("Debug")]
     public LineRenderer lineRenderer;
     public bool drawLine = false;
@@ -326,7 +328,8 @@ public class PlayerController : MonoBehaviour {
 
         if (shootTimeCount >= shootSpeed)
         {
-            SoundManager.Instance.PlayShootOneShot();
+            AudioPlayer.Instance.PlayOneShot(shootClip);
+            //SoundManager.Instance.PlayShootOneShot();
             m_animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);
             BulletSpawner.Instance.Spawn(bulletBornPos.position, bulletBornPos.rotation, this.gameObject);
 

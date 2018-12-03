@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MainMenuInteractionDetector : MonoBehaviour {
 
+    private 
+
     void Update()
     {
 #if !UNITY_EDITOR
@@ -27,10 +29,18 @@ public class MainMenuInteractionDetector : MonoBehaviour {
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.transform.name);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.transform.tag == "Enemy")
             {
                 GameObject touchedObject = hit.transform.gameObject;
-                touchedObject.GetComponent<Animator>().SetTrigger("Interaction");
+                Animator touchedObjectAnimator = touchedObject.GetComponent<Animator>();
+
+                if (touchedObjectAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && touchedObjectAnimator.IsInTransition(0) == false)
+                {
+                    touchedObjectAnimator.SetTrigger("Interaction");
+                    AudioClip interactionClip = touchedObject.GetComponent<ZombieInteraction>().GetInteractionClip();
+                    AudioPlayer.Instance.PlayOneShot(interactionClip);
+                }
+                    
                 //Debug.Log("Touched " + touchedObject.transform.name);
             }
         }

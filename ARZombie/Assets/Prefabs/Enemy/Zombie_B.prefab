@@ -1197,6 +1197,7 @@ MonoBehaviour:
     followRadius: 60
   stoppingDistance: 2
   damageBallCollider: {fileID: 135318123207304344}
+  deadClip: {fileID: 8300000, guid: 2619549d54396664987b04abf9e0815b, type: 3}
   audioGrout: {fileID: 114682198792568670}
 --- !u!114 &114508875084956310
 MonoBehaviour:
