@@ -155,6 +155,7 @@
     <Compile Include="Assets\Scripts\Gameplay\DamageBall.cs" />
     <Compile Include="Assets\Scripts\Gameplay\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Gameplay\FollowTarget.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\Gun.cs" />
     <Compile Include="Assets\Scripts\Gameplay\MainMenuInteractionDetector.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerController.cs" />
@@ -164,7 +165,10 @@
     <Compile Include="Assets\Scripts\Gameplay\TargetScanner.cs" />
     <Compile Include="Assets\Scripts\Gameplay\TaskManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\TaskObject.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ZombieBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\ZombieInteraction.cs" />
     <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Tool\Singleton.cs" />
     <Compile Include="Assets\Scripts\UI\GameStatusUIManager.cs" />
@@ -172,7 +176,6 @@
     <Compile Include="Assets\Scripts\UI\SettingUIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UserInfoUIManager.cs" />
-    <Compile Include="Assets\ZombieInteraction.cs" />
     <None Include="Assets\AssetFromStore\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\AssetFromStore\JMO Assets\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />
     <None Include="Assets\AssetFromStore\DynamicShadowProjector\Shaders\Projector\ShadowWithLinearFalloff.shader" />

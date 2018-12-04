@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour {
     public GameObject collisionEffectPrefab;
     public DamageBall damageball;
 
-    private Rigidbody rigidbody;
+    private Rigidbody m_rigidbody;
     private Vector3 spawnPos;
     private TrailRenderer trailRenderer;
     private bool isCollision = false;
@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour {
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        m_rigidbody = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
         spawnPos = transform.position;
     }
@@ -39,11 +39,11 @@ public class Bullet : MonoBehaviour {
 
     public void Fire(float speed, float life)
     {
-        if (rigidbody != null)
+        if (m_rigidbody != null)
         {
             isCollision = false;
             trailRenderer.enabled = true;
-            rigidbody.velocity = transform.forward * speed;
+            m_rigidbody.velocity = transform.forward * speed;
        
             if (IsInvoking("Dead"))
                 CancelInvoke("Dead");
@@ -72,7 +72,7 @@ public class Bullet : MonoBehaviour {
             return;
 
         this.transform.position = spawnPos;
-        rigidbody.velocity = Vector3.zero;
+        m_rigidbody.velocity = Vector3.zero;
         trailRenderer.enabled = false;
         this.gameObject.SetActive(false);
     }

@@ -25,7 +25,7 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private NavMeshAgent agent;
     private Animator animator;
-    private Collider collider;
+    private Collider m_collider;
     private Character character;
     private bool fighting = false;
     private Vector3 spawnPosition;
@@ -51,7 +51,7 @@ public class ZombieBehaviour : MonoBehaviour {
     void Awake()
     {
         character = GetComponent<Character>();
-        collider = GetComponent<Collider>();
+        m_collider = GetComponent<Collider>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -297,8 +297,8 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void SetActiveCollider(bool status)
     {
-        if (collider != null)
-            collider.enabled = status;
+        if (m_collider != null)
+            m_collider.enabled = status;
     }
 
     // ===========================================

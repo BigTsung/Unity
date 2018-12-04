@@ -16,7 +16,7 @@ public class ObjectPooler : Singleton<ObjectPooler> {
     {
         ZombieB,
         ZombieC,
-        Bullet
+        Rifle_Bullet
     }
 
     public List<Pool> pools = new List<Pool>();

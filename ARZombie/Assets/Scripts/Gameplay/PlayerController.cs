@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
     public float cdSpeed = 0.2f;
     public Joystick moveJoystick;
     public Joystick rotateJoystick;
-    public GameObject shootingLine;
+    //public GameObject shootingLine;
     [Header("Detection Trigger")]
     public Collider detectionTrigger;
     public float triggerSize = 2.5f;
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour {
         if (shooting && !isOverHeat)
         {
             Shoot();
-            shootingLine.SetActive(true);
+            //shootingLine.SetActive(true);
 
             overheatValue += Time.deltaTime * cdSpeed;
             if (overheatValue >= 1)
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            shootingLine.SetActive(false);
+            //shootingLine.SetActive(false);
 
             overheatValue -= Time.deltaTime * cdSpeed;
             if (overheatValue <= 0)
