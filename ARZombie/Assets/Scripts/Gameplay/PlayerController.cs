@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     public float transitionDuration = 0.1f;
     public Transform bulletBornPos;
     public float moveSpeed = 8f;
-    //[Range()]
+
     public float shootSpeed = 0.1f;
     //public float cdTime = 3f;
     public float cdSpeed = 0.2f;
@@ -138,27 +138,27 @@ public class PlayerController : MonoBehaviour {
         autoAttack = !autoAttack;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag != "Enemy")
-            return;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag != "Enemy")
+    //        return;
 
-        if (!aroundMeList.Exists(x => x.id == other.gameObject.GetInstanceID()))
-        {
-            ObjectInfo objectInfo = new ObjectInfo();
-            objectInfo.target = other.gameObject;
-            objectInfo.id = other.gameObject.GetInstanceID();
-            aroundMeList.Add(objectInfo);
-        }
-    }
+    //    if (!aroundMeList.Exists(x => x.id == other.gameObject.GetInstanceID()))
+    //    {
+    //        ObjectInfo objectInfo = new ObjectInfo();
+    //        objectInfo.target = other.gameObject;
+    //        objectInfo.id = other.gameObject.GetInstanceID();
+    //        aroundMeList.Add(objectInfo);
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        int index = aroundMeList.FindIndex(x => x.id == other.gameObject.GetInstanceID());
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    int index = aroundMeList.FindIndex(x => x.id == other.gameObject.GetInstanceID());
 
-        if(index >= 0)
-            aroundMeList.RemoveAt(index);
-    }
+    //    if(index >= 0)
+    //        aroundMeList.RemoveAt(index);
+    //}
 
     /// <summary>
     /// private function
