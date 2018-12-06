@@ -26,10 +26,10 @@ public class PlayerController : MonoBehaviour {
     public float rotateSpeed = 10f;
     public float rotateAngleFix = -35f;
     public float transitionDuration = 0.1f;
-    public Transform bulletBornPos;
+    //public Transform bulletBornPos;
     public float moveSpeed = 8f;
 
-    public float shootSpeed = 0.1f;
+    //public float shootSpeed = 0.1f;
     //public float cdTime = 3f;
     public float cdSpeed = 0.2f;
     public Joystick moveJoystick;
@@ -45,9 +45,10 @@ public class PlayerController : MonoBehaviour {
     public bool drawLine = false;
 
     // private
-    private Animator m_animator;
-    private float m_movementInputValue;
-    private float m_turnInputValue;
+    private Animator animator;
+    private WeaponManager weaponManager;
+    private float movementInputValue;
+    private float turnInputValue;
     private Character character;
     private GameObject closeTarget = null;
     private float shootTimeCount = 0f;
@@ -63,7 +64,9 @@ public class PlayerController : MonoBehaviour {
         PlayerManager.Instance.AddToPlayerList(this.transform);
 
         character = GetComponent<Character>();
-        m_animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+
+        weaponManager = GetComponent<WeaponManager>();
     }
 
     void Start ()
@@ -105,7 +108,8 @@ public class PlayerController : MonoBehaviour {
             RotateToTarget();
 
         // Shoot
-        if (shooting && !isOverHeat)
+        //if (shooting && !isOverHeat)
+        if (shooting)
         {
             Shoot();
             //shootingLine.SetActive(true);
@@ -252,11 +256,11 @@ public class PlayerController : MonoBehaviour {
         float total = Mathf.InverseLerp(0, 1, Mathf.Abs(moveJoystick.Vertical) + Mathf.Abs(moveJoystick.Horizontal));
 
         if ((Mathf.Abs(rotateJoystick.Vertical) > 0 || Mathf.Abs(rotateJoystick.Horizontal) > 0) && angle > 90f)
-            m_animator.speed = 1.2f;
+            animator.speed = 1.2f;
         else if (total == 0)
-            m_animator.speed = 1f;
+            animator.speed = 1f;
         else
-            m_animator.speed = total;
+            animator.speed = total;
 
         if (Mathf.Abs(moveJoystick.Vertical) > 0f || Mathf.Abs(moveJoystick.Horizontal) > 0f)
             ChangeAnimation(angle, true, Mathf.Abs(rotateJoystick.Vertical) > 0f || Mathf.Abs(rotateJoystick.Horizontal) > 0f);
@@ -306,10 +310,10 @@ public class PlayerController : MonoBehaviour {
 
     private void SetAnimation(string aniName)
     {
-        if (!m_animator.GetCurrentAnimatorStateInfo(0).IsName(aniName) && !m_animator.IsInTransition(0))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(aniName) && !animator.IsInTransition(0))
         {
             //Debug.LogWarning("Animaiton name: " + aniName);
-            m_animator.SetTrigger(aniName);
+            animator.SetTrigger(aniName);
         }
     }
 
@@ -326,12 +330,12 @@ public class PlayerController : MonoBehaviour {
     {
         shootTimeCount += Time.deltaTime;
 
-        if (shootTimeCount >= shootSpeed)
+        if (shootTimeCount >= weaponManager.GetCurrentGun().fireSpeed)
         {
             AudioPlayer.Instance.PlayOneShot(shootClip);
             //SoundManager.Instance.PlayShootOneShot();
-            m_animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);
-            BulletSpawner.Instance.Spawn(bulletBornPos.position, bulletBornPos.rotation, this.gameObject);
+            animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);
+            BulletSpawner.Instance.Spawn(weaponManager.GetCurrentBulletBownTrans().position, weaponManager.GetCurrentBulletBownTrans().rotation, this.gameObject);
 
             shootTimeCount = 0f;
         }

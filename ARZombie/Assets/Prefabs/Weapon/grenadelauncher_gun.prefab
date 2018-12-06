@@ -129,7 +129,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1175889094814486, guid: 22874a9c059e5434da30a43e2da11fa7,
     type: 2}
   damage: 10
-  fireSpeed: 0.15
+  fireSpeed: 0.5
   magazineSize: 30
   cdTime: 0.2
 --- !u!114 &114923243523877884
@@ -154,7 +154,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1803290885951522}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6189022

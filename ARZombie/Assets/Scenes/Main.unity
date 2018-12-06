@@ -1025,11 +1025,6 @@ Prefab:
       propertyPath: rotateJoystick
       value: 
       objectReference: {fileID: 1338420070}
-    - target: {fileID: 114520156913296884, guid: c62094501f19a7c4188c4968db266ae2,
-        type: 2}
-      propertyPath: bulletBornPos
-      value: 
-      objectReference: {fileID: 1596368095}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c62094501f19a7c4188c4968db266ae2, type: 2}
   m_IsPrefabAsset: 0
@@ -4754,11 +4749,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d95c29711850c3749beb30395ad85257, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &1596368095 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4995577213210676, guid: c62094501f19a7c4188c4968db266ae2,
-    type: 2}
-  m_PrefabInternal: {fileID: 224913269}
 --- !u!1 &1597766749
 GameObject:
   m_ObjectHideFlags: 0

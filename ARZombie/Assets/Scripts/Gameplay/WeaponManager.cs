@@ -7,6 +7,8 @@ public class WeaponManager : MonoBehaviour {
     public Transform weaponAnchor;
     private List<GameObject> weapons = new List<GameObject>();
     private GameObject currentWeapon;
+    private Gun currentGun;
+    private Transform currentBulletBownTrans;
     private int currenWeaponIndex;
 
     void Start ()
@@ -48,6 +50,19 @@ public class WeaponManager : MonoBehaviour {
         }
     }
 
+    public Gun GetCurrentGun()
+    {
+        if (currentGun != null)
+            return currentGun;
+        else
+            return null;
+    }
+
+    public Transform GetCurrentBulletBownTrans()
+    {
+        return currentBulletBownTrans;
+    }
+
     // ===========================================
     // private function ==========================
     // ===========================================
@@ -59,6 +74,10 @@ public class WeaponManager : MonoBehaviour {
             currentWeapon.SetActive(false);
 
         currentWeapon = index < weapons.Count ? weapons[index] : null;
+
+        currentGun = currentWeapon.GetComponent<Gun>();
+        currentBulletBownTrans = currentWeapon.transform.GetChild(0);
+
         if (currentWeapon != null)
         {
             currenWeaponIndex = index;

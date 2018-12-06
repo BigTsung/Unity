@@ -1239,7 +1239,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1175889094814486, guid: 22874a9c059e5434da30a43e2da11fa7,
     type: 2}
   damage: 10
-  fireSpeed: 0.15
+  fireSpeed: 0.2
   magazineSize: 30
   cdTime: 0.2
 --- !u!114 &114520156913296884
@@ -1258,9 +1258,7 @@ MonoBehaviour:
   rotateSpeed: 15
   rotateAngleFix: -35
   transitionDuration: 0.1
-  bulletBornPos: {fileID: 0}
   moveSpeed: 6
-  shootSpeed: 0.15
   cdSpeed: 0.2
   moveJoystick: {fileID: 0}
   rotateJoystick: {fileID: 0}
