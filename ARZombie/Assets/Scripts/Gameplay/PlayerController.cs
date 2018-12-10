@@ -207,12 +207,34 @@ public class PlayerController : MonoBehaviour {
         return target;
     }
 
+    private float horizontal = 0f;
+    private float vertical = 0f;
+
     private void MoveingAndRotation()
     {
-        Vector3 moveVector = (Vector3.right * moveJoystick.Vertical + Vector3.back * moveJoystick.Horizontal);
+#if UNITY_EDITOR
+        if (Input.GetKey(KeyCode.A))
+            horizontal = Mathf.Lerp(horizontal, -1f, Time.deltaTime * 5f);
+        else if (Input.GetKey(KeyCode.D))
+            horizontal = Mathf.Lerp(horizontal, 1f, Time.deltaTime * 5f);
+        else
+            horizontal = Mathf.Lerp(horizontal, 0f, Time.deltaTime * 5f);
+
+        if (Input.GetKey(KeyCode.W))
+            vertical = Mathf.Lerp(vertical, 1f, Time.deltaTime * 5f);
+        else if (Input.GetKey(KeyCode.S))
+            vertical = Mathf.Lerp(vertical, -1f, Time.deltaTime * 5f);
+        else
+            vertical = Mathf.Lerp(vertical, 0f, Time.deltaTime * 5f);
+#else
+        horizontal = moveJoystick.Horizontal;
+        vertical = moveJoystick.Vertical;
+#endif
+
+        Vector3 moveVector = (Vector3.right * vertical + Vector3.back * horizontal);
         Vector3 rotateVector = (Vector3.right * rotateJoystick.Vertical + Vector3.back * rotateJoystick.Horizontal);
 
-        Vector3 moveDirection = new Vector3(moveJoystick.Vertical, 0, moveJoystick.Horizontal);
+        Vector3 moveDirection = new Vector3(vertical, 0, horizontal);
         Vector3 rotateDirection = new Vector3(rotateJoystick.Vertical, 0, rotateJoystick.Horizontal);
 
         float angle = Vector3.Angle(moveDirection, rotateDirection);
@@ -253,7 +275,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
         // Speed
-        float total = Mathf.InverseLerp(0, 1, Mathf.Abs(moveJoystick.Vertical) + Mathf.Abs(moveJoystick.Horizontal));
+        float total = Mathf.InverseLerp(0, 1, Mathf.Abs(vertical) + Mathf.Abs(horizontal));
 
         if ((Mathf.Abs(rotateJoystick.Vertical) > 0 || Mathf.Abs(rotateJoystick.Horizontal) > 0) && angle > 90f)
             animator.speed = 1.2f;
@@ -262,7 +284,7 @@ public class PlayerController : MonoBehaviour {
         else
             animator.speed = total;
 
-        if (Mathf.Abs(moveJoystick.Vertical) > 0f || Mathf.Abs(moveJoystick.Horizontal) > 0f)
+        if (vertical > 0f || Mathf.Abs(horizontal) > 0f)
             ChangeAnimation(angle, true, Mathf.Abs(rotateJoystick.Vertical) > 0f || Mathf.Abs(rotateJoystick.Horizontal) > 0f);
         else
             ChangeAnimation(angle, false);

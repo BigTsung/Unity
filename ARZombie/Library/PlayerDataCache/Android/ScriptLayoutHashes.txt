@@ -30,7 +30,7 @@ f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventH
 b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
 7656a665154f845094cfbe88d81da7a7 Assembly-CSharp.dll:.Gun
 7d776ec93d5320489b7aef629e932e2d Assembly-CSharp.dll:.Joystick
-82425dfada82e4c3f4789cfe8463d505 Assembly-CSharp.dll:.PlayerController
+54a8f1bfa01e095dbeb362d470d2c338 Assembly-CSharp.dll:.PlayerController
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 da2091a04d360891450faf16cdf621f1 UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -274,6 +274,7 @@ e3c0f51e1bf26fa3b298cddbb4330d08 Assembly-CSharp.dll:DynamicShadowProjector.Draw
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 37d9c285f7b492a53686ca3abd9075f7 Assembly-CSharp.dll:.VariableJoystick
+8e1abe205da3df667347c7907a5dd2c3 Assembly-CSharp.dll:.AutoRotate
 85abb8d34aa02aa4b24219930276520f Assembly-CSharp.dll:.WFX_LightFlicker
 834e8d3b3db553693a0df4182ad46c72 Assembly-CSharp.dll:.ZombieStateAttack
 d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
@@ -367,4 +368,3 @@ aa5e3523afd7fd907d3f99da4b777fdc Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 c8a41ce4eea7677f6dd2aa0e422a2f04 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehaviour
 c31ff9acb65f7a15b5c6fd77c3314d83 Vuforia.UnityExtensions.dll:Vuforia.WireframeBehaviour
 486cd95c82d8305219c352c06b776e1f Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
-8e1abe205da3df667347c7907a5dd2c3 Assembly-CSharp.dll:.AutoRotate
