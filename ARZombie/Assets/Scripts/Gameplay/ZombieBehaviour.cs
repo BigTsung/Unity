@@ -56,24 +56,14 @@ public class ZombieBehaviour : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    void Start ()
-    {
-       
-
-        //Debug.Log("ZombieBehaviour Start");
-    }
-
     private void OnEnable()
     {
         this.transform.localPosition = Vector3.zero;
-
-        //Debug.LogError("position: " + this.transform.position);
 
         character.onDead += OnDead;
         character.onDamage += OnDamage;
 
         SceneLinkedSMB<ZombieBehaviour>.Initialise(animator, this);
-        //Debug.Log(this.transform.parent.name);
 
         SetActiveCollider(true);
         SetActiveDamageBall(false);
@@ -83,8 +73,6 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void OnDisable()
     {
-        //Debug.Log("OnDisable: " + this.transform.position);
-
         character.onDead -= OnDead;
         character.onDamage -= OnDamage;
     }

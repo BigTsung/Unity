@@ -135,10 +135,12 @@
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\AssetFromStore\Virtual Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\AutoRotate.cs" />
+    <Compile Include="Assets\PlayerBehaviour.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioButton.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioEventTrigger.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\Behaviour\EnemyHurtBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behaviour\PlayerStateWalk.cs" />
     <Compile Include="Assets\Scripts\Behaviour\SceneLinkedSMB.cs" />
     <Compile Include="Assets\Scripts\Behaviour\ZombieStateAttack.cs" />
     <Compile Include="Assets\Scripts\Behaviour\ZombieStateDamage.cs" />

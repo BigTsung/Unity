@@ -80,7 +80,7 @@ public class WeaponManager : MonoBehaviour {
 
         if (currentWeapon != null)
         {
-            currenWeaponIndex = index;
+            //currenWeaponIndex = index;
             currentWeapon.SetActive(true);
         }
 

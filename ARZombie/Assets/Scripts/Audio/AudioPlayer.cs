@@ -6,7 +6,7 @@ using UnityEngine;
 public class AudioPlayer : Singleton<AudioPlayer> { 
 
 	private AudioSource audioSource;
-    private AudioClip currentClip;
+    //private AudioClip currentClip;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class AudioPlayer : Singleton<AudioPlayer> {
     {
         if (audioSource != null && clip != null)
         {
-            currentClip = clip;
+            //currentClip = clip;
             //Debug.Log("PlayOneShot");
             StartCoroutine(AudioPlaying(clip, delayTime));
         }

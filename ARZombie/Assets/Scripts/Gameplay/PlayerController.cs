@@ -4,17 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public static class AnimationState
-    {
-        public static string IDLE { get { return "Idle"; } }
-        public static string RUN { get { return "Run"; } }
-        public static string WALK { get { return "Walk"; } }
-        public static string BACK { get { return "Back"; } }
-        public static string SHOOT { get { return "Shoot"; } }
-        public static string DEAD { get { return "Dead"; } }
-        public static string DAMAGE { get { return "Damage"; } }
-    }
-
     private struct ObjectInfo
     {
         public GameObject target;
@@ -98,7 +87,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (IsDead())
         {
-            SetAnimation(AnimationState.DEAD);
+            SetAnimation(PlayerBehaviour.AnimationState.DEAD);
             return;
         }
            
@@ -312,21 +301,21 @@ public class PlayerController : MonoBehaviour {
             if (firing)
             {
                 if (angle <= 90f)
-                    SetAnimation(AnimationState.WALK);
+                    SetAnimation(PlayerBehaviour.AnimationState.WALK);
                 else
-                    SetAnimation(AnimationState.BACK);
+                    SetAnimation(PlayerBehaviour.AnimationState.BACK);
             }
             else
             {
                 if (angle <= 90f)
-                    SetAnimation(AnimationState.RUN);
+                    SetAnimation(PlayerBehaviour.AnimationState.RUN);
                 else
-                    SetAnimation(AnimationState.BACK);
+                    SetAnimation(PlayerBehaviour.AnimationState.BACK);
             }
         }
         else
         {
-            SetAnimation(AnimationState.IDLE);
+            SetAnimation(PlayerBehaviour.AnimationState.IDLE);
         }
     }
 
@@ -356,7 +345,7 @@ public class PlayerController : MonoBehaviour {
         {
             AudioPlayer.Instance.PlayOneShot(shootClip);
             //SoundManager.Instance.PlayShootOneShot();
-            animator.CrossFadeInFixedTime(AnimationState.SHOOT, transitionDuration);
+            animator.CrossFadeInFixedTime(PlayerBehaviour.AnimationState.SHOOT, transitionDuration);
             BulletSpawner.Instance.Spawn(weaponManager.GetCurrentBulletBownTrans().position, weaponManager.GetCurrentBulletBownTrans().rotation, this.gameObject);
 
             shootTimeCount = 0f;
@@ -378,7 +367,7 @@ public class PlayerController : MonoBehaviour {
 
         //Debug.Log("onDamage");
 
-        SetAnimation(AnimationState.DAMAGE);
+        SetAnimation(PlayerBehaviour.AnimationState.DAMAGE);
         UIManager.Instance.RefreshHealthBar(hp);
     }
 
@@ -386,7 +375,7 @@ public class PlayerController : MonoBehaviour {
     {
         //Debug.Log("OnDead");
         UIManager.Instance.RefreshHealthBar(0);
-        SetAnimation(AnimationState.DEAD);
+        SetAnimation(PlayerBehaviour.AnimationState.DEAD);
         UIManager.Instance.SetGameStatus(GameStatusUIManager.STATUS.GAMEOVER);
     }
 }
