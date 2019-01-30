@@ -22,7 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         SceneLinkedSMB<PlayerBehaviour>.Initialise(animator, this);
     }

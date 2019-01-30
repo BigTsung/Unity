@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour {
     private Character character;
     private GameObject closeTarget = null;
     private float shootTimeCount = 0f;
-    private bool shooting = false;
+    private bool shooting = true;
     private bool autoAttack = false;
     private float overheatValue = 0f;
     private bool isOverHeat = false;
@@ -126,10 +126,7 @@ public class PlayerController : MonoBehaviour {
        //Debug.Log("overheatValue: " + overheatValue);
     }
 
-    public void SetAutoAttackState()
-    {
-        autoAttack = !autoAttack;
-    }
+  
 
     //private void OnTriggerEnter(Collider other)
     //{
@@ -201,24 +198,24 @@ public class PlayerController : MonoBehaviour {
 
     private void MoveingAndRotation()
     {
-#if UNITY_EDITOR
-        if (Input.GetKey(KeyCode.A))
-            horizontal = Mathf.Lerp(horizontal, -1f, Time.deltaTime * 5f);
-        else if (Input.GetKey(KeyCode.D))
-            horizontal = Mathf.Lerp(horizontal, 1f, Time.deltaTime * 5f);
-        else
-            horizontal = Mathf.Lerp(horizontal, 0f, Time.deltaTime * 5f);
+//#if UNITY_EDITOR
+//        if (Input.GetKey(KeyCode.A))
+//            horizontal = Mathf.Lerp(horizontal, -1f, Time.deltaTime * 5f);
+//        else if (Input.GetKey(KeyCode.D))
+//            horizontal = Mathf.Lerp(horizontal, 1f, Time.deltaTime * 5f);
+//        else
+//            horizontal = Mathf.Lerp(horizontal, 0f, Time.deltaTime * 5f);
 
-        if (Input.GetKey(KeyCode.W))
-            vertical = Mathf.Lerp(vertical, 1f, Time.deltaTime * 5f);
-        else if (Input.GetKey(KeyCode.S))
-            vertical = Mathf.Lerp(vertical, -1f, Time.deltaTime * 5f);
-        else
-            vertical = Mathf.Lerp(vertical, 0f, Time.deltaTime * 5f);
-#else
+//        if (Input.GetKey(KeyCode.W))
+//            vertical = Mathf.Lerp(vertical, 1f, Time.deltaTime * 5f);
+//        else if (Input.GetKey(KeyCode.S))
+//            vertical = Mathf.Lerp(vertical, -1f, Time.deltaTime * 5f);
+//        else
+//            vertical = Mathf.Lerp(vertical, 0f, Time.deltaTime * 5f);
+//#else
         horizontal = moveJoystick.Horizontal;
         vertical = moveJoystick.Vertical;
-#endif
+//#endif
 
         Vector3 moveVector = (Vector3.right * vertical + Vector3.back * horizontal);
         Vector3 rotateVector = (Vector3.right * rotateJoystick.Vertical + Vector3.back * rotateJoystick.Horizontal);
@@ -328,15 +325,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// public function
-    /// </summary>
-    public void ShootSwitcher(bool status)
-    {
-        //Debug.Log("Click status: " + status);
-        shooting = status;
-    }
-
     private void Shoot()
     {
         shootTimeCount += Time.deltaTime;
@@ -377,5 +365,32 @@ public class PlayerController : MonoBehaviour {
         UIManager.Instance.RefreshHealthBar(0);
         SetAnimation(PlayerBehaviour.AnimationState.DEAD);
         UIManager.Instance.SetGameStatus(GameStatusUIManager.STATUS.GAMEOVER);
+    }
+
+    /// <summary>
+    /// public function
+    /// </summary>
+    /// 
+    public void SetAutoAttackState()
+    {
+        autoAttack = !autoAttack;
+    }
+
+    public void ShootSwitcher(bool status)
+    {
+        //Debug.Log("Click status: " + status);
+        shooting = status;
+    }
+
+    public void SetShootSpeed(float speed)
+    {
+        if (animator != null)
+        {
+            animator.SetFloat("shootSpeed", speed);
+        }
+        else
+        {
+            Debug.LogWarning("the animaror is null!");
+        }
     }
 }
