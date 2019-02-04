@@ -294,14 +294,14 @@ GameObject:
   - component: {fileID: 4189017040269688}
   - component: {fileID: 95591543135530452}
   - component: {fileID: 136536650467415604}
-  - component: {fileID: 54073472913269848}
-  - component: {fileID: 114520156913296884}
-  - component: {fileID: 114973589797938038}
-  - component: {fileID: 114726111164885986}
   - component: {fileID: 81482986978272486}
   - component: {fileID: 195180205679193160}
-  - component: {fileID: 114120281590151358}
+  - component: {fileID: 54073472913269848}
+  - component: {fileID: 114520156913296884}
   - component: {fileID: 114694754845414218}
+  - component: {fileID: 114396137083565666}
+  - component: {fileID: 114973589797938038}
+  - component: {fileID: 114120281590151358}
   m_Layer: 11
   m_Name: Solider
   m_TagString: Player
@@ -1052,7 +1052,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1255748718860034}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 0
   m_MotionVectors: 1
@@ -1214,6 +1214,19 @@ MonoBehaviour:
   x: 0
   y: 1
   z: 0
+--- !u!114 &114396137083565666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1571398321220198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8105a4ceb2b654d8b98c42df4932f71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  isDead: 0
 --- !u!114 &114520156913296884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1225,19 +1238,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a204e19e1f3e143bd6f826d238b1b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 6
-  m_turnSpeed: 250
   rotateSpeed: 15
   rotateAngleFix: -35
-  transitionDuration: 0.1
+  crossdurationTime: 0.1
   moveSpeed: 6
-  cdSpeed: 0.2
+  overheatSpeed: 0.2
   moveJoystick: {fileID: 0}
   rotateJoystick: {fileID: 0}
-  detectionTrigger: {fileID: 0}
-  triggerSize: 4
-  lineRenderer: {fileID: 0}
-  drawLine: 1
 --- !u!114 &114694754845414218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1249,19 +1256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c505f2816eca0e46bdc6e543382e23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114726111164885986
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1571398321220198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3784597cf9bc4959aed5c054816e38f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 100
-  isDead: 0
 --- !u!114 &114973589797938038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1307,7 +1301,7 @@ SkinnedMeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1353219025100262}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 0
   m_MotionVectors: 1

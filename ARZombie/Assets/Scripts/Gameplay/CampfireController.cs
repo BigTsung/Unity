@@ -27,7 +27,8 @@ public class CampfireController : MonoBehaviour {
             {
                 taskObject.Done();
             }
-            //GameObject fire = GameObject.Instantiate(firePrefab, this.transform);
+
+            Instantiate(firePrefab, this.transform);
             //Debug.Log("firePrefab: " + fire.name);
             fireExist = true;
         }

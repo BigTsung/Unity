@@ -27,4 +27,20 @@ public class PlayerManager : Singleton<PlayerManager> {
         if (playerList.Contains(player))
             playerList.Remove(player);
     }
+
+    public Transform GetClosedPlayer(Transform other)
+    {
+        Transform targetTrans = null;
+        float minDis = float.MaxValue;
+        for(int i = 0; i < playerList.Count; i++)
+        {
+            float dis = Vector3.Distance(other.position, playerList[i].transform.position);
+            if(dis < minDis)
+            {
+                minDis = dis;
+                targetTrans = playerList[i];
+            }
+        }
+        return targetTrans;
+    }
 }

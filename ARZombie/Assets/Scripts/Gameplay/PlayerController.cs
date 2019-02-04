@@ -2,108 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+[RequireComponent(typeof(PlayerBehaviour))]
 
+public class PlayerController : MonoBehaviour 
+{
     private struct ObjectInfo
     {
         public GameObject target;
         public int id;
     }
 
-    public float m_Speed = 12f;
-    public float m_turnSpeed = 180f;
     public float rotateSpeed = 10f;
     public float rotateAngleFix = -35f;
-    public float transitionDuration = 0.1f;
-    //public Transform bulletBornPos;
+    public float crossdurationTime = 0.1f;
     public float moveSpeed = 8f;
-
-    //public float shootSpeed = 0.1f;
-    //public float cdTime = 3f;
-    public float cdSpeed = 0.2f;
+    public float overheatSpeed = 0.2f;
     public Joystick moveJoystick;
     public Joystick rotateJoystick;
-    //public GameObject shootingLine;
-    //[Header("Detection Trigger")]
-    //public Collider detectionTrigger;
-    //public float triggerSize = 2.5f;
-    //[Header("Sound")]
-    //public AudioClip shootClip;
-    [Header("Debug")]
-    public LineRenderer lineRenderer;
-    public bool drawLine = false;
 
     // private
-    private Animator animator;
     private WeaponManager weaponManager;
-    private float movementInputValue;
-    private float turnInputValue;
-    private Character character;
+    private PlayerBehaviour playerBehaviour;
     private GameObject closeTarget = null;
     private float shootTimeCount = 0f;
-    private bool shooting = true;
+    private bool shooting = false;
     private bool autoAttack = false;
     private float overheatValue = 0f;
     private bool isOverHeat = false;
+    private float horizontal = 0f;
+    private float vertical = 0f;
 
     private List<ObjectInfo> aroundMeList = new List<ObjectInfo>();
     
     private void Awake()
     {
         PlayerManager.Instance.AddToPlayerList(this.transform);
-
-        character = GetComponent<Character>();
-        animator = GetComponent<Animator>();
-
+        playerBehaviour = GetComponent<PlayerBehaviour>();
         weaponManager = GetComponent<WeaponManager>();
-    }
-
-    void Start ()
-    {
-        //InitDetectionTrigger();
-
-        UIManager.Instance.InitHealthBar(character.HP);
-    }
-
-    private void OnEnable()
-    {
-        if (character != null)
-            character.onDamage += onDamage;
-
-        if (character != null)
-            character.onDead += OnDead;
-    }
-
-    private void OnDestroy()
-    {
-        if (character != null)
-            character.onDamage -= onDamage;
-
-        if (character != null)
-            character.onDead += OnDead;
     }
 
     void Update ()
     {
-        if (IsDead())
-        {
-            SetAnimation(PlayerBehaviour.AnimationState.DEAD);
-            return;
-        }
-           
         MoveingAndRotation();
 
         if(autoAttack)
             RotateToTarget();
 
         // Shoot
-        //if (shooting && !isOverHeat)
         if (shooting)
+        //if (shooting && !isOverHeat)
         {
             Shoot();
-            //shootingLine.SetActive(true);
 
-            overheatValue += Time.deltaTime * cdSpeed;
+            overheatValue += Time.deltaTime * overheatSpeed;
             if (overheatValue >= 1)
             {
                 overheatValue = 1;
@@ -112,9 +63,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            //shootingLine.SetActive(false);
-
-            overheatValue -= Time.deltaTime * cdSpeed;
+            overheatValue -= Time.deltaTime * overheatSpeed;
             if (overheatValue <= 0)
             {
                 overheatValue = 0;
@@ -126,42 +75,9 @@ public class PlayerController : MonoBehaviour {
        //Debug.Log("overheatValue: " + overheatValue);
     }
 
-  
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag != "Enemy")
-    //        return;
-
-    //    if (!aroundMeList.Exists(x => x.id == other.gameObject.GetInstanceID()))
-    //    {
-    //        ObjectInfo objectInfo = new ObjectInfo();
-    //        objectInfo.target = other.gameObject;
-    //        objectInfo.id = other.gameObject.GetInstanceID();
-    //        aroundMeList.Add(objectInfo);
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    int index = aroundMeList.FindIndex(x => x.id == other.gameObject.GetInstanceID());
-
-    //    if(index >= 0)
-    //        aroundMeList.RemoveAt(index);
-    //}
-
     /// <summary>
     /// private function
     /// </summary>
-    /// 
-    //private void InitDetectionTrigger()
-    //{
-    //    if (detectionTrigger != null)
-    //    {
-    //        (detectionTrigger as SphereCollider).radius = triggerSize;
-    //    }
-    //}
-
     private void RotateToTarget()
     {
         if (aroundMeList.Count > 0)
@@ -193,29 +109,10 @@ public class PlayerController : MonoBehaviour {
         return target;
     }
 
-    private float horizontal = 0f;
-    private float vertical = 0f;
-
     private void MoveingAndRotation()
     {
-//#if UNITY_EDITOR
-//        if (Input.GetKey(KeyCode.A))
-//            horizontal = Mathf.Lerp(horizontal, -1f, Time.deltaTime * 5f);
-//        else if (Input.GetKey(KeyCode.D))
-//            horizontal = Mathf.Lerp(horizontal, 1f, Time.deltaTime * 5f);
-//        else
-//            horizontal = Mathf.Lerp(horizontal, 0f, Time.deltaTime * 5f);
-
-//        if (Input.GetKey(KeyCode.W))
-//            vertical = Mathf.Lerp(vertical, 1f, Time.deltaTime * 5f);
-//        else if (Input.GetKey(KeyCode.S))
-//            vertical = Mathf.Lerp(vertical, -1f, Time.deltaTime * 5f);
-//        else
-//            vertical = Mathf.Lerp(vertical, 0f, Time.deltaTime * 5f);
-//#else
         horizontal = moveJoystick.Horizontal;
         vertical = moveJoystick.Vertical;
-//#endif
 
         Vector3 moveVector = (Vector3.right * vertical + Vector3.back * horizontal);
         Vector3 rotateVector = (Vector3.right * rotateJoystick.Vertical + Vector3.back * rotateJoystick.Horizontal);
@@ -264,31 +161,17 @@ public class PlayerController : MonoBehaviour {
         float total = Mathf.InverseLerp(0, 1, Mathf.Abs(vertical) + Mathf.Abs(horizontal));
 
         if ((Mathf.Abs(rotateJoystick.Vertical) > 0 || Mathf.Abs(rotateJoystick.Horizontal) > 0) && angle > 90f)
-            animator.speed = 1.2f;
+            playerBehaviour.SetAnimatorSpeed(1.2f);
         else if (total == 0)
-            animator.speed = 1f;
+            playerBehaviour.SetAnimatorSpeed(1f);
         else
-            animator.speed = total;
+            playerBehaviour.SetAnimatorSpeed(total);
 
         if (vertical > 0f || Mathf.Abs(horizontal) > 0f)
             ChangeAnimation(angle, true, Mathf.Abs(rotateJoystick.Vertical) > 0f || Mathf.Abs(rotateJoystick.Horizontal) > 0f);
         else
             ChangeAnimation(angle, false);
-
-        //if(drawLine)
-        //    DrawLine();
     }
-
-    //private void DrawLine()
-    //{
-    //    if (lineRenderer != null)
-    //    {
-    //        lineRenderer.SetWidth(0.1f, 0.01f);
-    //        lineRenderer.SetVertexCount(2);
-    //        lineRenderer.SetPosition(0, bulletBornPos.position);
-    //        lineRenderer.SetPosition(1, bulletBornPos.forward * 10f);
-    //    }
-    //}
 
     private void ChangeAnimation(float angle, bool moving, bool firing = false)
     {
@@ -298,30 +181,21 @@ public class PlayerController : MonoBehaviour {
             if (firing)
             {
                 if (angle <= 90f)
-                    SetAnimation(PlayerBehaviour.AnimationState.WALK);
+                    playerBehaviour.SetAnimation(PlayerBehaviour.AnimationState.WALK);
                 else
-                    SetAnimation(PlayerBehaviour.AnimationState.BACK);
+                    playerBehaviour.SetAnimation(PlayerBehaviour.AnimationState.BACK);
             }
             else
             {
                 if (angle <= 90f)
-                    SetAnimation(PlayerBehaviour.AnimationState.RUN);
+                    playerBehaviour.SetAnimation(PlayerBehaviour.AnimationState.RUN);
                 else
-                    SetAnimation(PlayerBehaviour.AnimationState.BACK);
+                    playerBehaviour.SetAnimation(PlayerBehaviour.AnimationState.BACK);
             }
         }
         else
         {
-            SetAnimation(PlayerBehaviour.AnimationState.IDLE);
-        }
-    }
-
-    private void SetAnimation(string aniName)
-    {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(aniName) && !animator.IsInTransition(0))
-        {
-            //Debug.LogWarning("Animaiton name: " + aniName);
-            animator.SetTrigger(aniName);
+            playerBehaviour.SetAnimation(PlayerBehaviour.AnimationState.IDLE);
         }
     }
 
@@ -332,40 +206,13 @@ public class PlayerController : MonoBehaviour {
         if (shootTimeCount >= weaponManager.GetCurrentGun().fireSpeed)
         {
             AudioPlayer.Instance.PlayOneShot(weaponManager.GetCurrentGun().attackAudio);
-            //AudioPlayer.Instance.PlayOneShot(shootClip);
-            //SoundManager.Instance.PlayShootOneShot();
-            animator.CrossFadeInFixedTime(PlayerBehaviour.AnimationState.SHOOT, transitionDuration);
+            playerBehaviour.CrossFade(PlayerBehaviour.AnimationState.SHOOT, crossdurationTime);
+            //playerBehaviour.CurrentAnimator().CrossFadeInFixedTime(PlayerBehaviour.AnimationState.SHOOT, transitionDuration);
+            //playerBehaviour.SetAnimation(PlayerBehaviour.AnimationState.SHOOT);
             BulletSpawner.Instance.Spawn(weaponManager.GetCurrentBulletBownTrans().position, weaponManager.GetCurrentBulletBownTrans().rotation, this.gameObject);
 
             shootTimeCount = 0f;
         }
-    }
-
-    private bool IsDead()
-    {
-        if (character != null)
-            return character.Dead;
-
-        return false;
-    }
-
-    private void onDamage(int hp)
-    {
-        if (IsDead())
-            return;
-
-        //Debug.Log("onDamage");
-
-        SetAnimation(PlayerBehaviour.AnimationState.DAMAGE);
-        UIManager.Instance.RefreshHealthBar(hp);
-    }
-
-    private void OnDead()
-    {
-        //Debug.Log("OnDead");
-        UIManager.Instance.RefreshHealthBar(0);
-        SetAnimation(PlayerBehaviour.AnimationState.DEAD);
-        UIManager.Instance.SetGameStatus(GameStatusUIManager.STATUS.GAMEOVER);
     }
 
     /// <summary>
@@ -377,21 +224,9 @@ public class PlayerController : MonoBehaviour {
         autoAttack = !autoAttack;
     }
 
-    public void ShootSwitcher(bool status)
+    public void SetShootingStatus(bool status)
     {
         //Debug.Log("Click status: " + status);
         shooting = status;
-    }
-
-    public void SetShootSpeed(float speed)
-    {
-        if (animator != null)
-        {
-            animator.SetFloat("shootSpeed", speed);
-        }
-        else
-        {
-            Debug.LogWarning("the animaror is null!");
-        }
     }
 }

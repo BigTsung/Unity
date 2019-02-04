@@ -50,7 +50,6 @@ public class Character : MonoBehaviour
                 if (onDead != null && !isDead)
                 {
                     isDead = true;
-                    //Debug.Log("isDead: " + isDead + " " + transform.parent.name);
                     onDead();
                 }
             }

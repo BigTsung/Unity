@@ -5,16 +5,15 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour {
 
     public Transform weaponAnchor;
-    private PlayerController playerController;
+    private PlayerBehaviour playerBehaviour;
     private List<GameObject> weapons = new List<GameObject>();
     private GameObject currentWeapon;
     private Gun currentGun;
     private Transform currentBulletBownTrans;
-    private int currenWeaponIndex;
 
     private void Awake()
     {
-        playerController = GetComponent<PlayerController>();
+        playerBehaviour = GetComponent<PlayerBehaviour>();
     }
 
     void Start ()
@@ -74,8 +73,6 @@ public class WeaponManager : MonoBehaviour {
     // ===========================================
     private void SelectWeaponByIndex(int index)
     {
-        //currentWeapon.SetActive(false);
-        //weapons[currenWeaponIndex].SetActive(false);
         if (currentWeapon != null)
             currentWeapon.SetActive(false);
 
@@ -86,14 +83,11 @@ public class WeaponManager : MonoBehaviour {
 
         if (currentWeapon != null)
         {
-            //currenWeaponIndex = index;
-            currentWeapon.SetActive(true);
+           currentWeapon.SetActive(true);
         }
 
-        playerController.SetShootSpeed(currentGun.fireSpeed);
+        playerBehaviour.SetShootingSpeed(currentGun.fireSpeed);
 
-        //weapons[index].SetActive(false);
-        //currentWeapon.SetActive(true);
         Debug.Log(currentWeapon.name);
     }
 

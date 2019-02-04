@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DamageBall))]
 public class Bullet : MonoBehaviour {
 
     public GameObject collisionEffectPrefab;
-    public DamageBall damageball;
 
     private Rigidbody m_rigidbody;
     private Vector3 spawnPos;
     private TrailRenderer trailRenderer;
     private bool isCollision = false;
     private Vector3 collisionPos;
+    private DamageBall damageball;
 
     private void Awake()
     {
         m_rigidbody = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
+        damageball = GetComponent<DamageBall>();
         spawnPos = transform.position;
     }
 

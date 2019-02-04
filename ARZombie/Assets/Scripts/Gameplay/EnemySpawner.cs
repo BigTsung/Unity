@@ -54,7 +54,7 @@ public class EnemySpawner : Singleton<EnemySpawner> {
         if (other.tag != "Player")
             return;
 
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         sphereCollider.enabled = false;
         Invoke("StartRandomSpawnZombie", randomSpawnSetting.delayWhenStart);
     }
@@ -167,7 +167,7 @@ public class EnemySpawner : Singleton<EnemySpawner> {
         result.x += xRandom;
         result.z += zRandom;
 
-        Debug.Log("Enemy spawn Position:" + result);
+        //Debug.Log("Enemy spawn Position:" + result);
 
         return result;
     }
