@@ -24,11 +24,11 @@ public class PlayerController : MonoBehaviour {
     public Joystick moveJoystick;
     public Joystick rotateJoystick;
     //public GameObject shootingLine;
-    [Header("Detection Trigger")]
-    public Collider detectionTrigger;
-    public float triggerSize = 2.5f;
-    [Header("Sound")]
-    public AudioClip shootClip;
+    //[Header("Detection Trigger")]
+    //public Collider detectionTrigger;
+    //public float triggerSize = 2.5f;
+    //[Header("Sound")]
+    //public AudioClip shootClip;
     [Header("Debug")]
     public LineRenderer lineRenderer;
     public bool drawLine = false;
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start ()
     {
-        InitDetectionTrigger();
+        //InitDetectionTrigger();
 
         UIManager.Instance.InitHealthBar(character.HP);
     }
@@ -154,13 +154,13 @@ public class PlayerController : MonoBehaviour {
     /// private function
     /// </summary>
     /// 
-    private void InitDetectionTrigger()
-    {
-        if (detectionTrigger != null)
-        {
-            (detectionTrigger as SphereCollider).radius = triggerSize;
-        }
-    }
+    //private void InitDetectionTrigger()
+    //{
+    //    if (detectionTrigger != null)
+    //    {
+    //        (detectionTrigger as SphereCollider).radius = triggerSize;
+    //    }
+    //}
 
     private void RotateToTarget()
     {
@@ -331,7 +331,8 @@ public class PlayerController : MonoBehaviour {
 
         if (shootTimeCount >= weaponManager.GetCurrentGun().fireSpeed)
         {
-            AudioPlayer.Instance.PlayOneShot(shootClip);
+            AudioPlayer.Instance.PlayOneShot(weaponManager.GetCurrentGun().attackAudio);
+            //AudioPlayer.Instance.PlayOneShot(shootClip);
             //SoundManager.Instance.PlayShootOneShot();
             animator.CrossFadeInFixedTime(PlayerBehaviour.AnimationState.SHOOT, transitionDuration);
             BulletSpawner.Instance.Spawn(weaponManager.GetCurrentBulletBownTrans().position, weaponManager.GetCurrentBulletBownTrans().rotation, this.gameObject);

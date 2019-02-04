@@ -1,18 +1,21 @@
 ﻿<Properties StartupConfiguration="{6FAFF50D-CE85-D106-D4A2-A9EE14787760}|">
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ZombieStateRun.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gameplay/Weapon.cs">
     <Files>
-      <File FileName="Assets/Scripts/Behaviour/ZombieStateIdle.cs" Line="5" Column="63" />
-      <File FileName="Assets/Scripts/Gameplay/ZombieBehaviour.cs" Line="128" Column="30" />
-      <File FileName="Assets/Scripts/Gameplay/EnemyController.cs" Line="54" Column="22" />
-      <File FileName="Assets/Scripts/Gameplay/TargetScanner.cs" Line="25" Column="5" />
-      <File FileName="Assets/ZombieStateRun.cs" Line="5" Column="61" />
+      <File FileName="Assets/Scripts/Gameplay/Weapon.cs" Line="6" Column="22" />
+      <File FileName="Assets/Scripts/Gameplay/Character.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Audio/AudioPlayer.cs" Line="49" Column="2" />
+      <File FileName="Assets/Scripts/Behaviour/PlayerStateWalk.cs" Line="18" Column="1" />
+      <File FileName="Assets/Scripts/Gameplay/WeaponManager.cs" Line="98" Column="6" />
+      <File FileName="Assets/Scripts/Gameplay/PlayerController.cs" Line="396" Column="2" />
+      <File FileName="Assets/Scripts/Gameplay/Gun.cs" Line="4" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
 </Properties>
