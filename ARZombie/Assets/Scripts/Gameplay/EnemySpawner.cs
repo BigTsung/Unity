@@ -8,7 +8,7 @@ public class EnemySpawner : Singleton<EnemySpawner> {
     public class EnemyInfo
     {
         public ObjectPooler.ObjectTag enemyTag;
-        public int num = 5;
+        //public int num = 5;
     }
 
     [System.Serializable]
