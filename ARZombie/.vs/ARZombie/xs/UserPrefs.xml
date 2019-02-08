@@ -1,16 +1,7 @@
 ﻿<Properties StartupConfiguration="{6FAFF50D-CE85-D106-D4A2-A9EE14787760}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ProtectModeManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Gameplay/PlayerController.cs" Line="212" Column="39" />
-      <File FileName="Assets/Scripts/Gameplay/CampfireController.cs" Line="31" Column="13" />
-      <File FileName="Assets/Scripts/Gameplay/ZombieBehaviour.cs" Line="130" Column="13" />
-      <File FileName="Assets/Scripts/Gameplay/PlayerManager.cs" Line="14" Column="27" />
-      <File FileName="Assets/Scripts/Gameplay/WeaponManager.cs" Line="66" Column="22" />
-      <File FileName="Assets/AssetFromStore/BrokenVector/LowPolySurvivalEssentials/Example/Scripts/AnimatedFire.cs" Line="14" Column="1" />
-      <File FileName="Assets/Scripts/Gameplay/BulletSpawner.cs" Line="19" Column="6" />
-      <File FileName="Assets/Scripts/Gameplay/PlayerCharacter.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Gameplay/EnemySpawner.cs" Line="11" Column="11" />
-      <File FileName="Assets/ProtectModeManager.cs" Line="7" Column="13" />
+      <File FileName="Assets/ProtectModeManager.cs" Line="69" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 228685337}
   - component: {fileID: 228685338}
   m_Layer: 0
-  m_Name: ProtectModeSpawner
+  m_Name: ProtectModeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
