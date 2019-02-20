@@ -1331,15 +1331,15 @@ MonoBehaviour:
   defaultBank:
     name: 
     clips:
-    - {fileID: 8300000, guid: 2cb04176472cc78489b44a67278084eb, type: 3}
-    - {fileID: 8300000, guid: 2619549d54396664987b04abf9e0815b, type: 3}
-    - {fileID: 8300000, guid: 8df9421b64a62194cb8db9b95fed4d1c, type: 3}
-    - {fileID: 8300000, guid: 168e829e38ffc9e41ba6f284515bf36a, type: 3}
-    - {fileID: 8300000, guid: 1586e0a047e24db48b6866b4f9a6cabf, type: 3}
-    - {fileID: 8300000, guid: d296294646ae12c4a9cbac6ffd0f7a3e, type: 3}
-    - {fileID: 8300000, guid: d50ec89e7596a3b47961e88cde571ae8, type: 3}
-    - {fileID: 8300000, guid: 0265aa7cbc5afc54c99005d61388b0d7, type: 3}
-    - {fileID: 8300000, guid: 75fa28c3c8f667b44a84ee1d92888355, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   overrides: []
   playing: 0
   canPlay: 0
@@ -1488,7 +1488,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 150

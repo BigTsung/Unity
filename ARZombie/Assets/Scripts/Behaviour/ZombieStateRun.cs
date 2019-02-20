@@ -9,7 +9,7 @@ public class ZombieStateRun : SceneLinkedSMB<ZombieBehaviour> {
     public override void OnSLStatePostEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnSLStatePostEnter(animator, stateInfo, layerIndex);
-        m_MonoBehaviour.SetSpeed(speed);
+        m_MonoBehaviour.SetAgentSpeed(speed);
 
         if (m_MonoBehaviour.Target == null)
         {

@@ -14,6 +14,7 @@ public class ZombieBehaviour : MonoBehaviour {
     private static string Ani_Dead      = "Dead";
     private static string Ani_Idle      = "Idle";
     private static string Ani_Attack    = "Attack";
+    private static string Ani_Wander    = "Wander";
 
     public bool drawGizmos = false;
     public TargetScanner targetScanner;
@@ -58,51 +59,46 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void OnEnable()
     {
-        this.transform.localPosition = Vector3.zero;
+        //    this.transform.localPosition = Vector3.zero;
 
-        character.onDead += OnDead;
-        character.onDamage += OnDamage;
+        //    character.onDead += OnDead;
+        //    character.onDamage += OnDamage;
 
         SceneLinkedSMB<ZombieBehaviour>.Initialise(animator, this);
 
-        SetActiveCollider(true);
-        SetActiveDamageBall(false);
+    //    SetActiveCollider(true);
+    //    SetActiveDamageBall(false);
 
-        spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    //    spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
-    private void OnDisable()
-    {
-        character.onDead -= OnDead;
-        character.onDamage -= OnDamage;
-    }
+    //private void OnDisable()
+    //{
+    //    character.onDead -= OnDead;
+    //    character.onDamage -= OnDamage;
+    //}
 
-    private void FixedUpdate()
-    {
-        //Debug.Log("agent stop: " + agent.isStopped);
+    //private void FixedUpdate()
+    //{
+    //    if (Target != null && faceingTarget)
+    //    {
+    //        transform.LookAt(new Vector3(Target.position.x, transform.position.y, Target.position.z));
+    //    }
 
-        //if (this.transform.position != Vector3.zero)
-        //    Debug.LogError(this.transform.position);
+    //    if (agent.isStopped)
+    //        return;
 
-        if (Target != null && faceingTarget)
-        {
-            transform.LookAt(new Vector3(Target.position.x, transform.position.y, Target.position.z));
-        }
-
-        if (agent.isStopped)
-            return;
-
-        if (fighting && Target != null)
-        {
-            //Debug.Log("Go target");
-            agent.SetDestination(Target.position);
-        }
-        else
-        {
-            //Debug.Log("Go spawn position");
-            agent.SetDestination(spawnPosition);
-        }   
-    }
+    //    if (fighting && Target != null)
+    //    {
+    //        //Debug.Log("Go target");
+    //        agent.SetDestination(Target.position);
+    //    }
+    //    else
+    //    {
+    //        //Debug.Log("Go spawn position");
+    //        agent.SetDestination(spawnPosition);
+    //    }   
+    //}
 
     private void SetAnimatorTrigger(string triggerName)
     {
@@ -113,11 +109,35 @@ public class ZombieBehaviour : MonoBehaviour {
         }
     }
 
+    public static Vector3 GetRandomPosition(Vector3 origin, float distance, int layermask)
+    {
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * distance;
+
+        randomDirection += origin;
+
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask);
+
+        return navHit.position;
+    }
+
     // ===========================================
     // Function for Behaviour
     // ===========================================
 
-    public void SetSpeed(float speed)
+    public void StartWander()
+    {
+        //Debug.Log(GetRandomPosition(transform.position, 10f, 1 << NavMesh.GetAreaFromName("Walkable")));
+        agent.SetDestination(GetRandomPosition(transform.position, 10f, 1 << NavMesh.GetAreaFromName("Walkable")));
+    }
+
+    public void StopWander()
+    {
+
+    }
+
+    public void SetAgentSpeed(float speed)
     {
         if (!agent.isStopped)
             agent.speed = speed;
@@ -202,16 +222,21 @@ public class ZombieBehaviour : MonoBehaviour {
             audioGrout.PlayRandomClip();
     }
 
-    public void Stop()
+    public void AgentStop()
     {
         agent.isStopped = true;
+    }
+
+    public void AgentWork()
+    {
+        agent.isStopped = false;
     }
 
     public void GotoTarget()
     {
         FaceToTarget(true);
         SetAnimatorTrigger(Ani_Run);
-        agent.isStopped = false;
+        AgentWork();
         fighting = true;
     }
 
@@ -219,7 +244,7 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         FaceToTarget(false);
         SetAnimatorTrigger(Ani_Walk);
-        agent.isStopped = false;
+        AgentWork();
         fighting = false;
     }
 
@@ -233,7 +258,7 @@ public class ZombieBehaviour : MonoBehaviour {
         SetAnimatorTrigger(Ani_Dead);
         FaceToTarget(false);
         SetActiveCollider(false);
-        agent.isStopped = true;
+        AgentStop();
         fighting = false;
     }
 
@@ -245,7 +270,7 @@ public class ZombieBehaviour : MonoBehaviour {
     public void KeepGoing()
     {
         SetAnimatorTrigger(Ani_Run);
-        agent.isStopped = false;
+        AgentWork();
         fighting = true;
     }
 
@@ -253,7 +278,7 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         SetAnimatorTrigger(Ani_Idle);
         fighting = false;
-        agent.isStopped = false;    
+        AgentWork();
     }
 
     public bool ArrivedSpawnPosition()

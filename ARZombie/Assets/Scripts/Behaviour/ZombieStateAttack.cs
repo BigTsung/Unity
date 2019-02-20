@@ -14,7 +14,7 @@ public class ZombieStateAttack : SceneLinkedSMB<ZombieBehaviour> {
         if (damageDislaunchNormalTime < damageLaunchNormalTime)
             damageLaunchNormalTime = damageDislaunchNormalTime;
 
-        m_MonoBehaviour.Stop();
+        m_MonoBehaviour.AgentStop();
     }
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

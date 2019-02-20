@@ -214,7 +214,6 @@ D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.PhysicsModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.ScreenCaptureModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SharedInternalsModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SpatialTracking.dll
-D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SpriteMaskModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SpriteShapeModule.dll
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.StandardEvents.dll
@@ -289,7 +288,6 @@ D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.PhysicsModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.Physics2DModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.ScreenCaptureModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SharedInternalsModule.xml
-D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SpriteMaskModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.SpriteShapeModule.xml
 D:\dev\Unity\ARZombie\Temp\bin\Debug\UnityEngine.StyleSheetsModule.xml
