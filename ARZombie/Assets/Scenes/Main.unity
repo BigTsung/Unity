@@ -98,15 +98,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.45
-    agentHeight: 0.27
-    agentSlope: 2.5
-    agentClimb: 0.2
+    agentRadius: 0.2
+    agentHeight: 1.86
+    agentSlope: 6.9
+    agentClimb: 0.02
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 10
     manualCellSize: 0
-    cellSize: 0.14999999
+    cellSize: 0.06666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -973,6 +973,10 @@ Prefab:
       propertyPath: m_Name
       value: Solider_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 1573284142029592, guid: c62094501f19a7c4188c4968db266ae2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c62094501f19a7c4188c4968db266ae2, type: 2}
   m_IsPrefabAsset: 0
@@ -1048,6 +1052,25 @@ Prefab:
         type: 2}
       propertyPath: enemySettingList.Array.data[0].enemyTag
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630968308511498, guid: b50b106353a788b4aa22cef01f7bd4e7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294439878630172, guid: b50b106353a788b4aa22cef01f7bd4e7,
+        type: 2}
+      propertyPath: enemySettingList.Array.data[0].maxExistNum
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294439878630172, guid: b50b106353a788b4aa22cef01f7bd4e7,
+        type: 2}
+      propertyPath: minSpawnSpacingTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114294439878630172, guid: b50b106353a788b4aa22cef01f7bd4e7,
+        type: 2}
+      propertyPath: maxSapwnSpacingTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b50b106353a788b4aa22cef01f7bd4e7, type: 2}
@@ -5368,6 +5391,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1558334938392196, guid: d656c119625141d49b63f809b48c935b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d656c119625141d49b63f809b48c935b, type: 2}
   m_IsPrefabAsset: 0
@@ -5419,10 +5446,10 @@ MonoBehaviour:
   pools:
   - tag: 2
     prefab: {fileID: 1175889094814486, guid: 22874a9c059e5434da30a43e2da11fa7, type: 2}
-    size: 50
+    size: 30
   - tag: 1
     prefab: {fileID: 1422334615698702, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
-    size: 30
+    size: 100
 --- !u!1 &2128209843
 GameObject:
   m_ObjectHideFlags: 0
