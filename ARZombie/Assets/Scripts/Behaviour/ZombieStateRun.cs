@@ -11,11 +11,11 @@ public class ZombieStateRun : SceneLinkedSMB<ZombieBehaviour> {
         base.OnSLStatePostEnter(animator, stateInfo, layerIndex);
         m_MonoBehaviour.SetAgentSpeed(speed);
 
-        if (m_MonoBehaviour.Target == null)
-        {
-            m_MonoBehaviour.Detect();
+        //if (m_MonoBehaviour.Target != null)
+        //{
+        //    m_MonoBehaviour.Detect();
             m_MonoBehaviour.GotoTarget();
-        }
+        //}
     }
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,11 +24,9 @@ public class ZombieStateRun : SceneLinkedSMB<ZombieBehaviour> {
 
         ZombieBehaviour.StatusWithTarget status = m_MonoBehaviour.GetStatusWithTarget();
 
-        //Debug.Log("status: " + status);
-
         if (status == ZombieBehaviour.StatusWithTarget.TOOFAR)
         {
-            m_MonoBehaviour.BackToSpawnPosiion();
+            //m_MonoBehaviour.BackToSpawnPosiion();
         }
         else if(status == ZombieBehaviour.StatusWithTarget.READY_TO_ATTACK)
         {

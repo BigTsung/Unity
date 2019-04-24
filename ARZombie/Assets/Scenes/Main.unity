@@ -98,15 +98,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.45
-    agentHeight: 0.27
-    agentSlope: 2.5
-    agentClimb: 0.2
+    agentRadius: 0.2
+    agentHeight: 1.86
+    agentSlope: 6.9
+    agentClimb: 0.02
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 10
     manualCellSize: 0
-    cellSize: 0.14999999
+    cellSize: 0.06666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -973,6 +973,10 @@ Prefab:
       propertyPath: m_Name
       value: Solider_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 1573284142029592, guid: c62094501f19a7c4188c4968db266ae2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c62094501f19a7c4188c4968db266ae2, type: 2}
   m_IsPrefabAsset: 0
@@ -1048,6 +1052,10 @@ Prefab:
         type: 2}
       propertyPath: enemySettingList.Array.data[0].enemyTag
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630968308511498, guid: b50b106353a788b4aa22cef01f7bd4e7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b50b106353a788b4aa22cef01f7bd4e7, type: 2}
@@ -1315,6 +1323,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4855151120593640, guid: b50b106353a788b4aa22cef01f7bd4e7,
     type: 2}
   m_PrefabInternal: {fileID: 260413199}
+--- !u!1001 &343859315
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4016653900841158, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016653900841158, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016653900841158, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016653900841158, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016653900841158, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016653900841158, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016653900841158, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016653900841158, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 54760032314074740, guid: b15f16018ab900b4e912ed25e12619e8,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 114781490583623394, guid: b15f16018ab900b4e912ed25e12619e8,
+        type: 2}
+      propertyPath: wanderAgentSpeed
+      value: 0.6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b15f16018ab900b4e912ed25e12619e8, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &353047065
 GameObject:
   m_ObjectHideFlags: 0
@@ -5367,6 +5427,10 @@ Prefab:
     - target: {fileID: 4515110226783596, guid: d656c119625141d49b63f809b48c935b, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558334938392196, guid: d656c119625141d49b63f809b48c935b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d656c119625141d49b63f809b48c935b, type: 2}

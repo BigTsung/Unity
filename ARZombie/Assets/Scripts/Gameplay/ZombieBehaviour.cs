@@ -8,8 +8,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Collider))]
 public class ZombieBehaviour : MonoBehaviour {
 
-    private static string Ani_Walk      = "Walk";
-    private static string Ani_Run       = "Run";
+    //private static string Ani_Walk      = "Walk";
+    private static string Ani_Follow    = "Follow";
     private static string Ani_Damage    = "Damage";
     private static string Ani_Dead      = "Dead";
     private static string Ani_Idle      = "Idle";
@@ -21,8 +21,16 @@ public class ZombieBehaviour : MonoBehaviour {
     public float stoppingDistance = 1f;
     public SphereCollider damageBallCollider;
 
+    [Header("Wander")]
+    public float minRandomWanderTime = 3f;
+    public float maxRandomWanderTime = 7f;
+    public float wanderAgentSpeed = 1f;
+
     [Header("Sound")]
     public AudioClip deadClip;
+
+    [Header("Audio")]
+    public RandomAudioPlayer audioGrout;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -31,6 +39,17 @@ public class ZombieBehaviour : MonoBehaviour {
     private bool fighting = false;
     private Vector3 spawnPosition;
     private bool faceingTarget = false;
+    private Behaviour currentBehaviour;
+
+    public enum Behaviour
+    {
+        Wander,
+        Idle,
+        Attack,
+        Damage,
+        Dead,
+        Follow
+    }
 
     public enum StatusWithTarget
     {
@@ -46,9 +65,12 @@ public class ZombieBehaviour : MonoBehaviour {
         set;
     }
 
-    [Header("Audio")]
-    public RandomAudioPlayer audioGrout;
-
+    //public bool IsWander
+    //{
+    //    get;
+    //    set;
+    //}
+    
     void Awake()
     {
         character = GetComponent<Character>();
@@ -59,46 +81,60 @@ public class ZombieBehaviour : MonoBehaviour {
 
     private void OnEnable()
     {
-        //    this.transform.localPosition = Vector3.zero;
+        this.transform.localPosition = Vector3.zero;
 
-        //    character.onDead += OnDead;
-        //    character.onDamage += OnDamage;
+        character.onDead += OnDead;
+        character.onDamage += OnDamage;
 
         SceneLinkedSMB<ZombieBehaviour>.Initialise(animator, this);
 
-    //    SetActiveCollider(true);
-    //    SetActiveDamageBall(false);
+        SetActiveCollider(true);
+        SetActiveDamageBall(false);
 
-    //    spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
-    //private void OnDisable()
-    //{
-    //    character.onDead -= OnDead;
-    //    character.onDamage -= OnDamage;
-    //}
+    private void OnDisable()
+    {
+        character.onDead -= OnDead;
+        character.onDamage -= OnDamage;
+    }
 
-    //private void FixedUpdate()
-    //{
-    //    if (Target != null && faceingTarget)
-    //    {
-    //        transform.LookAt(new Vector3(Target.position.x, transform.position.y, Target.position.z));
-    //    }
+    private void Update()
+    {
+        Detect();
 
-    //    if (agent.isStopped)
-    //        return;
+        if (Target != null)
+        {
+            SetAnimatorTrigger(Ani_Follow);
+        }
+        else
+        {
+            SetAnimatorTrigger(Ani_Wander);
+        }
+    }
 
-    //    if (fighting && Target != null)
-    //    {
-    //        //Debug.Log("Go target");
-    //        agent.SetDestination(Target.position);
-    //    }
-    //    else
-    //    {
-    //        //Debug.Log("Go spawn position");
-    //        agent.SetDestination(spawnPosition);
-    //    }   
-    //}
+    private void FixedUpdate()
+    {
+        //if (Target != null && faceingTarget)
+        //{
+        //    transform.LookAt(new Vector3(Target.position.x, transform.position.y, Target.position.z));
+        //}
+
+        if (agent.isStopped)
+            return;
+
+        if (fighting && Target != null)
+        {
+            Debug.Log("Go target");
+            agent.SetDestination(Target.position);
+        }
+        //else
+        //{
+        //    Debug.Log("Go spawn position");
+        //    agent.SetDestination(spawnPosition);
+        //}
+    }
 
     private void SetAnimatorTrigger(string triggerName)
     {
@@ -109,7 +145,15 @@ public class ZombieBehaviour : MonoBehaviour {
         }
     }
 
-    public static Vector3 GetRandomPosition(Vector3 origin, float distance, int layermask)
+    private void SetAnimatorInteger(string triggerName, int intVal)
+    {
+        if (animator != null)
+        {
+            animator.SetInteger(triggerName, intVal);
+        }
+    }
+
+    private static Vector3 GetRandomPosition(Vector3 origin, float distance, int layermask)
     {
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * distance;
 
@@ -122,28 +166,14 @@ public class ZombieBehaviour : MonoBehaviour {
         return navHit.position;
     }
 
-    // ===========================================
-    // Function for Behaviour
-    // ===========================================
-
-    public void StartWander()
+    private void CountDownForWander()
     {
-        //Debug.Log(GetRandomPosition(transform.position, 10f, 1 << NavMesh.GetAreaFromName("Walkable")));
-        agent.SetDestination(GetRandomPosition(transform.position, 10f, 1 << NavMesh.GetAreaFromName("Walkable")));
+        Debug.Log("CountDownForWander");
+        StopWander();
+        CancelInvoke("CountDownForWander");
     }
 
-    public void StopWander()
-    {
-
-    }
-
-    public void SetAgentSpeed(float speed)
-    {
-        if (!agent.isStopped)
-            agent.speed = speed;
-    }
-
-    public Transform Detect()
+    private void Detect()
     {
         Target = null;
 
@@ -158,8 +188,43 @@ public class ZombieBehaviour : MonoBehaviour {
                 }
             }
         }
+    }
 
-        return Target;
+    // ===========================================
+    // Function for Behaviour
+    // ===========================================
+
+    public void StartWander()
+    {
+        currentBehaviour = Behaviour.Wander;
+        SetAgentSpeed(wanderAgentSpeed);
+        StartAgent();
+
+        agent.SetDestination(GetRandomPosition(transform.position, 100f, 1 << NavMesh.GetAreaFromName("Walkable")));
+       
+        float randomTime = Random.Range(minRandomWanderTime, maxRandomWanderTime);
+        Invoke("CountDownForWander", randomTime);
+    }
+
+    public void StopWander()
+    {
+        if (currentBehaviour != Behaviour.Wander)
+            return;
+
+        StopAgent();
+
+        SetAnimatorInteger(Ani_Idle, Random.Range(1, 5));
+    }
+
+    public void ResetIndleInteger()
+    {
+        SetAnimatorInteger(Ani_Idle, 0);
+    }
+
+    public void SetAgentSpeed(float speed)
+    {
+        agent.speed = speed;
+        Debug.Log("Agent speed: " + agent.speed);
     }
 
     public Transform DetectClosedTarget()
@@ -222,12 +287,12 @@ public class ZombieBehaviour : MonoBehaviour {
             audioGrout.PlayRandomClip();
     }
 
-    public void AgentStop()
+    public void StopAgent()
     {
         agent.isStopped = true;
     }
 
-    public void AgentWork()
+    public void StartAgent()
     {
         agent.isStopped = false;
     }
@@ -235,18 +300,18 @@ public class ZombieBehaviour : MonoBehaviour {
     public void GotoTarget()
     {
         FaceToTarget(true);
-        SetAnimatorTrigger(Ani_Run);
-        AgentWork();
+        SetAnimatorTrigger(Ani_Follow);
+        StartAgent();
         fighting = true;
     }
 
-    public void BackToSpawnPosiion()
-    {
-        FaceToTarget(false);
-        SetAnimatorTrigger(Ani_Walk);
-        AgentWork();
-        fighting = false;
-    }
+    //public void BackToSpawnPosiion()
+    //{
+    //    FaceToTarget(false);
+    //    SetAnimatorTrigger(Ani_Walk);
+    //    AgentWork();
+    //    fighting = false;
+    //}
 
     public void Attack()
     {
@@ -258,7 +323,7 @@ public class ZombieBehaviour : MonoBehaviour {
         SetAnimatorTrigger(Ani_Dead);
         FaceToTarget(false);
         SetActiveCollider(false);
-        AgentStop();
+        StopAgent();
         fighting = false;
     }
 
@@ -269,8 +334,8 @@ public class ZombieBehaviour : MonoBehaviour {
 
     public void KeepGoing()
     {
-        SetAnimatorTrigger(Ani_Run);
-        AgentWork();
+        SetAnimatorTrigger(Ani_Follow);
+        StartAgent();
         fighting = true;
     }
 
@@ -278,7 +343,7 @@ public class ZombieBehaviour : MonoBehaviour {
     {
         SetAnimatorTrigger(Ani_Idle);
         fighting = false;
-        AgentWork();
+        StartAgent();
     }
 
     public bool ArrivedSpawnPosition()

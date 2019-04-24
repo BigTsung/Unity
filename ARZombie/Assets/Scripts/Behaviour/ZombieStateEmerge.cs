@@ -8,6 +8,6 @@ public class ZombieStateEmerge :  SceneLinkedSMB<ZombieBehaviour> {
     {
         base.OnSLStatePostEnter(animator, stateInfo, layerIndex);
 
-        m_MonoBehaviour.AgentStop();
+        m_MonoBehaviour.StopAgent();
     }
 }

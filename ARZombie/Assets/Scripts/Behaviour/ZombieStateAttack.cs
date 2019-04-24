@@ -14,7 +14,7 @@ public class ZombieStateAttack : SceneLinkedSMB<ZombieBehaviour> {
         if (damageDislaunchNormalTime < damageLaunchNormalTime)
             damageLaunchNormalTime = damageDislaunchNormalTime;
 
-        m_MonoBehaviour.AgentStop();
+        m_MonoBehaviour.StopAgent();
     }
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -43,7 +43,7 @@ public class ZombieStateAttack : SceneLinkedSMB<ZombieBehaviour> {
             //Debug.Log("Attck state done!!!");
             if (status == ZombieBehaviour.StatusWithTarget.TOOFAR)
             {
-                m_MonoBehaviour.BackToSpawnPosiion();
+                //m_MonoBehaviour.BackToSpawnPosiion();
                 //Debug.Log("TOOFAR!!!");
             }
             else if (status == ZombieBehaviour.StatusWithTarget.READY_TO_ATTACK)

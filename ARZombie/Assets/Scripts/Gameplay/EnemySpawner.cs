@@ -68,7 +68,7 @@ public class EnemySpawner : Singleton<EnemySpawner> {
     private Vector3 GetSpawnPosition()
     {
         Vector3 result = player.transform.position;
-        Debug.Log("Enemy spawn Position:" + result);
+        //Debug.Log("Enemy spawn Position:" + result);
 
         float xRandom = Random.Range(-detectRegion / 2f, detectRegion / 2f);
         float zRandom = Random.Range(-detectRegion / 2f, detectRegion / 2f);
