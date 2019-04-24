@@ -31,10 +31,46 @@ public class EnemySpawner : Singleton<EnemySpawner> {
     // ===========================
     // Public Function
     // ===========================
-
     public void StartSpawnEnemy()
     {
-        Invoke("Spawn", 0);
+        float randomTime = Random.Range(minSpawnSpacingTime, maxSapwnSpacingTime);
+<<<<<<< HEAD
+
+        Invoke("Spawn", randomTime);
+    }
+
+    private Vector3 GetSpawnPosition()
+    {
+        Vector3 result = player.transform.position;
+        //Debug.Log("Enemy spawn Position:" + result);
+
+        float xRandom = Random.Range(-detectRegion / 2f, detectRegion / 2f);
+        float zRandom = Random.Range(-detectRegion / 2f, detectRegion / 2f);
+
+        result.x += xRandom;
+        result.z += zRandom;
+
+        return result;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!debugMode)
+            return;
+
+        SphereCollider sphereCollider = GetComponent<SphereCollider>();
+        //sphereCollider.radius;
+
+        Color finalColor = Color.green;
+        finalColor.a = 0.2f;
+        Gizmos.color = finalColor;
+        Gizmos.DrawSphere(player.transform.position, sphereCollider.radius);
+    }
+
+   
+}
+=======
+        Invoke("Spawn", randomTime);
     }
 
     public void StopSpwnEnemy()
@@ -58,7 +94,8 @@ public class EnemySpawner : Singleton<EnemySpawner> {
 
         EnemySetting setting = enemySettingList[randomIndex];
 
-        GameObject enemy = ObjectPooler.Instance.SpawnFormPool(setting.enemyTag, GetSpawnPosition(), Quaternion.identity);
+        //GameObject enemy = ObjectPooler.Instance.SpawnFormPool(setting.enemyTag, GetSpawnPosition(), Quaternion.identity);
+        ObjectPooler.Instance.SpawnFormPool(setting.enemyTag, GetSpawnPosition(), Quaternion.identity);
 
         float randomTime = Random.Range(minSpawnSpacingTime, maxSapwnSpacingTime);
 
@@ -95,3 +132,4 @@ public class EnemySpawner : Singleton<EnemySpawner> {
 
    
 }
+>>>>>>> 6fe5de8ce4c17c05fe73a2352d3a4bf981c71802

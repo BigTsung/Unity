@@ -1124,7 +1124,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!82 &82434530109957476
 AudioSource:
@@ -1280,6 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb577d1028b103d4985d9ae90609bee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   drawGizmos: 0
   targetScanner:
     detectionRadius: 7
@@ -1287,9 +1288,23 @@ MonoBehaviour:
   stoppingDistance: 2
   wanderTime: 3
   wanderAgentSpeed: 1
+=======
+  targetScanner:
+    detectionRadius: 7
+    followRadius: 9
+>>>>>>> 6fe5de8ce4c17c05fe73a2352d3a4bf981c71802
   damageBallCollider: {fileID: 135841562849588992}
+  minRandomWanderTime: 3
+  maxRandomWanderTime: 7
+  wanderAgentSpeed: 0.6
+  wanderAnimationSpeed: 1
+  followAgentSpeed: 6
+  followAnimationSpeed: 1.3
+  allowAttackDistance: 1
+  disappearTime: 5
   deadClip: {fileID: 8300000, guid: 2619549d54396664987b04abf9e0815b, type: 3}
   audioGrout: {fileID: 114941016526620874}
+  drawGizmos: 0
 --- !u!114 &114941016526620874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1416,13 +1431,13 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 1
-  m_Acceleration: 8
+  m_Acceleration: 12
   avoidancePriority: 50
   m_AngularSpeed: 150
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
-  m_AutoRepath: 1
+  m_AutoRepath: 0
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 1
