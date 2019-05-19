@@ -1,9 +1,11 @@
-Hello ARKit
+ARKit Learning
 ======
 
 Configuration
 ------
-### ARKitSessionConfiguration
-### ARKitFaceTrackingConfiguration
-### ARKitWorldTrackingSessionConfiguration
-### ARKitObjectScanningSessionConfiguration
+#### ARKitSessionConfiguration
+#### ARKitFaceTrackingConfiguration
+- [Unity Taiwan](http://unitytaiwan.blogspot.com/2017/11/iphonexarkit.html)
+- [Apple Development Document](https://developer.apple.com/documentation/arkit/arfaceanchor)
+#### ARKitWorldTrackingSessionConfiguration
+#### ARKitObjectScanningSessionConfiguration
