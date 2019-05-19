@@ -1,7 +1,8 @@
 Hello ARKit
-------
+======
 
-## Configuration
+Configuration
+------
 ### ARKitSessionConfiguration
 ### ARKitFaceTrackingConfiguration
 ### ARKitWorldTrackingSessionConfiguration
