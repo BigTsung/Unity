@@ -6,6 +6,7 @@ using UnityEngine.XR.iOS;
 public class UnityARCameraManager : MonoBehaviour {
 
     public Camera m_camera;
+ 
     private UnityARSessionNativeInterface m_session;
     private Material savedClearMaterial;
 
