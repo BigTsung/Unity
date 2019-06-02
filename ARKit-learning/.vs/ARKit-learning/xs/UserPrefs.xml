@@ -1,42 +1,21 @@
 ﻿<Properties StartupConfiguration="{C8919F13-C9D2-6637-0917-4DE1211EFCC8}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityARKitPlugin/Plugins/iOS/UnityARKit/Helpers/UnityARCameraManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ARKitFace.cs">
     <Files>
-      <File FileName="Assets/Scripts/ARKitSetting.cs" Line="40" Column="17" />
-      <File FileName="Assets/UnityARKitPlugin/Plugins/iOS/UnityARKit/Helpers/UnityARCameraManager.cs" Line="33" Column="107" />
+      <File FileName="Assets/ARKitFace.cs" Line="13" Column="1" />
+      <File FileName="Assets/UnityARKitPlugin/Examples/FaceTracking/BlendshapePrinter.cs" Line="26" Column="57" />
+      <File FileName="Assets/UnityARKitPlugin/Examples/FaceTracking/UnityARFaceMeshManager.cs" Line="58" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ARKit-learning" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True" />
-              <Node name="UnityARKitPlugin" expanded="True">
-                <Node name="Examples" expanded="True">
-                  <Node name="ARKit2.0" expanded="True">
-                    <Node name="UnityARWorldMap" expanded="True" />
-                  </Node>
-                  <Node name="FaceTracking" expanded="True" />
-                </Node>
-                <Node name="Plugins" expanded="True">
-                  <Node name="iOS" expanded="True">
-                    <Node name="UnityARKit" expanded="True">
-                      <Node name="Helpers" expanded="True">
-                        <Node name="UnityARCameraManager.cs" selected="True" />
-                      </Node>
-                      <Node name="NativeInterface" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
+          <Node name="ARKit-learning" expanded="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d6a5b1fa-5d15-4679-8371-0927de352362" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="266e011d-face-405f-9711-1eafd215f665" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

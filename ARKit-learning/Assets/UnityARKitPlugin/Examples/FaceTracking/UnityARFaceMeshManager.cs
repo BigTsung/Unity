@@ -70,8 +70,6 @@ public class UnityARFaceMeshManager : MonoBehaviour {
 		faceMesh = null;
 	}
 
-
-
 	// Update is called once per frame
 	void Update () {
 		

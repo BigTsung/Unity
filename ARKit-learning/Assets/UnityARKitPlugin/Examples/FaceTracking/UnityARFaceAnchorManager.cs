@@ -26,9 +26,7 @@ public class UnityARFaceAnchorManager : MonoBehaviour {
 			UnityARSessionNativeInterface.ARFaceAnchorAddedEvent += FaceAdded;
 			UnityARSessionNativeInterface.ARFaceAnchorUpdatedEvent += FaceUpdated;
 			UnityARSessionNativeInterface.ARFaceAnchorRemovedEvent += FaceRemoved;
-
 		}
-
 	}
 
 	void FaceAdded (ARFaceAnchor anchorData)
@@ -49,7 +47,7 @@ public class UnityARFaceAnchorManager : MonoBehaviour {
 		{
 			anchorPrefab.transform.position = UnityARMatrixOps.GetPosition (anchorData.transform);
 			anchorPrefab.transform.rotation = UnityARMatrixOps.GetRotation (anchorData.transform);
-		}
+        }
 	}
 
 	void FaceRemoved (ARFaceAnchor anchorData)

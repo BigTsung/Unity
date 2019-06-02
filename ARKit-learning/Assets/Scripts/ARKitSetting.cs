@@ -8,7 +8,6 @@ public class ARKitSetting : MonoBehaviour
     [System.Serializable]
     public enum ConfigurationType
     {
-        Basic,
         FaceTracking,
         WorldTracking,
         ObjectScanning
@@ -19,6 +18,11 @@ public class ARKitSetting : MonoBehaviour
     private UnityARSessionNativeInterface m_session;
 
     private bool m_currentARkitStatus = false;
+
+    public delegate void OnSessionIsReady();
+
+    public OnSessionIsReady onSessionIsReady;
+
 
     private void Start()
     {
@@ -36,6 +40,7 @@ public class ARKitSetting : MonoBehaviour
 
     public void RunSpecificConfigurationByIndex(int ind)
     {
+        PauseARkit();
         RunSpecificConfiguration((ConfigurationType)ind);
     }
 
@@ -43,10 +48,6 @@ public class ARKitSetting : MonoBehaviour
     { 
         switch(type)
         {
-            case ConfigurationType.Basic:
-                ARKitSessionConfiguration basicConfig = new ARKitSessionConfiguration();
-                RunARkit(basicConfig);
-                break;
             case ConfigurationType.FaceTracking:
                 ARKitFaceTrackingConfiguration faceTrackingConfig = new ARKitFaceTrackingConfiguration();
                 RunARkit(faceTrackingConfig);
@@ -67,19 +68,10 @@ public class ARKitSetting : MonoBehaviour
 
     public void PauseARkit()
     {
-        if (m_currentARkitStatus == true)
+        if (m_currentARkitStatus == true && m_session != null)
         {
             m_session.Pause();
             m_currentARkitStatus = false;
-        }
-    }
-
-    private void RunARkit(ARKitSessionConfiguration configuration)
-    {
-        if (configuration.IsSupported && m_currentARkitStatus == false)
-        {
-            m_session.RunWithConfig(configuration);
-            m_currentARkitStatus = true;
         }
     }
 
@@ -87,6 +79,8 @@ public class ARKitSetting : MonoBehaviour
     {
         if (configuration.IsSupported && m_currentARkitStatus == false)
         {
+            onSessionIsReady?.Invoke();
+
             m_session.RunWithConfig(configuration);
             m_currentARkitStatus = true;
         }
@@ -96,6 +90,8 @@ public class ARKitSetting : MonoBehaviour
     {
         if (configuration.IsSupported && m_currentARkitStatus == false)
         {
+            onSessionIsReady?.Invoke();
+
             m_session.RunWithConfig(configuration);
             m_currentARkitStatus = true;
         }
@@ -105,6 +101,8 @@ public class ARKitSetting : MonoBehaviour
     {
         if (configuration.IsSupported && m_currentARkitStatus == false)
         {
+            onSessionIsReady?.Invoke();
+
             m_session.RunWithConfig(configuration);
             m_currentARkitStatus = true;
         }
