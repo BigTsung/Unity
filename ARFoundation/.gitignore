@@ -1,0 +1,15 @@
+# 檔案名稱 .gitignore
+
+/Assets/3rdPlugin
+/Assets/Audios
+/Assets/Resources
+/Library
+/Temp
+/iOS
+/Mac
+/apk
+
+# 忽略所有附檔名是 .tmp 的檔案
+*.tmp
+*.sln
+*.csproj
