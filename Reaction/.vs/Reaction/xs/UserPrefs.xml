@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{83179D15-EF72-D9EC-5AB5-9AE60302E7DA}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gameplay/GameplayManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Common/Singleton.cs" Line="64" Column="2" />
+      <File FileName="Assets/Scripts/Gameplay/TargetGenerator.cs" Line="25" Column="11" />
+      <File FileName="Assets/Scripts/Gameplay/TouchDetector.cs" Line="21" Column="6" />
+      <File FileName="Assets/LoadScene.cs" Line="12" Column="45" />
+      <File FileName="Assets/Scripts/UI/CountDownText.cs" Line="23" Column="44" />
+      <File FileName="Assets/Scripts/Gameplay/GameplayManager.cs" Line="7" Column="6" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Reaction" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Common" expanded="True" />
+                <Node name="Gameplay" expanded="True">
+                  <Node name="GameplayManager.cs" selected="True" />
+                </Node>
+                <Node name="UI" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="490419d8-3772-4ba6-8e7b-6f20febe3dc9" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
