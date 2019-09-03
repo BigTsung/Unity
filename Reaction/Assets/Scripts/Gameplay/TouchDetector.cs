@@ -22,10 +22,12 @@ public class TouchDetector : Singleton<TouchDetector>
         if (CanInteraction == false)
             return;
 
-        Debug.Log("touchCount: " + Input.touchCount);
+       
 
         if (Input.touchCount > 0)
         {
+            Debug.Log("touchCount: " + Input.touchCount);
+
             for (int i = 0; i < Input.touchCount; ++i)
             {
                 if (Input.GetTouch(i).phase == TouchPhase.Began)
@@ -50,7 +52,7 @@ public class TouchDetector : Singleton<TouchDetector>
         }
         else
         {
-            Debug.Log("Don't do anything!!");
+            //Debug.Log("Don't do anything!!");
         }
     }
 }

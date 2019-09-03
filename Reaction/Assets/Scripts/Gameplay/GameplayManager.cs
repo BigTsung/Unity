@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : Singleton<GameplayManager>
 {
     [SerializeField] private CountDownText countDownText;
 
+    [SerializeField] private int standbyTime = 3;
     [SerializeField] private int gameTime = 10;
     [SerializeField] private Text gameCountDownText;
     [SerializeField] private Text resultText;
@@ -15,6 +17,7 @@ public class GameplayManager : Singleton<GameplayManager>
     private float timer = 0f;
 
     private bool playing = false;
+    private int countdownValue = 0;
 
     public int Counter
     {
@@ -25,10 +28,51 @@ public class GameplayManager : Singleton<GameplayManager>
     private void Start()
     {
         Counter = 0;
-        SetActiveAgainButton(false) ;
+        SetActiveAgainButton(false);
         SetActiveResultText(false);
         SetActiveGameCountDownText(false);
+
+        Debug.Log("Current game mode: " + BrigeManager.Instance.CurrentGameMode);
+
+        if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.SINGLE)
+        {
+            StartSingleGameMode();
+        }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.TWO)
+        {
+            StartTwoGameMode();
+        }
+        else
+        {
+            Debug.LogWarning("this game mode(" + BrigeManager.Instance.CurrentGameMode + ")" + " is fail!");
+        }
     }
+
+    private void Update()
+    {
+        if (!playing)
+            return;
+
+        if (timer <= 0)
+        {
+            playing = false;
+            Debug.Log("End!!Show the result!");
+            SetActiveResultText(true);
+            SetResultText(Counter);
+            SetActiveAgainButton(true);
+            SetActiveGameCountDownText(false);
+            TouchDetector.Instance.CanInteraction = false;
+        }
+        else
+        {
+            timer -= Time.deltaTime;
+            SetGameCountDownText((int)timer);
+        }
+    }
+
+    // ****************************
+    // ******* public *************
+    // ****************************
 
     public void Again()
     {
@@ -53,26 +97,70 @@ public class GameplayManager : Singleton<GameplayManager>
         //StartCoroutine(GameCountDown());
     }
 
-    private void Update()
+    public void CountdownForStartGame()
     {
-        if (!playing)
-            return;
+        if(IsInvoking("CountDownForStandby"))
+            CancelInvoke("CountDownForStandby");
 
-        if (timer <= 0)
+        countdownValue = standbyTime;
+
+        InvokeRepeating("CountDownForStandby", 0f, 1f);
+    }
+
+    // ****************************
+    // ******* private ************
+    // ****************************
+
+    private void CountDownForStandby()
+    {
+        if (countdownValue <= 0)
         {
-            playing = false;
-            Debug.Log("End!!Show the result!");
-            SetActiveResultText(true);
-            SetResultText(Counter);
-            SetActiveAgainButton(true);
-            SetActiveGameCountDownText(false);
-            TouchDetector.Instance.CanInteraction = false;
+            CancelInvoke("CountDownForStandby");
+            Debug.Log("Start This Game!!");
+
+            StartSinglePlayerGame();
         }
-        else
+
+        UIManager.Instance.RefreshStandbyTime(countdownValue);
+
+        countdownValue--;
+    }
+
+    private void StartSinglePlayerGame()
+    {
+        TargetGenerator.Instance.Refresh();
+
+        if (IsInvoking("CountDownForEnd"))
+            CancelInvoke("CountDownForEnd");
+
+        countdownValue = gameTime;
+
+        InvokeRepeating("CountDownForEnd", 0f, 1f);
+    }
+
+    private void CountDownForEnd()
+    {
+        if (countdownValue <= 0)
         {
-            timer -= Time.deltaTime;
-            SetGameCountDownText((int)timer);
+            Debug.Log("Game Over!");
+            CancelInvoke("CountDownForEnd");
         }
+
+        UIManager.Instance.RefreshStandbyTime(countdownValue);
+
+        countdownValue--;
+    }
+
+    private void StartSingleGameMode()
+    {
+        Debug.Log("StartSingleGameMode");
+        UIManager.Instance.SwitchToSinglePlayerMode();
+    }
+
+    private void StartTwoGameMode()
+    {
+        Debug.Log("StartTwoGameMode");
+        UIManager.Instance.SwitchToSTwoPlayersMode();
     }
 
     private void SetGameCountDownText(int value)
