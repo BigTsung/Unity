@@ -22,8 +22,6 @@ public class TouchDetector : Singleton<TouchDetector>
         if (CanInteraction == false)
             return;
 
-       
-
         if (Input.touchCount > 0)
         {
             Debug.Log("touchCount: " + Input.touchCount);

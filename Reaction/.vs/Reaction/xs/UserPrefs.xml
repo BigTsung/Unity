@@ -1,12 +1,16 @@
 ﻿<Properties StartupConfiguration="{83179D15-EF72-D9EC-5AB5-9AE60302E7DA}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gameplay/GameplayManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Common/Singleton.cs">
     <Files>
-      <File FileName="Assets/Scripts/Common/Singleton.cs" Line="64" Column="2" />
-      <File FileName="Assets/Scripts/Gameplay/TargetGenerator.cs" Line="25" Column="11" />
-      <File FileName="Assets/Scripts/Gameplay/TouchDetector.cs" Line="21" Column="6" />
-      <File FileName="Assets/LoadScene.cs" Line="12" Column="45" />
-      <File FileName="Assets/Scripts/UI/CountDownText.cs" Line="23" Column="44" />
-      <File FileName="Assets/Scripts/Gameplay/GameplayManager.cs" Line="7" Column="6" />
+      <File FileName="Assets/Scripts/UI/UIManager.cs" Line="24" Column="22" />
+      <File FileName="Assets/Scripts/Common/Singleton.cs" Line="11" Column="33" />
+      <File FileName="Assets/Scripts/Gameplay/GameplayManager.cs" Line="39" Column="13" />
+      <File FileName="Assets/Scripts/UI/SingleGameModeUI.cs" Line="32" Column="17" />
+      <File FileName="Assets/Scripts/Gameplay/TargetGenerator.cs" Line="44" Column="21" />
+      <File FileName="Assets/Scripts/UI/CountDownText.cs" Line="36" Column="51" />
+      <File FileName="Assets/Scripts/Gameplay/TouchDetector.cs" Line="17" Column="9" />
+      <File FileName="Assets/Scripts/Gameplay/BrigeManager.cs" Line="20" Column="42" />
+      <File FileName="Assets/Scripts/Gameplay/GoToNextScene.cs" Line="8" Column="43" />
+      <File FileName="Assets/StartMenuUIManager.cs" Line="12" Column="57" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,10 +18,10 @@
           <Node name="Reaction" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Common" expanded="True" />
-                <Node name="Gameplay" expanded="True">
-                  <Node name="GameplayManager.cs" selected="True" />
+                <Node name="Common" expanded="True">
+                  <Node name="Singleton.cs" selected="True" />
                 </Node>
+                <Node name="Gameplay" expanded="True" />
                 <Node name="UI" expanded="True" />
               </Node>
             </Node>

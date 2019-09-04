@@ -53,26 +53,37 @@ public class GameplayManager : Singleton<GameplayManager>
         if (!playing)
             return;
 
-        if (timer <= 0)
-        {
-            playing = false;
-            Debug.Log("End!!Show the result!");
-            SetActiveResultText(true);
-            SetResultText(Counter);
-            SetActiveAgainButton(true);
-            SetActiveGameCountDownText(false);
-            TouchDetector.Instance.CanInteraction = false;
-        }
-        else
-        {
-            timer -= Time.deltaTime;
-            SetGameCountDownText((int)timer);
-        }
+        //if (timer <= 0)
+        //{
+        //    playing = false;
+        //    Debug.Log("End!!Show the result!");
+        //    SetActiveResultText(true);
+        //    SetResultText(Counter);
+        //    SetActiveAgainButton(true);
+        //    SetActiveGameCountDownText(false);
+        //    TouchDetector.Instance.CanInteraction = false;
+        //}
+        //else
+        //{
+        //    timer -= Time.deltaTime;
+        //    SetGameCountDownText((int)timer);
+        //}
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("OnDestroy: " + "GameplayManager");
     }
 
     // ****************************
     // ******* public *************
     // ****************************
+
+    public void GotoStartScene()
+    {
+        Debug.Log("Go to Start Scene");
+        SceneManager.LoadScene("Start");
+    }
 
     public void Again()
     {
@@ -81,21 +92,21 @@ public class GameplayManager : Singleton<GameplayManager>
         SetActiveAgainButton(false);
     }
 
-    public void Play()
-    {
-        if (playing)
-            return;
+    //public void Play()
+    //{
+    //    if (playing)
+    //        return;
 
-        TargetGenerator.Instance.Refresh();
-        SetActiveResultText(false);
-        SetActiveAgainButton(false);
-        SetActiveGameCountDownText(true);
-        TouchDetector.Instance.CanInteraction = true;
-        playing = true;
-        timer = gameTime;
-        Counter = 0;
-        //StartCoroutine(GameCountDown());
-    }
+    //    TargetGenerator.Instance.Refresh();
+    //    SetActiveResultText(false);
+    //    SetActiveAgainButton(false);
+    //    SetActiveGameCountDownText(true);
+    //    TouchDetector.Instance.CanInteraction = true;
+    //    playing = true;
+    //    timer = gameTime;
+    //    Counter = 0;
+    //    //StartCoroutine(GameCountDown());
+    //}
 
     public void CountdownForStartGame()
     {
@@ -128,6 +139,7 @@ public class GameplayManager : Singleton<GameplayManager>
 
     private void StartSinglePlayerGame()
     {
+        UIManager.Instance.SwitchToPlaying();
         TargetGenerator.Instance.Refresh();
 
         if (IsInvoking("CountDownForEnd"))
@@ -144,9 +156,11 @@ public class GameplayManager : Singleton<GameplayManager>
         {
             Debug.Log("Game Over!");
             CancelInvoke("CountDownForEnd");
+            TouchDetector.Instance.CanInteraction = false;
+            UIManager.Instance.SwitchToGameOver();
         }
 
-        UIManager.Instance.RefreshStandbyTime(countdownValue);
+        UIManager.Instance.RefreshGameTime(countdownValue);
 
         countdownValue--;
     }
@@ -154,6 +168,9 @@ public class GameplayManager : Singleton<GameplayManager>
     private void StartSingleGameMode()
     {
         Debug.Log("StartSingleGameMode");
+
+        Debug.Log(UIManager.Instance);
+
         UIManager.Instance.SwitchToSinglePlayerMode();
     }
 

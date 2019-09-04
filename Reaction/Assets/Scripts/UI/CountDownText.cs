@@ -33,7 +33,7 @@ public class CountDownText : MonoBehaviour
             if (value == string.Empty)
             {
                 //TargetGenerator.Instance.Init();
-                GameplayManager.Instance.Play();
+                //GameplayManager.Instance.Play();
             }
         }
     }

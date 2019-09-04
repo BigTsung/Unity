@@ -30,10 +30,4 @@ public class BrigeManager : Singleton<BrigeManager>
         CurrentGameMode = GameMode.TWO;
         SceneManager.LoadScene("Game");
     }
-
-    public void GotoStartScene()
-    {
-        Debug.Log("Go to Start Scene");
-        SceneManager.LoadScene("Start");
-    }
 }

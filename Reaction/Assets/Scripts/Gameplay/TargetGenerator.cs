@@ -23,10 +23,10 @@ public class TargetGenerator : Singleton<TargetGenerator>
 
     }
 
-    //public void Init()
-    //{
-    //    Refresh();
-    //}
+    private void OnDestroy()
+    {
+        Debug.Log("OnDestroy: " + "TargetGenerator");
+    }
 
     private void CreateTarget()
     {

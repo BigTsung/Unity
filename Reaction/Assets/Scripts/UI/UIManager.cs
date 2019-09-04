@@ -14,6 +14,11 @@ public class UIManager : Singleton<UIManager>
         SetActiveTwoPlayersModeUI(false);
     }
 
+    private void OnDestroy()
+    {
+        Debug.Log("OnDestroy: " + "UIManager");
+    }
+
     // ****************************
     // ******* private ************
     // ****************************
@@ -50,6 +55,28 @@ public class UIManager : Singleton<UIManager>
     {
         if(singleGameModeUI != null)
             singleGameModeUI.StartWaitingUserClickAnywhere();
+    }
+
+    public void SwitchToPlaying()
+    {
+        if (singleGameModeUI != null)
+            singleGameModeUI.StartToPlay();
+    }
+
+    public void SwitchToGameOver()
+    {
+        if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.SINGLE)
+        {
+            if (singleGameModeUI != null)
+            {
+                singleGameModeUI.GameOver();
+
+                singleGameModeUI.RefreshResult(GameplayManager.Instance.Counter);
+            }
+        }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.TWO)
+        { }
+        else { }     
     }
 
     public void RefreshStandbyTime(int value)

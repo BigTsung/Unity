@@ -9,34 +9,28 @@ public class SingleGameModeUI : MonoBehaviour
     [SerializeField] private GameObject touchAnywhereUI;
     [SerializeField] private GameObject standbyTimeUI;
     [SerializeField] private GameObject gameTimeUI;
+    [SerializeField] private GameObject resultUI;
 
     private Text standbyUIText;
     private Text gameUIText;
+    private Text resultUIText;
 
     private void Start()
     {
-        //SetActiveAllUI(false);
         if (standbyTimeUI != null)
             standbyUIText = standbyTimeUI.GetComponent<Text>();
 
         if (gameTimeUI != null)
             gameUIText = gameTimeUI.GetComponent<Text>();
+
+        if (resultUI != null)
+            resultUIText = resultUI.transform.GetChild(0).GetComponent<Text>();
     }
 
     private void OnEnable()
     {
         StartWaitingUserClickAnywhere();
     }
-
-    // ****************************
-    // ******* private ************
-    // ****************************
-
-    //private void SetActiveAllUI(bool status)
-    //{
-    //    SetActiveReadyGroupUI(status);
-    //    SetActiveTouchAnywhereUI(status);
-    //}
 
     private void SetActiveReadyGroupUI(bool status)
     {
@@ -50,6 +44,24 @@ public class SingleGameModeUI : MonoBehaviour
             touchAnywhereUI.SetActive(status);
     }
 
+    private void SetActiveStandbyTimeUI(bool status)
+    {
+        if (standbyTimeUI != null)
+            standbyTimeUI.SetActive(status);
+    }
+
+    private void SetActiveGameTimeUI(bool status)
+    {
+        if (gameTimeUI != null)
+            gameTimeUI.SetActive(status);
+    }
+
+    private void SetActiveResultUI(bool status)
+    {
+        if (resultUI != null)
+            resultUI.SetActive(status);
+    }
+
     // ****************************
     // ******* public *************
     // ****************************
@@ -58,14 +70,38 @@ public class SingleGameModeUI : MonoBehaviour
     {
         SetActiveReadyGroupUI(true);
         SetActiveTouchAnywhereUI(true);
+        SetActiveStandbyTimeUI(false);
+        SetActiveGameTimeUI(false);
+        SetActiveResultUI(false);
     }
 
     public void OnClickTouchAnywhere()
     {
         SetActiveReadyGroupUI(false);
         SetActiveTouchAnywhereUI(false);
+        SetActiveStandbyTimeUI(true);
+        SetActiveGameTimeUI(false);
+        SetActiveResultUI(false);
 
         GameplayManager.Instance.CountdownForStartGame();
+    }
+
+    public void StartToPlay()
+    {
+        SetActiveReadyGroupUI(false);
+        SetActiveTouchAnywhereUI(false);
+        SetActiveStandbyTimeUI(false);
+        SetActiveGameTimeUI(true);
+        SetActiveResultUI(false);
+    }
+
+    public void GameOver()
+    {
+        SetActiveReadyGroupUI(false);
+        SetActiveTouchAnywhereUI(false);
+        SetActiveStandbyTimeUI(false);
+        SetActiveGameTimeUI(false);
+        SetActiveResultUI(true);
     }
 
     public void RefreshStandbyTime(int value)
@@ -78,5 +114,11 @@ public class SingleGameModeUI : MonoBehaviour
     {
         if (gameUIText != null)
             gameUIText.text = value.ToString();
+    }
+
+    public void RefreshResult(int value)
+    {
+        if (resultUIText != null)
+            resultUIText.text = value.ToString();
     }
 }
