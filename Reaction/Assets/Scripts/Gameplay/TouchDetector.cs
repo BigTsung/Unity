@@ -17,6 +17,11 @@ public class TouchDetector : Singleton<TouchDetector>
         CanInteraction = canInteraction;
     }
 
+    private void OnDestroy()
+    {
+        
+    }
+
     void Update()
     {
         if (CanInteraction == false)
@@ -30,18 +35,23 @@ public class TouchDetector : Singleton<TouchDetector>
             {
                 if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
-                    // Construct a ray from the current touch coordinates
                     Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
                     RaycastHit hitInfo;
-                    // Create a particle if hit
+                    
                     if (Physics.Raycast(ray, out hitInfo))
                     {
                         Debug.Log("Target tag: " + hitInfo.transform.tag);
 
-                        if (hitInfo.transform.tag == "Target")
+                        if (hitInfo.transform.tag == "TargetTop")
                         {
                             Debug.Log("Touch on target: " + hitInfo.transform.name);
-                            GameplayManager.Instance.Counter++;
+                            GameplayManager.Instance.TopPlayerScore++;
+                            TargetGenerator.Instance.Refresh();
+                        }
+                        else if (hitInfo.transform.tag == "TargetBottom")
+                        {
+                            Debug.Log("Touch on target: " + hitInfo.transform.name);
+                            GameplayManager.Instance.BottomPlayerScore++;
                             TargetGenerator.Instance.Refresh();
                         }
                     }

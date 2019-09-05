@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     [SerializeField] private SingleGameModeUI singleGameModeUI;
-    [SerializeField] private GameObject twoPlayersModeUI;
+    [SerializeField] private TwoPlayersGameModeUI twoPlayersModeUI;
 
     private void Start()
     {
@@ -32,7 +32,7 @@ public class UIManager : Singleton<UIManager>
     private void SetActiveTwoPlayersModeUI(bool status)
     {
         if (twoPlayersModeUI != null)
-            twoPlayersModeUI.SetActive(status);
+            twoPlayersModeUI.gameObject.SetActive(status);
     }
 
     // ****************************
@@ -57,10 +57,34 @@ public class UIManager : Singleton<UIManager>
             singleGameModeUI.StartWaitingUserClickAnywhere();
     }
 
+    public void SwitchToStandbyCountdown()
+    {
+        if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.SINGLE)
+        {
+            if (singleGameModeUI != null)
+                singleGameModeUI.StartToStandby();
+        }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.MULTIPLE)
+        {
+            if (twoPlayersModeUI != null)
+                twoPlayersModeUI.StartToStandby();
+        }
+        else { }
+    }
+
     public void SwitchToPlaying()
     {
-        if (singleGameModeUI != null)
-            singleGameModeUI.StartToPlay();
+        if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.SINGLE)
+        {
+            if (singleGameModeUI != null)
+                singleGameModeUI.StartToPlay();
+        }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.MULTIPLE)
+        {
+            if (twoPlayersModeUI != null)
+                twoPlayersModeUI.StartToPlay();
+        }
+        else { }
     }
 
     public void SwitchToGameOver()
@@ -70,12 +94,15 @@ public class UIManager : Singleton<UIManager>
             if (singleGameModeUI != null)
             {
                 singleGameModeUI.GameOver();
-
-                singleGameModeUI.RefreshResult(GameplayManager.Instance.Counter);
             }
         }
-        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.TWO)
-        { }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.MULTIPLE)
+        {
+            if (twoPlayersModeUI != null)
+            {
+                twoPlayersModeUI.GameOver();
+            }
+        }
         else { }     
     }
 
@@ -85,8 +112,10 @@ public class UIManager : Singleton<UIManager>
         {
             singleGameModeUI.RefreshStandbyTime(value);
         }
-        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.TWO)
-        { }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.MULTIPLE)
+        {
+            twoPlayersModeUI.RefreshStandbyTime(value);
+        }
         else { }
     }
 
@@ -96,8 +125,18 @@ public class UIManager : Singleton<UIManager>
         {
             singleGameModeUI.RefreshGameTime(value);
         }
-        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.TWO)
-        { }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.MULTIPLE)
+        {
+            twoPlayersModeUI.RefreshGameTime(value);
+        }
         else { }
     }
+
+    //public void SwitchTopPlayerToReady()
+    //{
+    //    if (twoPlayersModeUI != null)
+    //    {
+    //        twoPlayersModeUI.
+    //    }
+    //}
 }

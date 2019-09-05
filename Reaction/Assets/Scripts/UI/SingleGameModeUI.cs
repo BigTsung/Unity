@@ -62,6 +62,12 @@ public class SingleGameModeUI : MonoBehaviour
             resultUI.SetActive(status);
     }
 
+    private void RefreshResult(int value)
+    {
+        if (resultUIText != null)
+            resultUIText.text = value.ToString();
+    }
+
     // ****************************
     // ******* public *************
     // ****************************
@@ -95,6 +101,15 @@ public class SingleGameModeUI : MonoBehaviour
         SetActiveResultUI(false);
     }
 
+    public void StartToStandby()
+    {
+        SetActiveReadyGroupUI(false);
+        SetActiveTouchAnywhereUI(false);
+        SetActiveStandbyTimeUI(true);
+        SetActiveGameTimeUI(false);
+        SetActiveResultUI(false);
+    }
+
     public void GameOver()
     {
         SetActiveReadyGroupUI(false);
@@ -102,6 +117,8 @@ public class SingleGameModeUI : MonoBehaviour
         SetActiveStandbyTimeUI(false);
         SetActiveGameTimeUI(false);
         SetActiveResultUI(true);
+
+        RefreshResult(GameplayManager.Instance.TopPlayerScore);
     }
 
     public void RefreshStandbyTime(int value)
@@ -116,9 +133,5 @@ public class SingleGameModeUI : MonoBehaviour
             gameUIText.text = value.ToString();
     }
 
-    public void RefreshResult(int value)
-    {
-        if (resultUIText != null)
-            resultUIText.text = value.ToString();
-    }
+    
 }

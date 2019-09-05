@@ -375,7 +375,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Two Player
+  m_Text: 2 Players
 --- !u!222 &532216698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -533,7 +533,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Single Player
+  m_Text: 1 Player
 --- !u!222 &649293187
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Two Player
+  m_Text: 2 Players
 --- !u!222 &1199139135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1023,7 +1023,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Single Player
+  m_Text: 1 Player
 --- !u!222 &1390688873
 CanvasRenderer:
   m_ObjectHideFlags: 0

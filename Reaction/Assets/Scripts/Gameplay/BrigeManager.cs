@@ -8,7 +8,7 @@ public class BrigeManager : Singleton<BrigeManager>
     public enum GameMode
     {
         SINGLE,
-        TWO
+        MULTIPLE
     }
 
     public GameMode CurrentGameMode
@@ -27,7 +27,7 @@ public class BrigeManager : Singleton<BrigeManager>
     public void GotoTwoPlayersGameScene()
     {
         Debug.Log("Go to Game Scene");
-        CurrentGameMode = GameMode.TWO;
+        CurrentGameMode = GameMode.MULTIPLE;
         SceneManager.LoadScene("Game");
     }
 }

@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class TargetGenerator : Singleton<TargetGenerator>
 {
-    [SerializeField] GameObject targetPrefab;
+    [SerializeField] GameObject topTargetPrefab;
+    [SerializeField] GameObject bottomTargetPrefab;
     [SerializeField] Transform anchor;
 
     private Camera cam;
-    private GameObject target;
+    private GameObject topTarget;
+    private GameObject bottomTarget;
 
-    private float minWidth;
-    private float maxWidth;
-    private float minHeight;
-    private float maxHeight;
+    private float firstMinWidth;
+    private float firstMaxWidth;
+    private float firstMinHeight;
+    private float firstMaxHeight;
+
+    private float secondMinWidth;
+    private float secondMaxWidth;
+    private float secondMinHeight;
+    private float secondMaxHeight;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         CreateTarget();
-
     }
 
     private void OnDestroy()
@@ -30,32 +36,86 @@ public class TargetGenerator : Singleton<TargetGenerator>
 
     private void CreateTarget()
     {
-        target = Instantiate(targetPrefab);
+        if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.SINGLE)
+        {
+            topTarget = Instantiate(topTargetPrefab);
+            topTarget.SetActive(false);
 
-        target.SetActive(false);
+            firstMinWidth = -0.5f + (topTarget.transform.localScale.x / 2f);
+            firstMaxWidth = 0.5f - (topTarget.transform.localScale.x / 2f);
 
-        minWidth = -0.5f + (target.transform.localScale.x / 2f);
-        maxWidth = 0.5f - (target.transform.localScale.x / 2f);
+            firstMinHeight = -1f + (topTarget.transform.localScale.y / 2f);
+            firstMaxHeight = 1f - (topTarget.transform.localScale.y / 2f);
+        }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.MULTIPLE)
+        {
+            topTarget = Instantiate(topTargetPrefab);
+            topTarget.SetActive(false);
 
-        minHeight = -1f + (target.transform.localScale.y / 2f);
-        maxHeight = 1f - (target.transform.localScale.y / 2f);
+            bottomTarget = Instantiate(bottomTargetPrefab);
+            bottomTarget.SetActive(false);
+
+            firstMinWidth = -0.5f + (topTarget.transform.localScale.x / 2f);
+            firstMaxWidth = 0.5f - (topTarget.transform.localScale.x / 2f);
+
+            firstMinHeight = 0 + (topTarget.transform.localScale.y / 2f);
+            firstMaxHeight = 1f - (topTarget.transform.localScale.y / 2f);
+
+            secondMinWidth = -0.5f + (topTarget.transform.localScale.x / 2f);
+            secondMaxWidth = 0.5f - (topTarget.transform.localScale.x / 2f);
+
+            secondMinHeight = -1f + (topTarget.transform.localScale.y / 2f);
+            secondMaxHeight = 0 - (topTarget.transform.localScale.y / 2f);
+        }
+        else
+        { }
     }
 
     public void Refresh()
     {
-        if (target.activeSelf == false)
-            target.SetActive(true);
+        //if (topTarget.activeSelf == false)
+        //    topTarget.SetActive(true);
 
-        Vector3 pos = new Vector3(Random.value, Random.value, 10);
-       
-        pos = cam.ViewportToWorldPoint(pos);
+        if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.SINGLE)
+        {
+            Vector3 pos = new Vector3(Random.value, Random.value, 10);
 
-        //pos.x = -100;
-        //pos.y = -100;
+            pos = cam.ViewportToWorldPoint(pos);
 
-        pos.x = Mathf.Clamp(pos.x, minWidth, maxWidth);
-        pos.y = Mathf.Clamp(pos.y, minHeight, maxHeight);
+            pos.x = Mathf.Clamp(pos.x, firstMinWidth, firstMaxWidth);
+            pos.y = Mathf.Clamp(pos.y, firstMinHeight, firstMaxHeight);
 
-        target.transform.localPosition = pos;
+            topTarget.transform.localPosition = pos;
+        }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.MULTIPLE)
+        {
+            Vector3 posTop = new Vector3(Random.value, Random.value, 10);
+
+            posTop = cam.ViewportToWorldPoint(posTop);
+
+            posTop.x = Mathf.Clamp(posTop.x, firstMinWidth, firstMaxWidth);
+            posTop.y = Mathf.Clamp(posTop.y, firstMinHeight, firstMaxHeight);
+
+            topTarget.transform.localPosition = posTop;
+
+
+            Vector3 posBottom = new Vector3(Random.value, Random.value, 10);
+
+            posBottom = cam.ViewportToWorldPoint(posBottom);
+
+            posBottom.x = Mathf.Clamp(posBottom.x, secondMinWidth, secondMaxWidth);
+            posBottom.y = Mathf.Clamp(posBottom.y, secondMinHeight, secondMaxHeight);
+
+            bottomTarget.transform.localPosition = posBottom;
+        }
+    }
+
+    public void SetActiveTarget(bool status)
+    {
+        if (topTarget != null)
+            topTarget.SetActive(status);
+
+        if (bottomTarget != null)
+            bottomTarget.SetActive(status);
     }
 }
