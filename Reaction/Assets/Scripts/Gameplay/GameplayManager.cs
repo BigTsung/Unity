@@ -64,6 +64,27 @@ public class GameplayManager : Singleton<GameplayManager>
     // ******* public *************
     // ****************************
 
+    public void Again()
+    {
+        if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.SINGLE)
+        {
+            TopPlayerScore = 0;
+            //UIManager.Instance.SwitchWaitForUserReady();
+            //TouchDetector.Instance.CanInteraction = true;
+        }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.MULTIPLE)
+        {
+            TopPlayerScore = 0;
+            BottomPlayerScore = 0;
+            bottomPlayerReady = false;
+            topPlayerReady = false;
+
+        }
+        else {}
+        UIManager.Instance.SwitchWaitForUserReady();
+        TouchDetector.Instance.CanInteraction = true;
+    }
+
     public void GotoStartScene()
     {
         Debug.Log("Go to Start Scene");

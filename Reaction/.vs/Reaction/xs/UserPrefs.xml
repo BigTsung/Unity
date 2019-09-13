@@ -1,13 +1,17 @@
 ﻿<Properties StartupConfiguration="{83179D15-EF72-D9EC-5AB5-9AE60302E7DA}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gameplay/TargetGenerator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/TwoPlayersGameModeUI.cs">
     <Files>
-      <File FileName="Assets/Scripts/Gameplay/GameplayManager.cs" Line="134" Column="34" />
-      <File FileName="Assets/Scripts/UI/TwoPlayersGameModeUI.cs" Line="66" Column="25" />
-      <File FileName="Assets/Scripts/UI/UIManager.cs" Line="90" Column="17" />
-      <File FileName="Assets/Scripts/UI/SingleGameModeUI.cs" Line="121" Column="62" />
+      <File FileName="Assets/Scripts/Gameplay/GameplayManager.cs" Line="100" Column="1" />
+      <File FileName="Assets/Scripts/UI/TwoPlayersGameModeUI.cs" Line="37" Column="42" />
+      <File FileName="Assets/Scripts/UI/UIManager.cs" Line="64" Column="38" />
+      <File FileName="Assets/Scripts/UI/SingleGameModeUI.cs" Line="93" Column="53" />
       <File FileName="Assets/Scripts/Gameplay/TargetGenerator.cs" Line="53" Column="40" />
-      <File FileName="Assets/Scripts/Gameplay/Target.cs" Line="14" Column="31" />
-      <File FileName="Assets/Scripts/Gameplay/TouchDetector.cs" Line="55" Column="54" />
+      <File FileName="Assets/Scripts/Gameplay/Target.cs" Line="11" Column="22" />
+      <File FileName="Assets/Scripts/Gameplay/TouchDetector.cs" Line="54" Column="78" />
+      <File FileName="Assets/Scripts/Common/AppStatusManager.cs" Line="18" Column="25" />
+      <File FileName="Assets/Scripts/UI/StartMenuUIManager.cs" Line="15" Column="46" />
+      <File FileName="Assets/Scripts/Gameplay/BrigeManager.cs" Line="20" Column="17" />
+      <File FileName="Assets/Scripts/Gameplay/AudioManager.cs" Line="33" Column="41" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,10 +20,10 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Common" expanded="True" />
-                <Node name="Gameplay" expanded="True">
-                  <Node name="TargetGenerator.cs" selected="True" />
+                <Node name="Gameplay" expanded="True" />
+                <Node name="UI" expanded="True">
+                  <Node name="TwoPlayersGameModeUI.cs" selected="True" />
                 </Node>
-                <Node name="UI" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -29,7 +33,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="03301589-8b3e-44ab-ae7a-0e555c415b17" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b52d12f7-5ca3-4e1c-bde0-1d1cd52f9c1d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

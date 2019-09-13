@@ -19,6 +19,8 @@ public class TwoPlayersGameModeUI : MonoBehaviour
     [SerializeField] private Text bottomGroupStandbyCountDownText;
     [SerializeField] private Text bottomGroupGameCountDownText;
     [SerializeField] private Text bottomGroupResultText;
+    [SerializeField] private GameObject yesOrNoGameObject;
+    [SerializeField] private GameObject lineGameObject;
 
     private void Start()
     {
@@ -28,6 +30,18 @@ public class TwoPlayersGameModeUI : MonoBehaviour
     // ****************************
     // ******* public *************
     // ****************************
+
+    public void OnClickAgain()
+    {
+        AudioManager.Instance.PlayGameSceneBotton();
+        GameplayManager.Instance.Again();
+    }
+
+    public void OnClickBack()
+    {
+        AudioManager.Instance.PlayGameSceneBotton();
+        GameplayManager.Instance.GotoStartScene();
+    }
 
     public void OnClickTouchAnywhere(int index)
     {
@@ -48,6 +62,7 @@ public class TwoPlayersGameModeUI : MonoBehaviour
     {
         // Top group
         SetTopGroupReady("Ready?");
+        SetActiveTopGroupReadyText(true);
         SetActiveTopGroupTouchAnywhereText(true);
         SetActiveTopGroupTouchAnywhereButton(true);
         SetActiveTopGroupStandbyCountdown(false);
@@ -56,11 +71,14 @@ public class TwoPlayersGameModeUI : MonoBehaviour
 
         // Bottom group
         SetBottomGroupReady("Ready?");
+        SetActiveBottomGroupReadyText(true);
         SetActiveBottomGroupTouchAnywhereText(true);
         SetActiveBottomGroupTouchAnywhereButton(true);
         SetActiveBottomGroupStandbyCountdown(false);
         SetActiveBottomGroupGameCountdown(false);
         SetActiveBottomGroupResult(false);
+        SetActiveLineGameObject(true);
+        SetActiveYesOrNoGameObject(false);
     }
 
     public void GameOver()
@@ -83,6 +101,8 @@ public class TwoPlayersGameModeUI : MonoBehaviour
 
         SetBottomGroupResult(GameplayManager.Instance.BottomPlayerScore);
         SetActiveBottomGroupResult(true);
+        SetActiveLineGameObject(false);
+        SetActiveYesOrNoGameObject(true);
     }
 
     public void RefreshStandbyTime(int value)
@@ -276,5 +296,17 @@ public class TwoPlayersGameModeUI : MonoBehaviour
     {
         if (bottomGroupResultText != null)
             bottomGroupResultText.transform.parent.gameObject.SetActive(status);
+    }
+
+    private void SetActiveLineGameObject(bool status)
+    {
+        if (lineGameObject != null)
+            lineGameObject.SetActive(status);
+    }
+
+    private void SetActiveYesOrNoGameObject(bool status)
+    {
+        if (yesOrNoGameObject != null)
+            yesOrNoGameObject.SetActive(status);
     }
 }

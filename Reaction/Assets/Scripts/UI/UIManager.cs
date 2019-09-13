@@ -53,8 +53,17 @@ public class UIManager : Singleton<UIManager>
 
     public void SwitchWaitForUserReady()
     {
-        if(singleGameModeUI != null)
-            singleGameModeUI.StartWaitingUserClickAnywhere();
+        if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.SINGLE)
+        {
+            if (singleGameModeUI != null)
+                singleGameModeUI.StartWaitingUserClickAnywhere();
+        }
+        else if (BrigeManager.Instance.CurrentGameMode == BrigeManager.GameMode.MULTIPLE)
+        {
+            if (twoPlayersModeUI != null)
+                twoPlayersModeUI.InitAll();
+        }
+      
     }
 
     public void SwitchToStandbyCountdown()

@@ -44,12 +44,14 @@ public class TouchDetector : Singleton<TouchDetector>
 
                         if (hitInfo.transform.tag == "TargetTop")
                         {
+                            AudioManager.Instance.PlayGameSceneTouchTarget();
                             Debug.Log("Touch on target: " + hitInfo.transform.name);
                             GameplayManager.Instance.TopPlayerScore++;
                             TargetGenerator.Instance.Refresh();
                         }
                         else if (hitInfo.transform.tag == "TargetBottom")
                         {
+                            AudioManager.Instance.PlayGameSceneTouchTarget();
                             Debug.Log("Touch on target: " + hitInfo.transform.name);
                             GameplayManager.Instance.BottomPlayerScore++;
                             TargetGenerator.Instance.Refresh();

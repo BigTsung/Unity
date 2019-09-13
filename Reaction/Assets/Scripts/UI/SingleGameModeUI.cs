@@ -81,6 +81,20 @@ public class SingleGameModeUI : MonoBehaviour
         SetActiveResultUI(false);
     }
 
+    public void OnClickAgain()
+    {
+        AudioManager.Instance.PlayGameSceneBotton();
+
+        GameplayManager.Instance.Again();
+    }
+
+    public void OnClickBack()
+    {
+        AudioManager.Instance.PlayGameSceneBotton();
+
+        GameplayManager.Instance.GotoStartScene();
+    }
+
     public void OnClickTouchAnywhere()
     {
         SetActiveReadyGroupUI(false);
