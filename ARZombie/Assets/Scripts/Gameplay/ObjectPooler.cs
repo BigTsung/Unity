@@ -14,8 +14,7 @@ public class ObjectPooler : Singleton<ObjectPooler> {
 
     public enum ObjectTag
     {
-        ZombieB,
-        ZombieC,
+        ZombieD,
         Rifle_Bullet
     }
 

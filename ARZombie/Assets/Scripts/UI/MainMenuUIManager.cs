@@ -4,6 +4,6 @@ public class MainMenuUIManager : MonoBehaviour {
 
     public void Go()
     {
-        SceneLoader.Instance.LoadSceneAsync ("Main");
+        SceneLoader.Instance.LoadSceneAsync ("GameMode_ProtectMyCamp");
     }
 }

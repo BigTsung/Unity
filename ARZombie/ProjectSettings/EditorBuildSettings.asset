@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Loading.unity
     guid: 4d2d05ab3fa1e0a44b6bbc5137934601
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: c0cc14688f1b1134d8d4588adc1fce0e
+    path: Assets/Scenes/GameMode_ProtectMyCamp.unity
+    guid: 40160589c7e0b41639e109b0d17f6bbb
   m_configObjects: {}

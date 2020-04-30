@@ -48,7 +48,7 @@ public class ProtectModeManager : Singleton<ProtectModeManager> {
     {
         startWaitingTime -= countDownRefreshTime;
 
-        Debug.Log(startWaitingTime);
+        //Debug.Log(startWaitingTime);
 
         if (startWaitingTime <= 0)
         {
