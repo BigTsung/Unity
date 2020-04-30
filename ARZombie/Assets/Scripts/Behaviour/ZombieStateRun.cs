@@ -11,36 +11,36 @@ public class ZombieStateRun : SceneLinkedSMB<ZombieBehaviour> {
         base.OnSLStatePostEnter(animator, stateInfo, layerIndex);
         m_MonoBehaviour.SetAgentSpeed(speed);
 
-        //if (m_MonoBehaviour.Target != null)
-        //{
-        //    m_MonoBehaviour.Detect();
-            m_MonoBehaviour.GotoTarget();
-        //}
+        ////if (m_MonoBehaviour.Target != null)
+        ////{
+        ////    m_MonoBehaviour.Detect();
+        //    m_MonoBehaviour.GotoTarget();
+        ////}
     }
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnSLStateNoTransitionUpdate(animator, stateInfo, layerIndex);
 
-        ZombieBehaviour.StatusWithTarget status = m_MonoBehaviour.GetStatusWithTarget();
+        //ZombieBehaviour.StatusWithTarget status = m_MonoBehaviour.GetStatusWithTarget();
 
-        if (status == ZombieBehaviour.StatusWithTarget.TOOFAR)
-        {
-            //m_MonoBehaviour.BackToSpawnPosiion();
-        }
-        else if(status == ZombieBehaviour.StatusWithTarget.READY_TO_ATTACK)
-        {
-            //Debug.Log("Attack Run" + m_MonoBehaviour.gameObject.transform.parent.name);
-            m_MonoBehaviour.Attack();
-        }
-        else if(status == ZombieBehaviour.StatusWithTarget.KEEP_GOING)
-        {
-            //Debug.Log("Follow the target!!!");
-            m_MonoBehaviour.KeepGoing();
-        }
-        else
-        {
-            Debug.Log("not get any status!!");
-        }
+        //if (status == ZombieBehaviour.StatusWithTarget.TOOFAR)
+        //{
+        //    //m_MonoBehaviour.BackToSpawnPosiion();
+        //}
+        //else if(status == ZombieBehaviour.StatusWithTarget.READY_TO_ATTACK)
+        //{
+        //    //Debug.Log("Attack Run" + m_MonoBehaviour.gameObject.transform.parent.name);
+        //    m_MonoBehaviour.Attack();
+        //}
+        //else if(status == ZombieBehaviour.StatusWithTarget.KEEP_GOING)
+        //{
+        //    //Debug.Log("Follow the target!!!");
+        //    m_MonoBehaviour.KeepGoing();
+        //}
+        //else
+        //{
+        //    Debug.Log("not get any status!!");
+        //}
     }
 }

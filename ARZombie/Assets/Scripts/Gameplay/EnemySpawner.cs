@@ -34,42 +34,7 @@ public class EnemySpawner : Singleton<EnemySpawner> {
     public void StartSpawnEnemy()
     {
         float randomTime = Random.Range(minSpawnSpacingTime, maxSapwnSpacingTime);
-<<<<<<< HEAD
 
-        Invoke("Spawn", randomTime);
-    }
-
-    private Vector3 GetSpawnPosition()
-    {
-        Vector3 result = player.transform.position;
-        //Debug.Log("Enemy spawn Position:" + result);
-
-        float xRandom = Random.Range(-detectRegion / 2f, detectRegion / 2f);
-        float zRandom = Random.Range(-detectRegion / 2f, detectRegion / 2f);
-
-        result.x += xRandom;
-        result.z += zRandom;
-
-        return result;
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (!debugMode)
-            return;
-
-        SphereCollider sphereCollider = GetComponent<SphereCollider>();
-        //sphereCollider.radius;
-
-        Color finalColor = Color.green;
-        finalColor.a = 0.2f;
-        Gizmos.color = finalColor;
-        Gizmos.DrawSphere(player.transform.position, sphereCollider.radius);
-    }
-
-   
-}
-=======
         Invoke("Spawn", randomTime);
     }
 
@@ -129,7 +94,4 @@ public class EnemySpawner : Singleton<EnemySpawner> {
         Gizmos.color = finalColor;
         Gizmos.DrawSphere(player.transform.position, sphereCollider.radius);
     }
-
-   
 }
->>>>>>> 6fe5de8ce4c17c05fe73a2352d3a4bf981c71802
